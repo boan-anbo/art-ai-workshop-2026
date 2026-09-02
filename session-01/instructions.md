@@ -30,11 +30,11 @@ Do all of these through opencode. Do not look for a tutorial and follow it by ha
 
 Fork this repository, then clone your fork onto your own computer. Along the way, ask the agent to explain how GitHub works and what you actually need in order to use it.
 
-Clone your fork, not this repository.
+Clone your fork, not this repository. Bring your fork's URL to the session; at the start you will paste it into a shared list, and that is the only submission there is.
 
 ### 2. Introduce yourself, and push it back
 
-In your fork, write `my-work/self-introduction.md`. Five questions, one short paragraph each:
+In your fork, write `my-work/self-introduction.md`. This file lives in your own fork, and a fork is public; if you would rather not publish it, write it locally, skip the push, and just show it in the session. Five questions, one short paragraph each:
 
 1. A short introduction of yourself.
 2. What do you study or make, and what interests you in it?
