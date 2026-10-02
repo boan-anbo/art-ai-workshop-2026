@@ -1,0 +1,32 @@
+name: 工作坊提問
+description: 分享研究問題、材料或操作上的疑問。
+title: "[提問] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        歡迎以中文或英文提問。這裡的問題是公開的；請只分享適合公開的內容。
+  - type: textarea
+    id: context
+    attributes:
+      label: 研究背景
+      description: 你研究或創作的是甚麼？這個問題出現在甚麼情境？
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: 你的問題
+      description: 想完成甚麼工作，或希望弄清楚甚麼？
+    validations:
+      required: true
+  - type: textarea
+    id: attempts
+    attributes:
+      label: 已嘗試的方法
+      description: 如果已試過一些工具或方法，說說結果和卡住的地方。
+  - type: textarea
+    id: materials
+    attributes:
+      label: 材料或連結
+      description: 可附上適合公開的範例、資料來源或相關問答連結。
