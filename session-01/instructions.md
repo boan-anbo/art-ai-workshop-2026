@@ -1,6 +1,6 @@
 # Session 1
 
-Before the session on Thursday, 6 November.
+Before the session on Friday, 6 November 2026.
 
 ## Tasks
 
@@ -53,3 +53,5 @@ On github.com, find your commit and read your own diff: what the red and green l
 ## Questions
 
 Keep a running file `my-work/questions.md`. Whenever something makes no sense, write it down there and commit it. We will open each session with these files; not understanding is a deliverable here, not an embarrassment.
+
+For questions you want to discuss before the workshop, [post directly in GitHub Issues](https://github.com/boan-anbo/art-ai-workshop-2026/issues/new?template=question.yml). You can write in Chinese or English. The current [Q&A website](https://boan-anbo.github.io/art-ai-workshop-2026/) connects the responses to workshop topics.
