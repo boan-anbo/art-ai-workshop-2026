@@ -59,12 +59,22 @@ dd { margin: 0; font-size: .9rem; }
 .question-index nav { display: grid; gap: .25rem; margin-block: 1.25rem 2rem; }
 .question-index nav a { display: block; width: fit-content; min-height: 44px; font-size: .85rem; text-decoration: none; padding-block: .5rem; }
 .question-index nav span { color: var(--accent); font-family: Georgia, serif; margin-right: .4rem; }
+.question-index nav ol { list-style: none; padding: 0; margin: 0; }
+.question-index nav small { display: block; color: var(--muted); font-size: .75rem; }
+.question-article { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 2rem; }
+.question-responses { max-width: 46rem; }
+.related-topics, .back-to-list { font-size: .8rem; color: var(--accent); }
+.related-topics { margin-top: 1.5rem; }
+.back-to-list { display: inline-block; padding-block: .6rem; }
+.topic .topic-questions { font-size: .8rem; margin-top: .5rem; line-height: 2.2; }
+.topic-questions a { display: inline-block; min-width: 2.5rem; padding-block: .3rem; }
 .participant-heading { margin-bottom: 1.25rem; }
 .participant-heading h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2rem); line-height: 1.5; margin-top: .4rem; }
 .prose { max-width: 42rem; line-height: 1.95; }
 .prose p { margin-block: 1rem; }
 .prose > p:first-child { font-size: .9rem; color: var(--muted); margin-top: 0; }
 .prose h3 { display: grid; grid-template-columns: 3.5rem 1fr; align-items: baseline; gap: .5rem; border-top: 1px solid var(--line); margin-top: 2.5rem; padding-top: 1.5rem; font-family: var(--serif); font-weight: 600; font-size: 1.25rem; line-height: 1.6; }
+.workshop-prose h3 { display: block; }
 .question-number { color: var(--accent); font-size: 1rem; font-family: Georgia, serif; font-weight: 400; }
 .prose strong { font-weight: 600; }
 .original-question { margin-block: 1.1rem 1.5rem; }
@@ -93,10 +103,11 @@ footer p { padding-top: .5rem; }
   .intro { grid-template-columns: minmax(0, 1fr) 16rem; gap: 4rem; align-items: end; }
   .desktop-break { display: initial; }
   .session-note { border-top: 0; border-left: 1px solid var(--line); padding: .5rem 0 .5rem 1.5rem; margin-bottom: .75rem; }
-  .topics-section, .questions-section { display: grid; grid-template-columns: minmax(12rem, .75fr) minmax(0, 1.65fr); gap: clamp(2.5rem, 6vw, 6rem); padding-block: 3.5rem; }
+  .topics-section { display: grid; grid-template-columns: minmax(12rem, .75fr) minmax(0, 1.65fr); gap: clamp(2.5rem, 6vw, 6rem); padding-block: 3.5rem; }
+  .questions-section { padding-block: 3.5rem; }
   .topic-list { margin-top: 0; }
   .topic:first-child { padding-top: 0; }
-  .question-index { align-self: start; position: sticky; top: 2rem; }
+  .question-index { max-width: 46rem; }
   .question-index nav { margin-bottom: 0; }
   .ask-section { grid-template-columns: 1fr auto; align-items: center; gap: 3rem; }
 }
