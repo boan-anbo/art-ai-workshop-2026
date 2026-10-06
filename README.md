@@ -12,10 +12,10 @@ All instructions, materials, and updates for the workshop live in this repositor
 
 ## The two sessions
 
-1. **Vibe Coding for Art Research** — Friday 6 November 2026, 2:30–4:30 PM (Hong Kong time). Set up an AI coding agent on your own laptop and work from your own research questions and materials.
-2. **Vibe Coding for Art Research Presentation** — Friday 13 November 2026, 2:30–4:30 PM (Hong Kong time). Detailed content will follow as we work through the questions.
+1. **From questions to traceable materials** — Friday 6 November 2026, 2:30–4:30 PM (Hong Kong time). Work from your own question: discovery, visual description, source checking, notes and a reusable method.
+2. **From checked records to comparison and presentation** — Friday 13 November 2026, 2:30–4:30 PM (Hong Kong time). Extract a small table, check it, then explore comparisons, maps or networks and revise your method.
 
-The workshop's organisation develops from your questions. The [Q&A](site/src/content/qa/01-yuk-wong.md) connects each response to relevant workshop topics; further responses will be added here. Your own materials and work stay in a repository you own.
+The [29 individual Q&A responses](site/src/content/qa/) connect each question to shared workshop topics. The [two-session outline](site/src/content/workshops.md) explains the common work and optional extensions. Your own materials and work stay in a repository you own.
 
 ## What is in this repository
 
@@ -28,7 +28,7 @@ Nothing else needs to be read in advance. Do the session 1 instructions, and we 
 
 ## Updating the website
 
-Public Q&A is written once in `site/src/content/qa/` and rendered by Astro. The website uses Traditional Chinese, with the original English questions available to expand. Detailed instructor scripts are kept separately and are not part of this repository.
+Public Q&A is written once, one question per file in `site/src/content/qa/`, and rendered by Astro in questionnaire order. The website uses Traditional Chinese, with the original English questions available to expand. Responses 01.1, 01.3 and 02.1 primarily edit Bo's dictation; other responses are assistant drafts individually grounded in Bo's authorised teaching and research methods. Detailed instructor scripts are kept separately and are not part of this repository.
 
 For website maintainers: use Node 22 (the deployment uses 22.14.0), then inside `site/`:
 
