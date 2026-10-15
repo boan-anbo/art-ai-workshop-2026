@@ -11,6 +11,8 @@ Install and register. Follow each site's own instructions, since they change fas
 - GitHub account: https://github.com — register with a personal email you will still have in ten years, not your university one; this account is worth keeping, and nobody else can recover it for you
 - VS Code: https://code.visualstudio.com
 
+If an install or an account gets stuck, write down where it stopped and bring that as a question. In the session you can work with the tools you already have, or practise alongside a classmate or me. You do not need to buy a second subscription just to take part.
+
 Optional, each with its reason; skip them if the list above already feels long:
 
 - GitHub Desktop: https://desktop.github.com — a point-and-click way to work with GitHub, useful as a fallback

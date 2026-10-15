@@ -9,6 +9,7 @@ const issues = `${workspace}/issues/new?template=question.yml`;
 interface QuestionMetadata {
   id: string;
   title: string;
+  question_zh: string;
   participant: string;
   programme: string;
   topics: TopicId[];
@@ -21,7 +22,7 @@ if (new Set(questionIds).size !== questionIds.length) {
   throw new Error('Each question response must have a distinct id.');
 }
 for (const { frontmatter } of questions) {
-  if (!/^\d{2}\.\d$/.test(frontmatter.id) || !frontmatter.title || !frontmatter.participant
+  if (!/^\d{2}\.\d$/.test(frontmatter.id) || !frontmatter.title || !frontmatter.question_zh || !frontmatter.participant
     || !frontmatter.programme || !frontmatter.topics?.length
     || frontmatter.topics.some((id) => !topics.some((topic) => topic.id === id))) {
     throw new Error(`Invalid question metadata: ${frontmatter.id}`);
@@ -67,7 +68,7 @@ for (const question of questions) {
             <p class="eyebrow" lang="en">ART RESEARCH · A WORKING CONVERSATION</p>
             <h1 id="page-title">從你的問題<br />開始。</h1>
             <p class="lead">AI 與數位工具可以怎樣參與藝術研究？<br class="desktop-break" />我們從同學的材料、創作與疑問出發。</p>
-            <p class="translation-note">29 個問題逐題回應。01.1、01.3 及 02.1 主要整理自 Bo 的口述；其餘由助手依 Bo 授權、參照其教學與研究方法逐題整理為課前討論稿。具體材料的效果仍需實測，原問題可展開閱讀。</p>
+            <p class="translation-note">29 個問題逐題回應。01.1、01.3 及 02.1 主要整理自 Bo 的口述；其餘由助手依 Bo 授權、參照其教學與研究方法逐題整理為課前討論稿。每題附英文原問題及助手所作的中文譯文。具體材料的效果仍需實測。</p>
             <a class="text-link" href="#questions">按順序閱讀問答 <span aria-hidden="true">↓</span></a>
           </div>
           <aside class="session-note" aria-label="工作坊資料">
@@ -105,6 +106,10 @@ for (const question of questions) {
                       <span class="qa-chevron" aria-hidden="true"></span>
                     </summary>
                     <div class="qa-body">
+                      <div class="qa-question">
+                        <p class="qa-label">原問題 · 中文譯文</p>
+                        <blockquote lang="zh-Hant">{q.question_zh}</blockquote>
+                      </div>
                       <div class="prose"><Content /></div>
                       <p class="related-topics">相關內容：{q.topics.map((id, i) => (
                         <><span>{i > 0 ? ' ／ ' : ''}</span><a href={`#topic-${id}`}>{topics.find((t) => t.id === id)?.title}</a></>
