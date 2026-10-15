@@ -96,6 +96,35 @@ footer > div { display: flex; gap: 1.25rem; }
 footer a { display: inline-block; min-height: 44px; padding-block: .5rem; }
 footer p { padding-top: .5rem; }
 
+/* Q&A as an expandable list, grouped by participant */
+.qa-tools { display: flex; gap: .75rem; margin-top: 1.25rem; }
+.qa-tools button { font: inherit; font-size: .85rem; min-height: 44px; padding: .4rem 1rem; background: transparent; color: var(--ink); border: 1px solid var(--line); cursor: pointer; }
+.qa-tools button:hover { border-color: var(--accent); color: var(--accent); }
+.qa-groups { margin-top: 2rem; max-width: 50rem; }
+.qa-group { border-top: 1px solid var(--line); padding-block: 1.25rem .5rem; }
+.qa-person { font-size: .95rem; font-weight: 600; margin-bottom: .35rem; }
+.qa-person-no { font-family: Georgia, serif; color: var(--accent); font-weight: 400; margin-right: .35rem; }
+.qa-person small { margin-left: .6rem; font-size: .75rem; font-weight: 400; color: var(--muted); }
+.qa { scroll-margin-top: 1.5rem; }
+.qa > summary { display: grid; grid-template-columns: 2.6rem 1fr auto auto; align-items: baseline; gap: .5rem; min-height: 48px; padding-block: .65rem; cursor: pointer; list-style: none; }
+.qa > summary::-webkit-details-marker { display: none; }
+.qa-no { font-family: Georgia, serif; color: var(--accent); }
+.qa-title { font-family: var(--serif); font-size: 1.05rem; line-height: 1.6; }
+.qa > summary:hover .qa-title { color: var(--accent); }
+.qa-badge { font-size: .7rem; color: var(--accent); border: 1px solid currentColor; padding: 0 .35rem; line-height: 1.6; white-space: nowrap; align-self: center; }
+.qa-chevron { width: .55rem; height: .55rem; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(45deg); align-self: center; margin-right: .3rem; transition: transform .2s; }
+.qa[open] > summary .qa-chevron { transform: rotate(-135deg); }
+.qa-body { padding: .25rem 0 1.5rem 3.1rem; }
+.qa-body .prose > p:first-child { display: none; }
+.qa-body .original-question { margin-top: 0; }
+@media (max-width: 759px) {
+  .qa > summary { grid-template-columns: 2.4rem 1fr auto; }
+  .qa-badge { grid-column: 2; justify-self: start; }
+  .qa-chevron { grid-row: 1; grid-column: 3; }
+  .qa-body { padding-left: 0; }
+}
+@media print { .qa-tools { display: none; } .qa-chevron { display: none; } }
+
 @media (min-width: 760px) {
   .page-shell { width: min(100% - 5rem, 72rem); }
   .masthead { padding-block: 1.35rem; }
