@@ -116,7 +116,10 @@ footer p { padding-top: .5rem; }
 .qa[open] > summary .qa-chevron { transform: rotate(-135deg); }
 .qa-body { padding: .25rem 0 1.5rem 3.1rem; }
 .qa-body .prose > p:first-child { display: none; }
-.qa-body .original-question { margin-top: 0; }
+.qa-question { margin-bottom: .25rem; }
+.qa-label { font-size: .8rem; color: var(--muted); }
+.qa-question blockquote { margin: .4rem 0 0; border-left: 2px solid var(--accent); padding: .2rem 0 .2rem 1rem; font-family: var(--serif); font-size: 1rem; line-height: 1.85; }
+.qa-body .original-question { margin-top: .5rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--line); }
 @media (max-width: 759px) {
   .qa > summary { grid-template-columns: 2.4rem 1fr auto; }
   .qa-badge { grid-column: 2; justify-self: start; }
