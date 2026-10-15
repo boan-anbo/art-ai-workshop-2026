@@ -28,6 +28,15 @@ for (const { frontmatter } of questions) {
   }
 }
 const anchor = (id: string) => `q-${id.replace('.', '-')}`;
+// The page note already names these three as drawn mainly from Bo's dictation.
+const dictated = new Set(['01.1', '01.3', '02.1']);
+const groups: { key: string; participant: string; programme: string; items: typeof questions }[] = [];
+for (const question of questions) {
+  const key = question.frontmatter.id.slice(0, 2);
+  const last = groups.at(-1);
+  if (last?.key === key) last.items.push(question);
+  else groups.push({ key, participant: question.frontmatter.participant, programme: question.frontmatter.programme, items: [question] });
+}
 ---
 
 <!doctype html>
@@ -75,30 +84,35 @@ const anchor = (id: string) => `q-${id.replace('.', '-')}`;
 
         <section class="questions-section" id="questions" aria-labelledby="questions-title">
           <div class="section-heading question-index">
-            <p class="eyebrow">課前 Q&A · {questions.length} 個問題</p>
-            <h2 id="questions-title">從上到下，逐題討論。</h2>
-            <p>按原問卷順序排列；每題連到共同的 workshop 內容。</p>
-            <nav aria-label="問題清單">
-              <ol>
-                {questions.map(({ frontmatter: q }) => (
-                  <li><a href={`#${anchor(q.id)}`}><span>{q.id}</span> {q.title}<small>{q.participant}</small></a></li>
-                ))}
-              </ol>
-            </nav>
+            <p class="eyebrow">課前 Q&A · {questions.length} 個問題 · {groups.length} 位同學</p>
+            <h2 id="questions-title">逐題一覽，點開看答覆。</h2>
+            <p>按原問卷順序排列。每題展開後先見英文原問題，再見中文答覆與相關內容。</p>
+            <div class="qa-tools" hidden>
+              <button type="button" data-qa="open">全部展開</button>
+              <button type="button" data-qa="close">全部收起</button>
+            </div>
           </div>
-          <div class="question-responses">
-            {questions.map(({ frontmatter: q, Content }) => (
-              <article class="question-article" id={anchor(q.id)} aria-labelledby={`${anchor(q.id)}-title`}>
-                <header class="participant-heading">
-                  <p class="eyebrow">{q.participant} · {q.programme}</p>
-                  <h2 id={`${anchor(q.id)}-title`}><span class="question-number">{q.id}</span> {q.title}</h2>
-                </header>
-                <div class="prose"><Content /></div>
-                <p class="related-topics">相關內容：{q.topics.map((id, i) => (
-                  <><span>{i > 0 ? ' ／ ' : ''}</span><a href={`#topic-${id}`}>{topics.find((t) => t.id === id)?.title}</a></>
-                ))}</p>
-                <a class="back-to-list" href="#questions">返回問題清單 ↑</a>
-              </article>
+          <div class="qa-groups">
+            {groups.map((group) => (
+              <section class="qa-group" aria-labelledby={`p-${group.key}`}>
+                <h3 class="qa-person" id={`p-${group.key}`}><span class="qa-person-no">{group.key}</span> {group.participant}<small>{group.programme}</small></h3>
+                {group.items.map(({ frontmatter: q, Content }) => (
+                  <details class="qa" id={anchor(q.id)}>
+                    <summary>
+                      <span class="qa-no">{q.id}</span>
+                      <span class="qa-title">{q.title}</span>
+                      {dictated.has(q.id) && <span class="qa-badge" title="主要整理自 Bo 的口述">口述</span>}
+                      <span class="qa-chevron" aria-hidden="true"></span>
+                    </summary>
+                    <div class="qa-body">
+                      <div class="prose"><Content /></div>
+                      <p class="related-topics">相關內容：{q.topics.map((id, i) => (
+                        <><span>{i > 0 ? ' ／ ' : ''}</span><a href={`#topic-${id}`}>{topics.find((t) => t.id === id)?.title}</a></>
+                      ))}</p>
+                    </div>
+                  </details>
+                ))}
+              </section>
             ))}
           </div>
         </section>
@@ -146,5 +160,26 @@ const anchor = (id: string) => `q-${id.replace('.', '-')}`;
         <div><a href={workspace}>Workspace ↗</a><a href={`${workspace}/tree/main/session-01`}>課前準備 ↗</a></div>
       </footer>
     </div>
+    <script>
+      // Progressive enhancement: the questions work as plain <details> without this.
+      const items = [...document.querySelectorAll<HTMLDetailsElement>('details.qa')];
+      const showOriginal = (item: HTMLDetailsElement) => item
+        .querySelectorAll<HTMLDetailsElement>('details.original-question')
+        .forEach((d) => { d.open = true; });
+      items.forEach((item) => item.addEventListener('toggle', () => { if (item.open) showOriginal(item); }));
+      const tools = document.querySelector<HTMLElement>('.qa-tools');
+      tools?.removeAttribute('hidden');
+      tools?.addEventListener('click', (event) => {
+        const action = (event.target as HTMLElement | null)?.closest('button')?.dataset.qa;
+        if (action) items.forEach((item) => { item.open = action === 'open'; });
+      });
+      const openFromHash = () => {
+        const target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+        if (target instanceof HTMLDetailsElement && target.matches('details.qa')) { target.open = true; target.scrollIntoView(); }
+      };
+      addEventListener('hashchange', openFromHash);
+      openFromHash();
+      addEventListener('beforeprint', () => items.forEach((item) => { item.open = true; }));
+    </script>
   </body>
 </html>
