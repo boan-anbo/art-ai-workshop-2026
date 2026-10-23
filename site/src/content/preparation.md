@@ -8,7 +8,7 @@
 安裝 [OpenCode](https://opencode.ai)（建議 terminal 版，desktop 版也可以），並訂閱 [OpenCode Go](https://opencode.ai/go)：<strong>US$10／月，可隨時取消</strong>。
 
 <strong>OpenCode 內推薦使用的熱門模型：</strong> 連接 OpenCode Plan（OpenCode Go／Zen，在終端機輸入 `/connect` 連接後以 `/models` 切換）後，目前在 OpenCode 裡最推薦大家選用的主力模型包括：
-- <strong>DeepSeek 系列</strong>：<strong>DeepSeek V4.2（High／Max 推理檔位）</strong> 或速度更快、額度更充裕的 <strong>DeepSeek V4.1 Flash</strong>；
+- <strong>DeepSeek 系列</strong>：<strong>DeepSeek V4.1 Flash（選 High 或 Maximum 檔位）</strong>；
 - <strong>GLM 系列</strong>：<strong>GLM-5.3</strong> 或輕量高速的 <strong>GLM-5.3 Flash</strong>。
 
 日常讀寫檔案、跑腳本可優先用這些高性價比模型；其他部分模型雖然價格較貴，但思考與複雜推理能力可能更好一些，可按具體任務需要切換。<strong>如果你已經在使用自己的 coding agent，例如 Claude Code 或 Codex，請繼續使用，不必另買 OpenCode Go。</strong> 需要的是能在本機讀寫檔案、執行工具的 agent。

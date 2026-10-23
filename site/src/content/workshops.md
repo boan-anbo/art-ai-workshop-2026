@@ -6,7 +6,7 @@
 
 <strong>14:30–14:45 · 約 15 分鐘</strong>
 
-先註冊 GitHub 並把工作坊倉庫下載（clone）到本地，配置好 OpenCode（推薦在 OpenCode Plan 中選用熱門的 <strong>DeepSeek V4.2 High／Max</strong>、<strong>DeepSeek V4.1 Flash</strong> 或 <strong>GLM-5.3／GLM-5.3 Flash</strong>）與 OpenRouter 基礎環境；重點帶大家跑通 Coding Agent 的基本工作方式，並簡介什麼是 Skill。
+先註冊 GitHub 並把工作坊倉庫下載（clone）到本地，配置好 OpenCode（推薦在 OpenCode Plan 中選用熱門的 <strong>DeepSeek V4.1 Flash（High／Maximum）</strong> 或 <strong>GLM-5.3／GLM-5.3 Flash</strong>）與 OpenRouter 基礎環境；重點帶大家跑通 Coding Agent 的基本工作方式，並簡介什麼是 Skill。
 
 工具：[GitHub](https://github.com) · [OpenCode](https://opencode.ai) · [OpenRouter](https://openrouter.ai) · [VS Code](https://code.visualstudio.com)｜指南：[入門](https://www.dhguide.org/start) · [模型](https://www.dhguide.org/models) · [與 agent 協作](https://www.dhguide.org/working-with-agents)
 
