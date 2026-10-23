@@ -1,0 +1,29 @@
+---
+import DocFrame from './DocFrame.astro';
+const stopRule = '請邊做邊用白話解釋每一步。同一步若卡住超過 30 分鐘，立即停下，把工具、步驟和具體錯誤訊息記進 my-work/questions.md，帶到課堂；不要無止境重試。';
+const examples = [
+  {
+    noteTitle: '原件、索引與筆記', note: 'sources/processed/ 應有帶來源定位的索引 CSV，research/ 應有首份筆記草稿，兩者可連回 raw/。原件保持不變；分清來源內容、自己的觀察與 AI 建議。',
+    id: 'prompt-runtime', label: 'EXAMPLE 01', title: '整合測試一：本機環境、Git 倉庫、研究目錄與首份讀書筆記',
+    prompt: '請先檢查 Git、Python 3、uv、Node.js 的版本，以及目前是否為我 clone 的工作坊倉庫，回報路徑、分支與 remote，不重裝或覆蓋已有環境。接着在 my-work/ 檢查或建立 sources/raw/、sources/processed/、research/、artifacts/ 四類目錄，既有檔案不搬移、不覆寫。讀取我放進 sources/raw/ 的第一份測試材料；若尚無材料，就新建一份明確標示為虛構示例的短記錄。原件保持不變，在 sources/processed/ 產生一份索引 CSV，包含 source_id、原檔名、頁碼或圖像區域、摘錄及待查問題，不知道的定位標待核查，不捏造。在 research/ 新建首份結構化讀書筆記草稿，分開來源內容、我的觀察、AI 建議與下一步，連回索引和原件；尚未得到我的觀察時留空，不替我發言。最後讀回 CSV 和筆記核對連結，展示 git diff 與新增檔案，確認 artifacts/ 受 Git 忽略，先不 commit 或 push。',
+  },
+  {
+    noteTitle: '密鑰與成果分開', note: '.env 只留本機、不進 Git。圖像、完整回應與向量放 artifacts/；模型、參數、來源、用量及費用記錄放 sources/processed/，不知道的費用明說未知。',
+    id: 'prompt-openrouter', label: 'EXAMPLE 02', title: '整合測試二：多模態描述／OCR、生圖或向量檢索與成果歸檔',
+    prompt: '請透過本機未追蹤的 .env 讀取 OpenRouter API key，不叫我貼進對話，不顯示 key、不寫入日誌或 Git。先查官方文件並說明選用模型、輸入與預估費用，確認小額測試預算後，用一張我同意交給線上模型處理的公開測試圖像，呼叫一次多模態描述或 OCR，保留原檔名與頁面／區域定位。再按我的選擇做一次圖像生成，或對兩份測試描述／圖像做 embedding 相似度比較；圖文向量需選支援對應輸入的模型。每個步驟只做一次最小呼叫，不自動重試。將生成圖、完整模型回應或向量等輸出放進 my-work/artifacts/；在 my-work/sources/processed/ 新建處理記錄表，保存來源定位、模型名稱、參數、日期、實際用量、可取得的費用與輸出路徑，無法取得的費用明說未知。讀回結果及記錄，確認 .env 與大型成果被 Git 忽略，不把相似分數當成研究結論。',
+  },
+  {
+    noteTitle: '只選一條路徑', note: '路徑 A 把 CSV 接成可篩選的本機檢視頁，實際測試資料更新。路徑 B 只讀取 127.0.0.1 的 Blender 場景，匯出物件記錄；不改寫既有場景。',
+    id: 'prompt-blender', label: 'EXAMPLE 03 · OPTIONAL', title: '整合測試三〔選做〕：表格轉互動網頁，或 Blender 場景轉研究記錄',
+    prompt: '請先讓我選一條路徑。路徑 A：讀取 my-work/sources/processed/ 的測試 CSV，製作可在本機瀏覽器打開的輕量互動檢視頁，至少有一個篩選器或關係預覽；顯示與篩選必須使用完整 CSV，保留 source_id 和原始定位，不寫死搜尋結果。把檢視頁放入 my-work/artifacts/，說明如何在本機打開；若需要本機伺服器，只監聽 127.0.0.1。用不同篩選條件、空結果及一條新增測試記錄，驗證資料更新能到達畫面，再將操作和輸出路徑記在 my-work/research/。路徑 B（已選裝 Blender 才做）：按官方 Blender Lab MCP 專案 https://projects.blender.org/lab/blender_mcp 的說明，透過 uvx 或隔離 Python 環境連上本機 127.0.0.1，先只讀目前場景物件清單，不啟動第二份 Blender、不修改或覆蓋場景；把物件名稱、類型、位置、場景檔名、取得時間與方法匯出成 sources/processed/ 的研究記錄 CSV，並在 research/ 記下與場景來源的關係。只執行選定路徑，保留既有檔案並回報實際結果。',
+  },
+];
+---
+
+<div class="preparation-exercises" id="setup-prompts">
+  <div class="subsection-heading">
+    <h3>安裝完成後：用以下三個例子試一試</h3>
+    <p>將已安裝的工具串成一條小流程。複製提示或下載 Markdown 檔交給 coding agent；第三例按需要選做。</p>
+  </div>
+  {examples.map((item, index) => <DocFrame {...item} downloadName={`example-0${index + 1}.md`} prompt={`${item.prompt}\n\n${stopRule}`} />)}
+</div>

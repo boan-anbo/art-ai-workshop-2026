@@ -2,3 +2,26 @@ site/node_modules/
 site/dist/
 site/.astro/
 .DS_Store
+
+# Never commit API keys or secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Keep large generated 3D/media/cache artifacts out of Git
+/artifacts/
+my-work/artifacts/*
+!my-work/artifacts/README.md
+*.glb
+*.gltf
+*.fbx
+*.obj
+*.blend
+*.blend1
+*.sqlite
+*.sqlite3
+*.db
+__pycache__/
+.venv/

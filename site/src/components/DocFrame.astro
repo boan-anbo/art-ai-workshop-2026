@@ -1,0 +1,31 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  title: string;
+  prompt: string;
+  downloadName: string;
+  noteTitle: string;
+  note: string;
+}
+const { id, label, title, prompt, downloadName, noteTitle, note } = Astro.props;
+const markdown = `# ${title}\n\n${prompt}\n`;
+const downloadHref = `data:text/markdown;charset=utf-8,${encodeURIComponent(markdown)}`;
+---
+
+<div class="composed-row exercise-row">
+  <section class="doc-frame" aria-labelledby={`${id}-title`}>
+    <div class="doc-frame-header">
+      <span class="doc-frame-label">{label}</span>
+      <button type="button" class="copy-button" data-copy-target={id} aria-label={`複製提示：${title}`} hidden>複製提示</button>
+    </div>
+    <h4 id={`${id}-title`}>{title}</h4>
+    <p class="agent-prompt" id={id}>{prompt}</p>
+    <a class="download-prompt" href={downloadHref} download={downloadName}>下載 .md</a>
+    <span class="copy-status" role="status" aria-live="polite"></span>
+  </section>
+  <aside class="margin-note">
+    <p class="eyebrow">{noteTitle}</p>
+    <p>{note}</p>
+  </aside>
+</div>
