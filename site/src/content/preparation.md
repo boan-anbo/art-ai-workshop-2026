@@ -7,7 +7,11 @@
 
 安裝 [OpenCode](https://opencode.ai)（建議 terminal 版，desktop 版也可以），並訂閱 [OpenCode Go](https://opencode.ai/go)：<strong>US$10／月，可隨時取消</strong>。
 
-<strong>如果你已經在使用自己的 coding agent，例如 Claude Code 或 Codex，請繼續使用，不必另買 OpenCode Go。</strong> 需要的是能在本機讀寫檔案、執行工具的 agent。
+<strong>OpenCode 內推薦使用的熱門模型：</strong> 連接 OpenCode Plan（OpenCode Go／Zen，在終端機輸入 `/connect` 連接後以 `/models` 切換）後，目前在 OpenCode 裡最推薦大家選用的主力模型包括：
+- <strong>DeepSeek 系列</strong>：<strong>DeepSeek V4.2（High／Max 推理檔位）</strong> 或速度更快、額度更充裕的 <strong>DeepSeek V4.1 Flash</strong>；
+- <strong>GLM 系列</strong>：<strong>GLM-5.3</strong> 或輕量高速的 <strong>GLM-5.3 Flash</strong>。
+
+日常大批量讀寫檔案、跑腳本可優先用 Flash 版本，遇到複雜邏輯或跨檔案重構時切換到 V4.2（High／Max）或 GLM-5.3。<strong>如果你已經在使用自己的 coding agent，例如 Claude Code 或 Codex，請繼續使用，不必另買 OpenCode Go。</strong> 需要的是能在本機讀寫檔案、執行工具的 agent。
 
 <strong>從設定到練習，都透過你的 coding agent 做。</strong> 不要自己上網找教學一步一步手動設定。直接告訴你的 coding agent 你想做甚麼，把官方網址給它，讓它執行並要求它邊做邊用白話解釋每一步在做甚麼。<strong>如果某一步卡住超過 30 分鐘，立即停下來，把具體錯誤訊息記進 `my-work/questions.md` 帶到課堂。</strong> 不需要一直重試到成功才來上課。
 
