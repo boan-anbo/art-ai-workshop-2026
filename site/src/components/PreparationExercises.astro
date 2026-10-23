@@ -1,21 +1,54 @@
 ---
 import DocFrame from './DocFrame.astro';
-const stopRule = '請邊做邊用白話解釋每一步。同一步若卡住超過 30 分鐘，立即停下，把工具、步驟和具體錯誤訊息記進 my-work/questions.md，帶到課堂；不要無止境重試。';
+const stopRule = '請幫我一步步完成以上流程，並在執行每一步時用白話向我解釋（explain along the way）：這一步在做什麼、為什麼我們要這樣設計。如果某一步卡住超過 30 分鐘，請立即停下，幫我把步驟與錯誤訊息記進 my-work/questions.md 帶到課堂討論。';
 const examples = [
   {
-    noteTitle: '原件、索引與筆記', note: 'sources/processed/ 應有帶來源定位的索引 CSV，research/ 應有首份筆記草稿，兩者可連回 raw/。原件保持不變；分清來源內容、自己的觀察與 AI 建議。',
-    id: 'prompt-runtime', label: 'EXAMPLE 01', title: '整合測試一：本機環境、Git 倉庫、研究目錄與首份讀書筆記',
-    prompt: '請先檢查 Git、Python 3、uv、Node.js 的版本，以及目前是否為我 clone 的工作坊倉庫，回報路徑、分支與 remote，不重裝或覆蓋已有環境。接着在 my-work/ 檢查或建立 sources/raw/、sources/processed/、research/、artifacts/ 四類目錄，既有檔案不搬移、不覆寫。讀取我放進 sources/raw/ 的第一份測試材料；若尚無材料，就新建一份明確標示為虛構示例的短記錄。原件保持不變，在 sources/processed/ 產生一份索引 CSV，包含 source_id、原檔名、頁碼或圖像區域、摘錄及待查問題，不知道的定位標待核查，不捏造。在 research/ 新建首份結構化讀書筆記草稿，分開來源內容、我的觀察、AI 建議與下一步，連回索引和原件；尚未得到我的觀察時留空，不替我發言。最後讀回 CSV 和筆記核對連結，展示 git diff 與新增檔案，確認 artifacts/ 受 Git 忽略，先不 commit 或 push。',
+    noteTitle: '這個例子幫你驗證什麼',
+    note: '確認本機的 Git、Python、uv、Node 與工作坊資料夾已經就緒，並體驗如何讓 Agent 在不動原件的前提下，幫你建立第一份帶出處定位的索引與讀書筆記。',
+    id: 'prompt-runtime',
+    label: 'EXAMPLE 01',
+    title: '整合測試一：檢查本機環境、建立研究目錄與第一份讀書筆記',
+    prompt: `我是參加「AI 與藝術史工作坊」的同學，請協助我完成課前環境與目錄的第一次整合測試，並在過程中一邊做一邊用白話向我解釋：
+
+1. 檢查本機環境與倉庫（為什麼這樣做：確保後續跑腳本與版本追蹤的工具都已就位）：
+   請檢查我的電腦是否已安裝 Git、Python 3、uv 與 Node.js，並確認目前資料夾是否為我 fork 並 clone 下來的工作坊倉庫（回報路徑與 remote，不要重裝或覆蓋我原本可用的環境）。
+
+2. 建立四類研究目錄（為什麼這樣做：把原始史料、處理結果、研究筆記與大型輸出分開，避免改壞原件或把大型檔案誤傳上 GitHub）：
+   請在 my-work/ 下檢查或建立 sources/raw/、sources/processed/、research/ 與 artifacts/ 四個資料夾（保留已有檔案不覆寫）。
+
+3. 為第一份材料建立索引與筆記草稿（為什麼這樣做：練習讓每一條研究筆記都能連回原始檔案與頁碼／位置，並區分史料原文、我自己的觀察與 AI 建議）：
+   請讀取我放在 sources/raw/ 的第一份測試材料（若還沒有放材料，請幫我新建一份標明為測試示例的短記錄）；接著在 sources/processed/ 產生一份帶 source_id、檔名與頁碼定位的索引 CSV，並在 research/ 建立第一份讀書筆記草稿（將「我的觀察」欄位留空讓我自己填寫）。`,
   },
   {
-    noteTitle: '密鑰與成果分開', note: '.env 只留本機、不進 Git。圖像、完整回應與向量放 artifacts/；模型、參數、來源、用量及費用記錄放 sources/processed/，不知道的費用明說未知。',
-    id: 'prompt-openrouter', label: 'EXAMPLE 02', title: '整合測試二：多模態描述／OCR、生圖或向量檢索與成果歸檔',
-    prompt: '請透過本機未追蹤的 .env 讀取 OpenRouter API key，不叫我貼進對話，不顯示 key、不寫入日誌或 Git。先查官方文件並說明選用模型、輸入與預估費用，確認小額測試預算後，用一張我同意交給線上模型處理的公開測試圖像，呼叫一次多模態描述或 OCR，保留原檔名與頁面／區域定位。再按我的選擇做一次圖像生成，或對兩份測試描述／圖像做 embedding 相似度比較；圖文向量需選支援對應輸入的模型。每個步驟只做一次最小呼叫，不自動重試。將生成圖、完整模型回應或向量等輸出放進 my-work/artifacts/；在 my-work/sources/processed/ 新建處理記錄表，保存來源定位、模型名稱、參數、日期、實際用量、可取得的費用與輸出路徑，無法取得的費用明說未知。讀回結果及記錄，確認 .env 與大型成果被 Git 忽略，不把相似分數當成研究結論。',
+    noteTitle: '這個例子幫你驗證什麼',
+    note: '確認你的 OpenRouter API Key 與儲值能正常呼叫多模態視覺、生圖或向量模型，同時養成「密鑰留在本機 .env、大型輸出進 artifacts/、參數與費用留紀錄」的研究習慣。',
+    id: 'prompt-openrouter',
+    label: 'EXAMPLE 02',
+    title: '整合測試二：測試 OpenRouter 視覺／OCR、生圖或向量檢索並歸檔',
+    prompt: `我已經準備好 OpenRouter API Key 並完成小額儲值，請協助我做一次 API 整合測試，並在每一步用白話向我解釋原理與做法：
+
+1. 安全讀取本機 API Key（為什麼這樣做：保護個人金鑰，避免把 API Key 貼進對話紀錄或誤推上公開的 GitHub 倉庫）：
+   請引導我把 OpenRouter API Key 存在本機未追蹤的 .env 檔案中，並幫我檢查 .gitignore 確保 .env 與 my-work/artifacts/ 都不會被 Git 提交。
+
+2. 執行一次多模態視覺／OCR 與生圖（或向量）最小測試（為什麼這樣做：確認同一個 OpenRouter 帳戶就能跑通課堂會用到的看圖、OCR、生圖與語義檢索）：
+   請先查閱官方文件，告訴我擬測試的模型與預估小額費用；經我確認後，用一張公開測試圖像跑一次圖像描述或 OCR，再按我的選擇跑一次圖像生成（或圖文 Embedding 相似度比較），每項只做一次最小呼叫。
+
+3. 歸檔輸出並記錄參數與費用（為什麼這樣做：讓每一次 AI 生成或提取都有跡可循，知道用了哪個模型與花了多少額度）：
+   請把生成的圖片或模型完整回應存進 my-work/artifacts/，並在 my-work/sources/processed/ 記錄本次呼叫的模型名稱、日期與費用。`,
   },
   {
-    noteTitle: '只選一條路徑', note: '路徑 A 把 CSV 接成可篩選的本機檢視頁，實際測試資料更新。路徑 B 只讀取 127.0.0.1 的 Blender 場景，匯出物件記錄；不改寫既有場景。',
-    id: 'prompt-blender', label: 'EXAMPLE 03 · OPTIONAL', title: '整合測試三〔選做〕：表格轉互動網頁，或 Blender 場景轉研究記錄',
-    prompt: '請先讓我選一條路徑。路徑 A：讀取 my-work/sources/processed/ 的測試 CSV，製作可在本機瀏覽器打開的輕量互動檢視頁，至少有一個篩選器或關係預覽；顯示與篩選必須使用完整 CSV，保留 source_id 和原始定位，不寫死搜尋結果。把檢視頁放入 my-work/artifacts/，說明如何在本機打開；若需要本機伺服器，只監聽 127.0.0.1。用不同篩選條件、空結果及一條新增測試記錄，驗證資料更新能到達畫面，再將操作和輸出路徑記在 my-work/research/。路徑 B（已選裝 Blender 才做）：按開源 Blender MCP 專案 https://github.com/ahujasid/blender-mcp 的說明，協助我在 Blender 啟用 addon.py 並透過 uvx blender-mcp 連上本機 127.0.0.1:9876，先只讀目前場景物件清單，不啟動第二份 Blender、不修改或覆蓋場景；把物件名稱、類型、位置、場景檔名、取得時間與方法匯出成 sources/processed/ 的研究記錄 CSV，並在 research/ 記下與場景來源的關係。只執行選定路徑，保留既有檔案並回報實際結果。',
+    noteTitle: '這個例子幫你驗證什麼',
+    note: '按你的興趣二選一：路徑 A 體驗如何把結構化 CSV 直接變成可篩選的本機互動研究網頁；路徑 B（選裝 Blender 的同學）體驗如何讓 Agent 連上 Blender 讀取 3D 場景。',
+    id: 'prompt-blender',
+    label: 'EXAMPLE 03 · OPTIONAL',
+    title: '整合測試三〔選做〕：將表格轉為互動檢視網頁，或連接 Blender MCP',
+    prompt: `請先詢問我想測試「路徑 A（互動網頁）」還是「路徑 B（Blender 3D 場景）」，只執行我選的那一條路徑，並一邊執行一邊用白話向我解釋每一步在做什麼與為什麼這樣做：
+
+- 路徑 A（將結構化表格轉為本機互動檢視頁——為什麼這樣做：驗證從 CSV 數據到網頁畫面的真實數據鏈，方便自己檢視與篩選材料）：
+  請讀取 my-work/sources/processed/ 的測試 CSV，幫我在 my-work/artifacts/ 製作一個可在本機瀏覽器打開的輕量互動檢視頁（含篩選功能，保留 source_id 與原始出處），並帶我測試新增一條記錄後畫面能否同步更新。
+
+- 路徑 B（連接 Blender MCP 讀取場景——為什麼這樣做：確認 Coding Agent 能透過 MCP 協定與本機 Blender 協作，而不破壞既有 3D 場景）：
+  若我已安裝 Blender，請按照開源專案 https://github.com/ahujasid/blender-mcp 的說明，教我在 Blender 啟用插件並透過 uvx blender-mcp 連上本機 127.0.0.1:9876；先只讀取目前場景中的物件清單，並匯出成 my-work/sources/processed/ 的研究記錄 CSV。`,
   },
 ];
 ---
@@ -23,7 +56,7 @@ const examples = [
 <div class="preparation-exercises" id="setup-prompts">
   <div class="subsection-heading">
     <h3>安裝完成後：用以下三個例子試一試</h3>
-    <p>將已安裝的工具串成一條小流程。複製提示或下載 Markdown 檔交給 coding agent；第三例按需要選做。</p>
+    <p><strong>你不需要自己看懂下面提示詞裡的技術細節。</strong>直接按右上角「複製提示」（或下載 <code>.md</code> 檔）貼給你的 Coding Agent，Agent 就會幫你一步步執行，並用白話向你解釋每一步在做什麼、為什麼要這樣做。第三個例子按需要選做。</p>
   </div>
   {examples.map((item, index) => <DocFrame {...item} downloadName={`example-0${index + 1}.md`} prompt={`${item.prompt}\n\n${stopRule}`} />)}
 </div>
