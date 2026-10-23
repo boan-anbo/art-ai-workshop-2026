@@ -16,7 +16,7 @@ const sections = [
 const workspace = 'https://github.com/boan-anbo/art-ai-workshop-2026';
 const issues = `${workspace}/issues/new?template=question.yml`;
 const container = await AstroContainer.create();
-const encryptedQa = encryptQa(await container.renderToString(QuestionAnswers));
+const encryptedQa = await encryptQa(await container.renderToString(QuestionAnswers));
 
 ---
 
