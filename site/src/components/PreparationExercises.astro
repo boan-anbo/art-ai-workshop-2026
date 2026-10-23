@@ -15,7 +15,7 @@ const examples = [
   {
     noteTitle: '只選一條路徑', note: '路徑 A 把 CSV 接成可篩選的本機檢視頁，實際測試資料更新。路徑 B 只讀取 127.0.0.1 的 Blender 場景，匯出物件記錄；不改寫既有場景。',
     id: 'prompt-blender', label: 'EXAMPLE 03 · OPTIONAL', title: '整合測試三〔選做〕：表格轉互動網頁，或 Blender 場景轉研究記錄',
-    prompt: '請先讓我選一條路徑。路徑 A：讀取 my-work/sources/processed/ 的測試 CSV，製作可在本機瀏覽器打開的輕量互動檢視頁，至少有一個篩選器或關係預覽；顯示與篩選必須使用完整 CSV，保留 source_id 和原始定位，不寫死搜尋結果。把檢視頁放入 my-work/artifacts/，說明如何在本機打開；若需要本機伺服器，只監聽 127.0.0.1。用不同篩選條件、空結果及一條新增測試記錄，驗證資料更新能到達畫面，再將操作和輸出路徑記在 my-work/research/。路徑 B（已選裝 Blender 才做）：按官方 Blender Lab MCP 專案 https://projects.blender.org/lab/blender_mcp 的說明，透過 uvx 或隔離 Python 環境連上本機 127.0.0.1，先只讀目前場景物件清單，不啟動第二份 Blender、不修改或覆蓋場景；把物件名稱、類型、位置、場景檔名、取得時間與方法匯出成 sources/processed/ 的研究記錄 CSV，並在 research/ 記下與場景來源的關係。只執行選定路徑，保留既有檔案並回報實際結果。',
+    prompt: '請先讓我選一條路徑。路徑 A：讀取 my-work/sources/processed/ 的測試 CSV，製作可在本機瀏覽器打開的輕量互動檢視頁，至少有一個篩選器或關係預覽；顯示與篩選必須使用完整 CSV，保留 source_id 和原始定位，不寫死搜尋結果。把檢視頁放入 my-work/artifacts/，說明如何在本機打開；若需要本機伺服器，只監聽 127.0.0.1。用不同篩選條件、空結果及一條新增測試記錄，驗證資料更新能到達畫面，再將操作和輸出路徑記在 my-work/research/。路徑 B（已選裝 Blender 才做）：按開源 Blender MCP 專案 https://github.com/ahujasid/blender-mcp 的說明，協助我在 Blender 啟用 addon.py 並透過 uvx blender-mcp 連上本機 127.0.0.1:9876，先只讀目前場景物件清單，不啟動第二份 Blender、不修改或覆蓋場景；把物件名稱、類型、位置、場景檔名、取得時間與方法匯出成 sources/processed/ 的研究記錄 CSV，並在 research/ 記下與場景來源的關係。只執行選定路徑，保留既有檔案並回報實際結果。',
   },
 ];
 ---

@@ -72,12 +72,9 @@ Pick only the tracks that interest you. **Download large installers at home befo
 
 ### 1. 3D Modelling (如對 3D 建模、器物／建築結構與場景組裝感興趣)
 
-- **Install Blender**: [https://www.blender.org](https://www.blender.org) (current LTS/stable release, e.g. Blender 5.2 LTS).
-- **Install Blender MCP (`blender-mcp`)**: [https://projects.blender.org/lab/blender_mcp](https://projects.blender.org/lab/blender_mcp) (documentation: [https://www.blender.org/lab/mcp-server/](https://www.blender.org/lab/mcp-server/)).
-  - We use **Blender Lab's official MCP server (`blender_mcp`)**, which has two parts communicating over localhost (`127.0.0.1`):
-    1. The **Blender Add-on** (`addon/blender_mcp_addon`), installed and enabled inside Blender's Preferences → Add-ons / Extensions.
-    2. The **MCP Server** (`mcp/blmcp`, entry point `blender-mcp`), installed in a local Python/`uv` virtual environment and registered in your coding agent's MCP settings.
-  - *Note*: Do not install an unrelated third-party package by guessing `uvx blender-mcp` from PyPI; give your coding agent the official URL `https://projects.blender.org/lab/blender_mcp` and ask it to clone and connect the official Blender Lab repo for you.
+- **Install Blender**: [https://www.blender.org](https://www.blender.org) (current LTS/stable release).
+- **Install Blender MCP (`ahujasid/blender-mcp`)**: [https://github.com/ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp).
+  - Install and enable `addon.py` inside Blender's Preferences → Add-ons (listening on `127.0.0.1:9876`), and let your coding agent run `uvx blender-mcp` to connect.
 
 ### 2. Generative 3D (如對 AI 圖像轉 3D 模型／文物與空間生成感興趣)
 
@@ -152,7 +149,7 @@ Read OPENROUTER_API_KEY from my local .env file (never print or commit the key i
 Ask your coding agent:
 
 ```text
-Please help me fork https://github.com/boan-anbo/art-ai-workshop-2026 into my own GitHub account, clone my fork onto my computer, and verify my git status and remote URLs. (If I also installed Blender for 3D work, help me set up Blender Lab's official MCP server from https://projects.blender.org/lab/blender_mcp on 127.0.0.1 and test reading the active Blender scene.)
+Please help me fork https://github.com/boan-anbo/art-ai-workshop-2026 into my own GitHub account, clone my fork onto my computer, and verify my git status and remote URLs. (If I also installed Blender for 3D work, help me set up Blender MCP from https://github.com/ahujasid/blender-mcp on 127.0.0.1:9876 via uvx blender-mcp and test reading the active Blender scene.)
 ```
 
 ---
