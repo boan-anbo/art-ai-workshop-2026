@@ -104,7 +104,7 @@ dd { margin: 0; font-size: .8rem; }
 .copy-button { border: 0; padding-inline: .5rem; min-height: 44px; flex-shrink: 0; background: var(--paper); color: var(--accent); font-size: .7rem; }
 .copy-button:hover { text-decoration: underline; }
 .doc-frame h4 { font: 500 1.15rem/1.7 var(--sans); margin-bottom: 1.25rem; }
-.agent-prompt { line-height: 2.1; font-size: .9rem; user-select: text; }
+.agent-prompt { line-height: 1.95; font-size: .88rem; user-select: text; white-space: pre-line; }
 .copy-status { display: block; margin-top: 1rem; color: var(--muted); font-size: .75rem; }
 .copy-status:empty { display: none; }
 .topic-list { max-width: 46rem; }

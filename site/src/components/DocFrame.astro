@@ -20,7 +20,7 @@ const downloadHref = `data:text/markdown;charset=utf-8,${encodeURIComponent(mark
       <button type="button" class="copy-button" data-copy-target={id} aria-label={`複製提示：${title}`} hidden>複製提示</button>
     </div>
     <h4 id={`${id}-title`}>{title}</h4>
-    <p class="agent-prompt" id={id}>{prompt}</p>
+    <div class="agent-prompt" id={id}>{prompt}</div>
     <a class="download-prompt" href={downloadHref} download={downloadName}>下載 .md</a>
     <span class="copy-status" role="status" aria-live="polite"></span>
   </section>
