@@ -20,7 +20,7 @@
   font-synthesis: none;
 }
 * { box-sizing: border-box; }
-html { scroll-padding-top: 5rem; }
+html { scroll-padding-top: 5rem; font-size: 125%; }
 body { margin: 0; font-size: 1rem; line-height: 2.1; }
 button { font: inherit; color: inherit; cursor: pointer; }
 a { color: inherit; text-underline-offset: .28em; text-decoration-thickness: 1px; }
