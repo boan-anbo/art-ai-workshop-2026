@@ -16,7 +16,7 @@ Complete **Part A (Required for Everyone)** first. Then check **Part B (Optional
 ### 1. Coding Agent (Required · 核心工作環境)
 
 - **Install OpenCode**: [https://opencode.ai](https://opencode.ai) (terminal version recommended; desktop version also fine).
-- **Subscribe to OpenCode Go**: [https://opencode.ai/go](https://opencode.ai/go) — **US$10 / month**, cancel any time. Inside the OpenCode plan (switch via `/models`), we recommend the currently popular **DeepSeek V4.2 (High / Max)** or **DeepSeek V4.1 Flash** models, or **GLM-5.3** and **GLM-5.3 Flash** (other models are more expensive, though some may offer stronger thinking capabilities when needed).
+- **Subscribe to OpenCode Go**: [https://opencode.ai/go](https://opencode.ai/go) — **US$10 / month**, cancel any time. Inside the OpenCode plan (switch via `/models`), we recommend the currently popular **DeepSeek V4.1 Flash (High / Maximum)**, or **GLM-5.3** and **GLM-5.3 Flash** (other models are more expensive, though some may offer stronger thinking capabilities when needed).
 - **Exception — if you already use your own coding agent**: If you already use and pay for **Claude Code** or **Codex**, keep using yours. You do **not** need to buy OpenCode Go on top of an existing coding agent.
 
 ### 2. OpenRouter Account & API Key (Required & Critical · 必備且關鍵，請預先儲值 US$5–10)
