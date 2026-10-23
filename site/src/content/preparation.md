@@ -54,7 +54,7 @@ API key 只在自己的本機設定，不要放進 Git、公開筆記、截圖�
 <details class="prep-item" id="prep-04">
 <summary><span class="prep-heading"><span class="prep-badge">【必備】</span><span class="prep-title">04 VS Code 與支援高亮／框選批註的 PDF 閱讀器</span></span><span class="prep-purpose">用於閱讀 Markdown 筆記、查看資料表及在 PDF 上做原位標註與提取</span></summary>
 
-安裝 [VS Code](https://code.visualstudio.com)，並準備支援高亮及任意框選批註的 PDF 閱讀器。已有合用的閱讀器便可，不必另買。第一場會練習讓筆記跟着材料，返回具體頁面或圖像位置（見 [01.3](#q-01-3)）。
+安裝 [VS Code](https://code.visualstudio.com)（配合 [Markdown 語法速查表](https://www.markdownguide.org/cheat-sheet/)），並準備支援高亮及任意框選批註的 PDF 閱讀器（例如免費的 [Adobe Acrobat Reader](https://get.adobe.com/reader/)、[PDFgear](https://www.pdfgear.com/) 或 macOS 內建「預覽程式」）。已有合用的閱讀器便可，不必另買。第一場會練習讓筆記跟着材料，返回具體頁面或圖像位置（見 [01.3](#q-01-3)）。
 
 <p class="prep-check"><strong>完成後檢查：</strong>能用 VS Code 打開剛剛 clone 下來的工作坊資料夾，並能用 PDF 閱讀器打開一份 PDF 做一處高亮與框選批註。</p>
 
@@ -63,7 +63,7 @@ API key 只在自己的本機設定，不要放進 Git、公開筆記、截圖�
 <details class="prep-item" id="prep-05">
 <summary><span class="prep-heading"><span class="prep-badge">【必備】</span><span class="prep-title">05 Python 3、uv 與 Node.js 本機執行環境</span></span><span class="prep-purpose">供 Coding Agent 在本機自動執行資料處理腳本、API 呼叫與網頁工具</span></summary>
 
-準備 [Python 3](https://www.python.org)、[uv](https://docs.astral.sh/uv/) 與 [Node.js](https://nodejs.org)。它們讓 agent 執行本機提取腳本、API 呼叫、CSV／SQLite 整理、網頁／Three.js viewer 和 MCP 工具。
+準備 [Python 3](https://www.python.org)、[uv](https://docs.astral.sh/uv/) 與 [Node.js](https://nodejs.org)。它們讓 agent 執行本機提取腳本、API 呼叫、CSV／[關係型資料庫（SQLite）](https://en.wikipedia.org/wiki/Relational_database)整理、網頁／[Three.js](https://threejs.org) viewer 和 MCP 工具。
 
 <strong>不需要先學會寫 Python 或 JavaScript。</strong> 先安裝好環境，讓 agent 檢查版本與位置；它會協助使用。不要重裝或覆蓋原本可用的環境。
 
@@ -78,7 +78,7 @@ API key 只在自己的本機設定，不要放進 Git、公開筆記、截圖�
 
 也可選帶 <strong>2–3 張手機實拍、未裁切的整頁書頁／手稿照片</strong>，練習白平衡、去斜與局部比較；研究理論或長篇報告的同學，可帶一本含<strong>目錄（TOC）與索引（Index）</strong>的 PDF，練習分章研究綱要。沿用上面的公開、非敏感材料範圍。
 
-準備平日使用的 <strong>Chrome 瀏覽器</strong>，確認自己能正常登入所需的圖書館或資料庫。課堂瀏覽器協作時，<strong>帳號登入及真人驗證由自己處理，再交回 agent 繼續</strong>；不用把帳戶密碼交給 agent。
+準備平日使用的 <strong>[Chrome 瀏覽器](https://www.google.com/chrome/)</strong>，確認自己能正常登入所需的圖書館或資料庫。課堂瀏覽器協作時，<strong>帳號登入及真人驗證由自己處理，再交回 agent 繼續</strong>；不用把帳戶密碼交給 agent。
 
 帶自己的手提電腦和充電器。自己的練習放在 fork 的 `my-work/`，讓 agent 按四類位置整理；已有檔案先保留，不自動搬移或覆寫。
 
@@ -96,11 +96,11 @@ API key 和大型輸出不進 Git：讓 agent 檢查 `.env`、`artifacts/`、`*.
 ### 按方向選裝項目
 
 <details class="prep-item" id="prep-07">
-<summary><span class="prep-heading"><span class="prep-badge">【選裝】</span><span class="prep-title">07 Blender 與官方 Blender Lab MCP</span></span><span class="prep-purpose">適用於需要進行 3D 建模與場景操作的同學</span></summary>
+<summary><span class="prep-heading"><span class="prep-badge">【選裝】</span><span class="prep-title">07 Blender 與 Blender MCP</span></span><span class="prep-purpose">適用於需要進行 3D 建模與場景操作的同學</span></summary>
 
-安裝 [Blender](https://www.blender.org) 及 [Blender Lab 官方 MCP](https://projects.blender.org/lab/blender_mcp)。需要 Blender 內的 add-on，以及由 coding agent 啟動的 `blender-mcp` server；後者使用 Python／uv（`uvx` 或隔離的 venv），連到本機 `127.0.0.1` 的 Blender。見[官方說明](https://www.blender.org/lab/mcp-server/)及下方連線提示。
+安裝 [Blender](https://www.blender.org) 及社群最廣泛使用的開源 [Blender MCP（`ahujasid/blender-mcp`）](https://github.com/ahujasid/blender-mcp)。只需在 Blender 內安裝並啟用其 `addon.py` 插件（監聽本機 `127.0.0.1:9876`），並讓 coding agent 透過 `uvx blender-mcp` 啟動 MCP server 連接即可（見下方測試提示）。
 
-<p class="prep-check"><strong>完成後檢查：</strong>Blender 能正常啟動並在 Add-ons 中啟用 MCP，且 Agent 能連上本機 <code>127.0.0.1</code> 讀取目前場景資訊。</p>
+<p class="prep-check"><strong>完成後檢查：</strong>Blender 能正常啟動並在 Add-ons 中勾選啟用 Blender MCP，且 Agent 能連上本機讀取目前場景資訊。</p>
 
 </details>
 

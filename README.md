@@ -29,7 +29,7 @@ Full instructions and integrated test examples are on the **[workshop website (`
 
 ### B. Optional by Research & Creative Track (按方向選裝 · 大型軟件請預先下載)
 
-- **3D Modelling (3D 建模與場景操作)**: Install **[Blender](https://www.blender.org)** + Blender Lab's official **[Blender MCP (`blender-mcp`)](https://projects.blender.org/lab/blender_mcp)**.
+- **3D Modelling (3D 建模與場景操作)**: Install **[Blender](https://www.blender.org)** + **[Blender MCP (`ahujasid/blender-mcp`)](https://github.com/ahujasid/blender-mcp)**.
 - **Generative 3D (AI 圖像轉 3D 模型)**: Register on **[Tencent Hunyuan 3D (騰訊混元 3D)](https://3d.hunyuan.tencent.com)** or **[Tripo](https://www.tripo3d.ai)** (other alternatives: **Meshy**, **Rodin**).
 - **Virtual Environments / Historical Simulation / Games (虛擬展廳與歷史空間模擬)**: Pre-install **one** engine before the workshop because downloads are large: **[Godot](https://godotengine.org) (Recommended 推薦)**, **[Unity](https://unity.com)** (or **[Tuanjie Engine 團結引擎](https://unity.cn)**, Unity's China edition), or **[Unreal Engine](https://www.unrealengine.com)**.
 
