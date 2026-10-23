@@ -1,0 +1,27 @@
+---
+import { groups, anchor } from '../data/questions';
+---
+<div class="qa-tools"><button type="button" data-qa="open">全部展開</button><button type="button" data-qa="close">全部收起</button></div>
+          <div class="qa-groups">
+            {groups.map((group) => (
+              <section class="qa-group" aria-labelledby={`p-${group.key}`}>
+                <h3 class="qa-person" id={`p-${group.key}`}>問題組 {group.key}</h3>
+                {group.items.map(({ frontmatter: q, Content }) => (
+                  <details class="qa" id={anchor(q.id)}>
+                    <summary>
+                      <span class="qa-no">{q.id}</span>
+                      <span class="qa-title">{q.title}</span>
+                      <span class="qa-chevron" aria-hidden="true"></span>
+                    </summary>
+                    <div class="qa-body">
+                      <div class="qa-question">
+                        <p class="qa-label">假設情境 · 中文</p>
+                        <blockquote lang="zh-Hant">{q.question_zh}</blockquote>
+                      </div>
+                      <div class="prose"><Content /></div>
+                    </div>
+                  </details>
+                ))}
+              </section>
+            ))}
+          </div>
