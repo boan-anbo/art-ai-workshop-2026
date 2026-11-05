@@ -27,7 +27,7 @@
 <body>
 <header>
   <h1>Search <span>the Met</span></h1>
-  <form id="f"><input id="q" value="Lingnan" autocomplete="off"><button>Search</button></form>
+  <form id="f"><input id="q" value="Canton" autocomplete="off"><button>Search</button></form>
 </header>
 <div id="status"></div>
 <div id="results"></div>
@@ -36,7 +36,7 @@
 const API = "https://collectionapi.metmuseum.org/public/collection";
 async function search(q) {
   status.textContent = "Searching…"; results.innerHTML = "";
-  const s = await (await fetch(`${API}/v1.1/search?q=${encodeURIComponent(q)}&limit=12`)).json();
+  const s = await (await fetch(`${API}/v1.1/search?q=${encodeURIComponent(q)}&hasImages=true&limit=12`)).json();
   status.textContent = `${s.total} results for “${q}”`;
   const objs = await Promise.all((s.objectIDs || []).map(id => fetch(`${API}/v1/objects/${id}`).then(r => r.json())));
   for (const o of objs) {
@@ -49,7 +49,7 @@ async function search(q) {
 }
 const status = document.getElementById("status"), results = document.getElementById("results");
 document.getElementById("f").onsubmit = e => { e.preventDefault(); search(document.getElementById("q").value); };
-search("Lingnan");
+search("Canton");
 </script>
 </body>
 </html>
