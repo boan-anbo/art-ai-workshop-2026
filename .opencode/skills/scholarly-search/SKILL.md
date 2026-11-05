@@ -1,11 +1,13 @@
 ---
 name: scholarly-search
-description: Search scholarship: OpenAlex by API; Google Scholar, Bing and Baidu by the researcher.
+description: Find scholarship on a research question. Prefer OpenAlex by API; Google Scholar through a third-party search API, or by the researcher.
 ---
 
-1. Search under every known name of the subject (e.g. Canton Christian College · 格致書院 · 嶺南學堂).
-2. Query OpenAlex: `https://api.openalex.org/works?search=<terms>&per-page=10`. Save the raw JSON to `my-work/sources/processed/`.
-3. For Google Scholar, Bing and Baidu: these sites do not allow automated search. Suggest queries in English and Chinese; the researcher searches and saves the results.
-4. Make a reading list in `my-work/research/reading-list.md`: year, title, author, link.
-5. Record every search (engine, query, date, number of hits) in `my-work/research/log.md`.
-6. Never describe a work you have not opened.
+Search for scholarship on the question I give you.
+
+- Prefer OpenAlex: query its API with my key, and save the raw results in my-work/sources/processed/.
+- Decide whether the search needs expanding: other names of the subject, other languages, older spellings.
+- For Google Scholar and similar sites, use a third-party search API (such as Serper) if one is set up; otherwise suggest queries and let me search.
+- Make a reading list: year, title, author, link.
+- Record every search in my-work/research/log.md, including what was not searched.
+- Never describe a work you have not opened.
