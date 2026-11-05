@@ -15,5 +15,5 @@ Time is a sort of river of passing events, and strong is its current; no sooner 
 P5 · 蘇軾《赤壁賦》
 逝者如斯，而未嘗往也；盈虛者如彼，而卒莫消長也。
 
-P6 · 區始勳《五十年前之嶺南》p. 3
+P6 · 敖士洲《五十年前之嶺南》p. 3
 星期日……下午則分若干組由各教師分別率領前往各公園、海濱或僻靜之處遊行。
