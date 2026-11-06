@@ -18,7 +18,7 @@ Organise participant work using the four standard folders inside `my-work/`:
 
 ## Two Core Provenance & Attribution Rules
 
-1. **Whose idea is this?** In every note or draft, clearly distinguish (a) what the source says or shows, (b) the human researcher's own observation or argument, (c) cited scholarship, and (d) AI-generated suggestions or hypotheses.
+1. **Whose idea is this?** In every note or draft, clearly distinguish (a) what the source says or shows, (b) the human researcher's own observation or argument, (c) cited scholarship, and (d) AI-generated suggestions or hypotheses. Label lines, for example `[据]` the page says it, `[推断]` inferred, `[Name · date]` the researcher, `[AI]` the agent; and record when each note was made.
 2. **Where did this information come from?** Every OCR line, translation, or extracted table row must preserve its exact locator (`source_id`, filename, scan page, printed folio, or image region/crop). Never invent missing citations or smooth over unreadable characters.
 
 ## Safety & Secret Hygiene

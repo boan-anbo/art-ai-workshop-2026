@@ -12,4 +12,4 @@ Send one page per call, with this prompt:
 > Where a character cannot be read, write [?].
 > Output only the transcription.
 
-Save the result to `my-work/sources/processed/<source>-p<scan page>.md`, with the source, the scan page and the model at the top. Never overwrite anything in `sources/raw/`.
+Save the result to `my-work/sources/processed/<image name>.transcription.md`, with the source, the scan page and the model at the top; never overwrite an earlier transcription. (`session-01/examples/research/transcribe.py` does exactly this.) Never overwrite anything in `sources/raw/`.

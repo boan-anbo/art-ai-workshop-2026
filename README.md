@@ -4,7 +4,9 @@
 
 有其他問題？直接到 **[GitHub Issues 提問](https://github.com/boan-anbo/art-ai-workshop-2026/issues/new?template=question.yml)** 或發郵件至 [boan@ln.edu.hk](mailto:boan@ln.edu.hk)。
 
-Start here before Session 1 (Friday, 6 November 2026): **[session-01/instructions.md](session-01/instructions.md)**
+**After Session 1 (6 November 2026):** this repository *is* your workspace. Download or clone it, open OpenCode inside the folder, and everything from the slides is here: the skills in `.opencode/skills/`, the inputs in `my-work/`, and the agent's example outputs in `session-01/examples/`. Step-by-step setup (install OpenCode, add your key, start) is on the **[workshop website](https://boan-anbo.github.io/art-ai-workshop-2026/#update)**.
+
+Before Session 1: **[session-01/instructions.md](session-01/instructions.md)**
 
 ---
 
@@ -46,22 +48,23 @@ my-work/
 ├── sources/
 │   ├── raw/                       # 1. Untouched original images & PDFs (never edit in place)
 │   └── processed/                 # 2. OCR text, crops, translations & extracted CSV tables
-├── research/                      # 3. Notes (Design Docs & Logs), skills & drafts
+├── research/                      # 3. Notes (design doc & log), drafts
+│                                  #    (skills live in .opencode/skills/)
 └── artifacts/                     # 4. Git-ignored large files (.glb, .blend, image batches, game exports, SQLite DBs)
 ```
 
 ---
 
-## The Two Sessions (12 Modules · `M1`–`M12`)
+## The Two Sessions
 
-1. **Session 1 (`M1`–`M6`)** — Friday 6 November 2026, 2:30–4:30 PM (Hong Kong time):
-   - **`M1` (14:30–14:45)**: Environment Setup, GitHub Clone & Coding Agent Basics
-   - **`M2` (14:45–15:05)**: Research Ideation, Markdown Notes (`Design Doc` & `Log`) & Agent Skills
-   - **`M3` (15:05–15:20)**: Browser Collection & Automated Batch Downloading/Organizing
-   - **`M4` (15:20–15:50)**: Digitization: Image Processing (incl. IIIF), OCR (Newspapers & Manuscripts) & Image Description
-   - **`M5` (15:50–16:15)**: In-Place Annotation (Texts & Visuals-to-PDF), Mechanical Extraction & Git Attribution Tracking
-   - **`M6` (16:15–16:30)**: Visual Ideation & Generation: HTML, SVG & OpenRouter Image Generation APIs
-   - Instructions: **[session-01/instructions.md](session-01/instructions.md)**
+1. **Session 1** — Friday 6 November 2026, 2:30–4:30 PM (Hong Kong time), six modules of one research loop:
+   - **Module 1 · Models and harness**: choosing a model, what an agent and a harness are, the workspace, OpenCode Go, privacy
+   - **Module 2 · Notes**: a design doc and a log, in Markdown
+   - **Module 3 · Find sources**: built-in web search, APIs (OpenAlex, the Met), Google Scholar, the browser, downloading and logging
+   - **Module 4 · Skills**: saving a method as a plain-language skill, short and combinable
+   - **Module 5 · Search within sources**: keyword search, OCR and vision models, image descriptions, semantic search, the review sheet
+   - **Module 6 · Read and synthesize**: PDF annotation, notes that say where, whose and when, a synthesis sheet, and a challenge: how do you verify?
+   - Instructions: **[session-01/instructions.md](session-01/instructions.md)** · example outputs: **[session-01/examples/](session-01/examples/)**
 2. **Session 2 (`M7`–`M12`)** — Friday 13 November 2026, 2:30–4:30 PM (Hong Kong time):
    - **`M7` (14:30–14:50)**: High-Resolution Structured Data Extraction via API Calls (extracting thorough data & metadata without prematurely locking down the schema)
    - **`M8` (14:50–15:10)**: Iterative Data Modeling, Relational Database Construction & Verification
