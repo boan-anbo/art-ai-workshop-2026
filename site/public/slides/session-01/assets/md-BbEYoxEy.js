@@ -1,0 +1,14 @@
+import{ac as o,j as a}from"./index-DL0jsxY9.js";import{D as r}from"./default-DfD4E5fS.js";import{e as l,f as d,S as s}from"./layoutHelper-Cs3kI60C.js";import{F as c}from"./Figure-BdWfpuG1.js";import"./modules/file-saver-C5aOAFwN.js";/* empty css                      */import"./slidev/academic-react-C6rKkPeO.js";const h="/art-ai-workshop-2026/slides/session-01/assets/met-500595-yangqin-CZYuqY1-.jpg";function g({children:t}){const{$frontmatter:n}=o(),i=a.jsxs(a.Fragment,{children:[a.jsx("h1",{"data-v-slidev-56":"",children:`The same works for museums: the Met's API, searched for "Canton".`}),a.jsxs("div",{"data-v-slidev-56":"",className:"body",children:[a.jsx("div",{"data-v-slidev-56":"",className:"json","data-src":"collectionapi.metmuseum.org/public/collection/v1.1/search?q=Canton&hasImages=true",children:a.jsxs("pre",{"data-v-slidev-56":"",children:[`
+{ "total": 1693,
+  "objectIDs": [`,a.jsx("span",{"data-v-slidev-56":"",className:"hl",children:"7859"}),", ",a.jsx("span",{"data-v-slidev-56":"",className:"hl",children:"500595"}),`, 387080, …] }
+ 
+`,a.jsx("span",{"data-v-slidev-56":"",className:"dim",children:"/objects/7859"}),"   Spoon Rack · ",a.jsx("span",{"data-v-slidev-56":"",className:"hl",children:"Canton Glass Company"}),`
+                `,a.jsx("span",{"data-v-slidev-56":"",className:"hl",children:'"city": "Canton", "country": "United States"'}),`
+ 
+`,a.jsx("span",{"data-v-slidev-56":"",className:"dim",children:"/objects/500595"}),`
+{ "title": "Yangqin (揚琴)",
+  "artistDisplayName": "Shop of Refined Tones, Guangzhou (Canton)",
+  "city": "Canton", "country": "China",
+  "objectDate": "19th century",
+  "isPublicDomain": true }
+`]})}),a.jsxs("div",{"data-v-slidev-56":"",className:"frame fit",children:[a.jsx("span",{"data-v-slidev-56":"",className:"label",children:"Yangqin, Guangzhou (Canton), 19th century"}),a.jsx("div",{"data-v-slidev-56":"",className:"pic",children:a.jsx(c,{alt:"Yangqin, a hammered dulcimer made in Guangzhou.",credit:"Yangqin, Shop of Refined Tones, Guangzhou (Canton), 19th century. The Metropolitan Museum of Art, The Crosby Brown Collection of Musical Instruments, 1889 (Open Access, CC0)",rights:"public",src:h})})]})]}),a.jsx(s,{name:"foot",children:a.jsxs("p",{"data-v-slidev-56":"",children:["The Met Collection API, called 6 Nov 2026 · also: Art Institute of Chicago API (",a.jsx("a",{"data-v-slidev-56":"",href:"http://api.artic.edu",target:"_blank",children:"api.artic.edu"}),")"]})}),a.jsx(s,{name:"read",children:a.jsx("p",{"data-v-slidev-56":"",children:`Museum collections have APIs too. Searching the Met's API for "Canton" returns 1,693 works with images; the first is from Canton, Ohio, the second a 19th-century yangqin made in Guangzhou, with its maker, city, date and public-domain status in fixed fields.`})})]}),e=l(i.props.children);return a.jsx(r,{...d(n,55),slots:e,children:e.default||t})}export{g as default};

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>M2 · Design Doc vs Log, TOC+Index Synopsis & Skill Recency Effect</title>
+  <style>
+    :root {
+      --bg: #ffffff; --ink: #111111; --body: #222220; --muted: #6b6b66;
+      --red: #e31f27; --rule: #dededc; --frame: #1a1a18; --soft: #f7f7f5;
+      --sans: 'DM Sans', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      --serif: 'Newsreader', 'Songti TC', 'Noto Serif TC', serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 14px 18px; font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    .tabs { display: flex; gap: 10px; border-bottom: 1.5px solid var(--frame); padding-bottom: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+    .tab-btn {
+      font: 700 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+      padding: 10px 16px; border: 1.5px solid var(--frame); background: #fff; color: var(--ink); cursor: pointer;
+    }
+    .tab-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .box { position: relative; border: 1.5px solid var(--frame); padding: 22px 18px 16px; background: #fff; }
+    .box.hot { border-color: var(--red); border-width: 2px; }
+    .box > .lbl {
+      position: absolute; top: 0; left: 14px; transform: translateY(-50%);
+      background: #fff; padding: 0 8px; font: 700 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--red);
+    }
+    h3 { font: 500 22px/1.28 var(--serif); margin: 0 0 8px; }
+    p, li { font-size: 15.5px; line-height: 1.55; color: var(--body); margin: 0 0 8px; }
+    .code { font: 14px/1.55 var(--mono); background: var(--soft); border: 1px solid var(--rule); padding: 12px 14px; white-space: pre-wrap; }
+    .pill-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .pill { font: 700 12px/1 var(--mono); padding: 8px 12px; border: 1.5px solid var(--frame); background: #fff; cursor: pointer; }
+    .pill.active { background: var(--ink); color: #fff; }
+    .hl-end { background: #fff0f0; border-left: 4px solid var(--red); padding: 8px 10px; font-weight: 600; color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchView('notes', this)">01 · Design Doc vs Research Log & Dual Notes</button>
+    <button class="tab-btn" onclick="switchView('toc', this)">02 · Demo 02: Long Book TOC + Index → Synopsis</button>
+    <button class="tab-btn" onclick="switchView('skill', this)">03 · Agent Skill: Natural Language & Recency Effect</button>
+  </div>
+
+  <!-- TAB 1: DESIGN DOC VS LOG & DUAL NOTES -->
+  <div id="view-notes" class="grid2">
+    <div class="box">
+      <span class="lbl">DOCUMENT A · DESIGN DOC (LIVING SPEC)</span>
+      <h3>my-work/research/design-doc.md</h3>
+      <p>Always reflects your <strong>current</strong> research question, corpus scope, folder schema, and verification rules. Updated in place as your design matures.</p>
+      <div class="code"># Research Design: Erasure Across Print &amp; Installation
+## 1. Core Question
+How does physical attrition in woodblock pulls differ from viewer-induced erasure in floor installations?
+## 2. Corpus Scope (my-work/sources/raw/)
+- 3 sequential woodblock pulls (WORK-PRINT-02)
+- 14-day gallery timelapse (WORK-INST-05)
+## 3. Four-Voice Attribution Rule
+Separate: [Source] / [Human Observation] / [Cited Theory] / [AI Hypothesis]</div>
+    </div>
+    <div class="box hot">
+      <span class="lbl">DOCUMENT B · RESEARCH LOG + DUAL NOTES</span>
+      <h3>my-work/research/research-log.md</h3>
+      <p>Append-only chronological record of what you tried, plus <strong>Dual-Version Notes</strong> separating your raw voice (`as-you-write`) from AI indexing (`[2026-11-06 · GLM-5.3]`):</p>
+      <div class="code">## 2026-11-06 14:52 · Voice Dictation &amp; Dual Note
+- **[Human Original · 20261106-human-reflection.md]**:
+  "看第三印左下方那道木紋裂口，我覺得那不是畫家刻意留白，而是木版自己磨損掉的時間痕跡。"
+- **[AI Augmented Index · 20261106-ai-augmented.md]**:
+  [AI Link · DeepSeek-V4.1 · 2026-11-06]: Connects to Ch. 2 [printed p. 48 / scan p. 60] on 'ghost impression' and material attrition (待回原書 p.48 核對).</div>
+    </div>
+  </div>
+
+  <!-- TAB 2: TOC + INDEX SYNOPSIS -->
+  <div id="view-toc" style="display:none;">
+    <div class="pill-row">
+      <button class="pill active" onclick="showChapter(0, this)">Ch. 1 · Brush Resistance & Bodily Posture (pp. 1–28)</button>
+      <button class="pill" onclick="showChapter(1, this)">Ch. 2 · Ink, Paper Attrition & Re-printing (pp. 29–64)</button>
+      <button class="pill" onclick="showChapter(2, this)">Ch. 3 · Viewer Traversal as Material Erase (pp. 65–102)</button>
+    </div>
+    <div class="grid2" id="chapterBox"></div>
+  </div>
+
+  <!-- TAB 3: SKILL RECENCY EFFECT TESTER -->
+  <div id="view-skill" style="display:none;">
+    <div class="pill-row">
+      <button class="pill active" onclick="showSkillMode('bad', this)">❌ Bad Skill: Rigid Pseudocode + Rules Buried in Middle (Lost in the Middle)</button>
+      <button class="pill" onclick="showSkillMode('good', this)">✓ Modern Skill: Clear Natural Language + Hard Guardrails at the Very End (Recency Effect)</button>
+    </div>
+    <div class="grid2" id="skillCompareBox"></div>
+  </div>
+
+<script>
+const CHAPTERS = [
+  {
+    toc: `Book: Material Time in East Asian Print & Installation (PDF: 312 pp.)
+Index Anchors Located First:
+- "posture / bodily inclination": printed pp. 14, 19–22 (scan pp. 26, 31–34)
+- "split-brush (feibai 飛白)": printed p. 24 (scan p. 36)
+Why TOC + Index First?
+Searching "mind-body phenomenology" directly across 312 pages returns 0 hits! Reading TOC + Index first maps your abstract concept to the author's concrete terms.`,
+    syn: `Chapter 1 Synopsis [printed pp. 1–28 / scan pp. 13–40]:
+• [Author's Core Argument]: The author analyzes how carving knife resistance and leaning closer to read faint ink traces ([printed p. 19 / scan p. 31]) turn viewing into a bodily act.
+• [Concept ↔ Material Bridge (AI Candidate)]:
+  "Mind-body phenomenology" ↔ knife resistance, brush pressure, viewer leaning forward ([printed p. 19]).`
+  },
+  {
+    toc: `Chapter 2: "Ink, Paper Attrition, and the Palimpsest of Re-printing"
+Page Mapping: printed pp. 29–64 ↔ PDF scan pp. 41–76 (offset: +12 pages)
+Index Entries Matched:
+- "attrition, woodblock": pp. 31–35
+- "scraping / recarving": p. 37
+- "ghost impression (二次淡印殘影)": pp. 48–52`,
+    syn: `Chapter 2 Synopsis [printed pp. 29–64 / scan pp. 41–76]:
+• [Author's Core Argument]: Never uses the word "impermanence (無常)"! Instead argues through physical block wear ([printed p. 31 / scan p. 43]), recarving grooves ([printed p. 37]), and un-inked second pulls ("ghost impression", [printed p. 48 / scan p. 60]).
+• [Human Correction Logged]: Woodblock blankness here is physical decay over sequential pulls, NOT deliberate painterly negative space.`
+  },
+  {
+    toc: `Chapter 3: "Walking Across Paper: Floor Installations & Duration"
+Page Mapping: printed pp. 65–102 ↔ PDF scan pp. 77–114
+Index Entries Matched:
+- "charcoal transfer": pp. 74–79
+- "duration / site specificity": pp. 82–88`,
+    syn: `Chapter 3 Synopsis [printed pp. 65–102 / scan pp. 77–114]:
+• [Author's Core Argument]: In floor installations of Xuan paper and charcoal ([printed p. 78 / scan p. 90]), viewer footsteps physically erase the central drawing over 14 days.
+• [Concept ↔ Material Bridge]:
+  "Erasure / Presence" ↔ shoe-sole charcoal dispersion, damp gallery air, timelapse snapshots (Day 1 vs Day 7 vs Day 14).`
+  }
+];
+
+function switchView(v, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['notes', 'toc', 'skill'].forEach(id => {
+    document.getElementById('view-' + id).style.display = (id === v) ? (id === 'notes' ? 'grid' : 'block') : 'none';
+  });
+}
+
+function showChapter(idx, btn) {
+  btn.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const c = CHAPTERS[idx];
+  document.getElementById('chapterBox').innerHTML = `
+    <div class="box">
+      <span class="lbl">STEP 1 · TOC + BACK-OF-BOOK INDEX ANCHORING</span>
+      <div class="code">${c.toc}</div>
+    </div>
+    <div class="box hot">
+      <span class="lbl">STEP 2 · CHAPTER SYNOPSIS WITH DUAL PAGE LOCATORS</span>
+      <div class="code">${c.syn}</div>
+    </div>
+  `;
+}
+
+function showSkillMode(mode, btn) {
+  btn.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const el = document.getElementById('skillCompareBox');
+  if (mode === 'bad') {
+    el.innerHTML = `
+      <div class="box">
+        <span class="lbl">INEFFECTIVE SKILL · RULES BURIED IN MIDDLE</span>
+        <div class="code">IF input == book_pdf THEN:
+  SET role = "art_historian_bot"
+  // Rule buried in middle of 50 lines of pseudocode:
+  // do not invent quotes and include page numbers
+  FOR chapter IN 1..10:
+    SUMMARIZE(chapter, style="academic", max_words=300)
+    COMPARE_WITH_HEIDEGGER_AND_MERLEAU_PONTY()
+    OUTPUT_MARKDOWN()</div>
+      </div>
+      <div class="box hot">
+        <span class="lbl">RESULTING BEHAVIOR · HALLUCINATED &amp; UNLOCATED</span>
+        <div class="code" style="background:#fff5f5;">❌ Agent ignores the buried page-number rule ("Lost in the Middle").
+❌ Agent blends the book author's argument with generic Merleau-Ponty clichés from pretraining memory.
+❌ Uses PDF scan page (p. 60) as if it were the printed book page (p. 48), breaking all citations.</div>
+      </div>
+    `;
+  } else {
+    el.innerHTML = `
+      <div class="box">
+        <span class="lbl">MODERN NATURAL-LANGUAGE SKILL · RECENCY EFFECT</span>
+        <div class="code">我們要為 my-work/sources/raw/ 下的長書建立分章 Research Synopsis：
+1. 先讀目錄（TOC）與書後索引（Index），建立印刷頁與掃描頁映射表。
+2. 每次只讀一章，提煉作者原本論點與「概念 ↔ 物質動作線索」橋接表。
+
+<div class="hl-end">【最後的關鍵邊界提醒（Recency Effect · 放在最末尾權重最高）】：
+1. 每個論點必須附上 [printed p. XX / scan p. YY: "原句短語"]。
+2. 嚴格區分三種聲音：(a) 本書作者原論點、(b) 書中引述學者、(c) AI 橋接建議。絕不混編無出處的哲學名言。</div></div>
+      </div>
+      <div class="box hot">
+        <span class="lbl">OBSERVED BEHAVIOR CHANGE ON SAME SAMPLE</span>
+        <div class="code" style="background:#f3fbf5;">✓ Every claim carries [printed p. 48 / scan p. 60: "ghost impression"].
+✓ Author's physical argument about woodblock wear is cleanly separated from AI's phenomenological bridge.
+✓ Ready to commit to Git as v2 of research/skills/book-synopsis.skill.md!</div>
+      </div>
+    `;
+  }
+}
+
+showChapter(1, document.querySelectorAll('#view-toc .pill')[1]);
+showSkillMode('good', document.querySelectorAll('#view-skill .pill')[1]);
+</script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>M1 · Setup, 4-Part Workspace & OpenCode Simulator</title>
+  <style>
+    :root {
+      --bg: #ffffff; --ink: #111111; --body: #222220; --muted: #6b6b66;
+      --red: #e31f27; --rule: #dededc; --frame: #1a1a18; --soft: #f7f7f5;
+      --sans: 'DM Sans', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      --serif: 'Newsreader', 'Songti TC', 'Noto Serif TC', serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 14px 18px; font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    .tabs { display: flex; gap: 10px; border-bottom: 1.5px solid var(--frame); padding-bottom: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+    .tab-btn {
+      font: 700 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+      padding: 10px 16px; border: 1.5px solid var(--frame); background: #fff; color: var(--ink); cursor: pointer;
+    }
+    .tab-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .grid { display: grid; grid-template-columns: 380px 1fr; gap: 22px; align-items: stretch; }
+    .box { position: relative; border: 1.5px solid var(--frame); padding: 22px 20px 16px; background: #fff; }
+    .box.hot { border-color: var(--red); border-width: 2px; }
+    .box > .lbl {
+      position: absolute; top: 0; left: 14px; transform: translateY(-50%);
+      background: #fff; padding: 0 8px; font: 700 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--red);
+    }
+    .folder-list { display: flex; flex-direction: column; gap: 8px; }
+    .folder-btn {
+      text-align: left; padding: 11px 14px; border: 1px solid var(--rule); background: var(--soft);
+      font: 600 15px/1.35 var(--mono); cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    }
+    .folder-btn.active { border-color: var(--red); background: #fff5f5; color: var(--red); }
+    .badge { font: 700 11px/1 var(--mono); padding: 4px 7px; border: 1px solid currentColor; }
+    h3 { font: 500 24px/1.25 var(--serif); margin: 0 0 10px; }
+    p { font-size: 16px; line-height: 1.55; color: var(--body); margin: 0 0 12px; }
+    .term {
+      background: #141413; color: #f5f5f3; font: 14.5px/1.55 var(--mono);
+      padding: 14px 16px; border-radius: 2px; white-space: pre-wrap; max-height: 330px; overflow-y: auto;
+    }
+    .term .u { color: #ff6b6b; font-weight: 700; }
+    .term .c { color: #ffd166; }
+    .term .ok { color: #6bcf7f; }
+    .actions { display: flex; gap: 10px; margin-bottom: 12px; align-items: center; }
+    .act-btn {
+      font: 700 13px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase;
+      padding: 10px 14px; border: 1.5px solid var(--red); background: var(--red); color: #fff; cursor: pointer;
+    }
+    .act-btn.sec { background: #fff; color: var(--red); }
+    .status { font: 600 13px/1 var(--mono); color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('folders', this)">01 · 4-Part Workspace (my-work/)</button>
+    <button class="tab-btn" onclick="showTab('p1', this)">02 · Prompt 1: Env & First Note</button>
+    <button class="tab-btn" onclick="showTab('p2', this)">03 · Prompt 2: OpenRouter API & .env</button>
+    <button class="tab-btn" onclick="showTab('p3', this)">04 · Prompt 3: Local Web Viewer / Blender</button>
+  </div>
+
+  <div id="tab-folders" class="grid">
+    <div class="box">
+      <span class="lbl">WORKSPACE TREE · CLICK TO INSPECT</span>
+      <div class="folder-list" id="folderList"></div>
+    </div>
+    <div class="box hot" id="folderDetail"></div>
+  </div>
+
+  <div id="tab-prompt" class="grid" style="display:none;">
+    <div class="box">
+      <span class="lbl" id="pLabel">PROMPT TO COPY INTO OPENCODE</span>
+      <div class="actions">
+        <button class="act-btn" onclick="runSim()">▶ Run in OpenCode Terminal</button>
+        <button class="act-btn sec" onclick="copyPrompt()">Copy Prompt</button>
+        <span class="status" id="copyStatus"></span>
+      </div>
+      <div class="term" id="promptBox" style="background:#f8f8f6;color:#111;border:1px solid #dededc;"></div>
+    </div>
+    <div class="box hot">
+      <span class="lbl">LIVE OPENCODE EXECUTION & EXPLANATION</span>
+      <div class="term" id="termOut"></div>
+    </div>
+  </div>
+
+<script>
+const FOLDERS = [
+  {
+    path: "my-work/sources/raw/",
+    tag: "UNTOUCHED ORIGINALS",
+    title: "1. my-work/sources/raw/ — Never Edit in Place",
+    why: "Stores your original painting scans, phone photos, archival PDFs, and museum downloads. The golden rule: neither you nor the Agent ever overwrites or modifies a file inside raw/.",
+    files: "my-work/sources/raw/\n├── canton-1908-p12.png          # Original 1908 publication scan\n├── MET-49156-bamboo-rock.jpg    # High-res CC0 painting from The Met\n├── IMG_4092_album_leaf.JPG      # Uncropped phone photo taken in archive\n└── woodblock-vol1-p14.png       # Ming woodblock page scan"
+  },
+  {
+    path: "my-work/sources/processed/",
+    tag: "DERIVED & LINKED",
+    title: "2. my-work/sources/processed/ — Crops, OCR & CSV Tables",
+    why: "Every derived crop, deskewed image, OCR transcription, or extracted CSV table lives here. Every row or filename must preserve its exact locator (source_id + page + bbox) pointing back to raw/.",
+    files: "my-work/sources/processed/\n├── crops/\n│   ├── MET-49156_colophon_crop.png\n│   └── MET-49156_seal_01.png\n├── sample-manifest.csv          # Acquisition state & rights ledger\n├── colophon-transcription.csv   # 3-column diplomatic/norm/notes\n└── api-calls-log.csv            # Model, timestamp, token cost"
+  },
+  {
+    path: "my-work/research/",
+    tag: "HUMAN + AI NOTES & SKILLS",
+    title: "3. my-work/research/ — Design Doc, Log & Agent Skills",
+    why: "Holds your Living Design Doc, chronological Research Log, chapter synopses, and reusable natural-language Agent Skills (.md). Strictly separates (a) source text, (b) your observation, (c) scholarship, and (d) AI hypotheses.",
+    files: "my-work/research/\n├── design-doc.md                # Living spec: core question & schema\n├── research-log.md              # Chronological log of tries & failures\n├── notes/\n│   ├── 20261106-human-reflection.md\n│   └── 20261106-ai-augmented.md\n└── skills/\n    ├── archive-search.skill.md\n    └── colophon-3col.skill.md"
+  },
+  {
+    path: "my-work/artifacts/",
+    tag: "GIT-IGNORED BINARIES",
+    title: "4. my-work/artifacts/ — Large Outputs, 3D Models & SQLite",
+    why: "Ignored by Git so you never accidentally push 500MB files to GitHub. Holds 5-to-1 generated image batches, .glb/.blend 3D scenes, SQLite databases, and local HTML viewers. Log how each artifact was made in research/.",
+    files: "my-work/artifacts/               # (Listed in .gitignore)\n├── 5to1-ideation/\n│   ├── round1-var1..5.png\n│   └── round2-var1..5.png\n├── porcelain-sites.sqlite       # Relational DB built from CSVs\n├── studio-reconstruction.glb    # 3D mesh export\n└── viewer-workbench.html        # Local interactive inspection page"
+  },
+  {
+    path: ".env & .gitignore",
+    tag: "SECRET HYGIENE",
+    title: "5. .env & .gitignore — Keep API Keys Strictly Local",
+    why: "Your OPENROUTER_API_KEY lives only in your local .env file. Before your first git commit, always ask the Agent to verify that .env and my-work/artifacts/ are ignored by Git.",
+    files: "# .env (NEVER committed to Git)\nOPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxx\n\n# .gitignore\n.env\n.env.*\nmy-work/artifacts/\n*.glb\n*.blend\n*.sqlite"
+  }
+];
+
+const PROMPTS = {
+  p1: {
+    label: "EXAMPLE 01 · ENVIRONMENT, FOLDERS & FIRST LINKED NOTE",
+    prompt: `我是參加「AI 與藝術史工作坊」的同學，請協助我完成課前環境與目錄的第一次整合測試，並在過程中一邊做一邊用白話向我解釋：
+
+1. 檢查本機環境與倉庫：檢查 Git、Python 3、uv 與 Node.js 版本，並確認目前資料夾是否為我 fork 並 clone 的工作坊倉庫（回報路徑與 git remote -v）。
+2. 建立四類研究目錄：在 my-work/ 下檢查或建立 sources/raw/、sources/processed/、research/ 與 artifacts/ 四個資料夾（保留已有檔案不覆寫）。
+3. 為第一份材料建立索引與筆記草稿：讀取 sources/raw/ 的第一份材料，在 sources/processed/ 產生帶 source_id、檔名與頁碼定位的 index.csv，並在 research/ 建立讀書筆記草稿（將「我的觀察」欄位留空讓我自己填寫）。`,
+    sim: `<span class="u">User &gt;</span> [Pasted Example 01 Prompt]
+
+<span class="c">Agent (DeepSeek V4.1 Flash) &gt;</span> 我會分三步幫你檢查環境、建立標準四層目錄，並生成第一份帶出處定位的索引與筆記：
+
+<span class="c">$ git remote -v &amp;&amp; python3 --version &amp;&amp; uv --version &amp;&amp; node -v</span>
+origin  https://github.com/student-cuhk/art-ai-workshop-2026.git (fetch)
+Python 3.12.6 | uv 0.5.4 | v22.11.0
+
+<span class="c">$ mkdir -p my-work/sources/raw my-work/sources/processed my-work/research my-work/artifacts</span>
+<span class="ok">✓ 四層研究目錄已就緒（raw 原件區、processed 衍生區、research 筆記區、artifacts 大型輸出區）。</span>
+
+<span class="c">Writing my-work/sources/processed/index.csv ...</span>
+source_id,filename,page_or_region,rights_status,status
+CANTON-1908,canton-1908-p12.png,printed_p9_scan_p12,public_domain,indexed_for_reading
+
+<span class="c">Writing my-work/research/first-note.md ...</span>
+- **[Source Fact]**: Canton Christian College (1908), printed p. 9 / scan p. 12.
+- **[Human Observation]**: *(留空：請填入你自己的觀察與問題)*
+- **[AI Candidate Note]**: 本頁記載 1900 年遷往澳門之事件（待回原頁核對）。`
+  },
+  p2: {
+    label: "EXAMPLE 02 · OPENROUTER API KEY (.ENV) & MULTIMODAL TEST",
+    prompt: `我已準備好 OpenRouter API Key 並儲值 US$5–10，請協助我做一次最小 API 整合測試，並用白話解釋：
+
+1. 安全讀取本機 API Key：引導我把 OPENROUTER_API_KEY 存在本機 .env 檔案中，並檢查 .gitignore 確保 .env 與 my-work/artifacts/ 都不會被 Git 提交。
+2. 執行一次最小多模態視覺描述與圖像生成測試：先查閱官方文件，告訴我擬測試的模型與預估費用（少於 $0.01）；經我確認後，對 sources/raw/ 的一張測試圖跑一次客觀可見事實描述，並呼叫 google/gemini-3.1-flash-image 生成一張測試草圖。
+3. 歸檔輸出並記錄參數與費用：把圖片存進 my-work/artifacts/，並在 my-work/sources/processed/api-log.csv 記錄模型名稱、日期與費用。`,
+    sim: `<span class="u">User &gt;</span> [Pasted Example 02 Prompt]
+
+<span class="c">Agent &gt;</span> 第一步：先確認金鑰安全，絕不把 API Key 寫進代碼或 Git。
+<span class="c">$ grep -E "^(\\.env|my-work/artifacts/)" .gitignore</span>
+.env
+my-work/artifacts/
+<span class="ok">✓ .gitignore 已保護 .env 與 artifacts/，金鑰不會外洩到 GitHub。</span>
+
+<span class="c">$ uv run python3 scripts/test_openrouter.py --image my-work/sources/raw/MET-49156.jpg</span>
+Calling OpenRouter Vision (google/gemini-2.5-pro)...
+<span class="ok">✓ Visible Description saved to my-work/sources/processed/MET-49156-desc.md</span>
+Calling OpenRouter Image Gen (google/gemini-3.1-flash-image)...
+<span class="ok">✓ Output saved to my-work/artifacts/test-sketch-01.png</span>
+
+<span class="c">Appended to my-work/sources/processed/api-log.csv:</span>
+2026-11-06T14:42,google/gemini-3.1-flash-image,prompt_hash_8a2f,my-work/artifacts/test-sketch-01.png,$0.0038`
+  },
+  p3: {
+    label: "EXAMPLE 03 · CSV TO LOCAL WEB WORKBENCH OR BLENDER MCP",
+    prompt: `請先詢問我想測試「路徑 A（互動網頁）」還是「路徑 B（Blender 3D 場景）」，只執行我選的那一條路徑，並一邊執行一邊用白話解釋：
+
+- 路徑 A（將結構化表格轉為本機互動檢視頁）：讀取 my-work/sources/processed/ 的 CSV，在 my-work/artifacts/ 製作一個可在本機瀏覽器打開的輕量互動檢視頁（含篩選功能，保留 source_id 與原始出處），並帶我測試新增一條記錄後畫面能否同步更新。
+- 路徑 B（連接 Blender MCP 讀取場景）：按 https://github.com/ahujasid/blender-mcp 說明連上本機 127.0.0.1:9876，先備份 .blend，再讀取目前場景物件清單匯出成 CSV。`,
+    sim: `<span class="u">User &gt;</span> 我選路徑 A（將 CSV 轉為本機互動檢視頁）。
+
+<span class="c">Agent &gt;</span> 明白！我們要確保「真實數據鏈（True Data Chain）」——網頁直接讀取 CSV，而不是把假數據寫死在 HTML 裡。
+
+<span class="c">$ uv run python3 scripts/build_local_viewer.py --input my-work/sources/processed/index.csv</span>
+<span class="ok">✓ Generated my-work/artifacts/local-workbench.html (bound to index.csv, 4 rows loaded).</span>
+<span class="ok">✓ Verification passed: Adding row #5 to index.csv dynamically updates the filter count (4 → 5) with source_id + page locator intact.</span>`
+  }
+};
+
+let currentPromptKey = 'p1';
+
+function renderFolders(activeIdx = 0) {
+  const list = document.getElementById('folderList');
+  list.innerHTML = FOLDERS.map((f, i) => `
+    <button class="folder-btn ${i === activeIdx ? 'active' : ''}" onclick="renderFolders(${i})">
+      <span>${f.path}</span>
+      <span class="badge">${f.tag}</span>
+    </button>
+  `).join('');
+  const d = FOLDERS[activeIdx];
+  document.getElementById('folderDetail').innerHTML = `
+    <span class="lbl">DIRECTORY ROLE & PROVENANCE RULE</span>
+    <h3>${d.title}</h3>
+    <p>${d.why}</p>
+    <div class="term">${d.files}</div>
+  `;
+}
+
+function showTab(key, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (key === 'folders') {
+    document.getElementById('tab-folders').style.display = 'grid';
+    document.getElementById('tab-prompt').style.display = 'none';
+  } else {
+    currentPromptKey = key;
+    document.getElementById('tab-folders').style.display = 'none';
+    document.getElementById('tab-prompt').style.display = 'grid';
+    const p = PROMPTS[key];
+    document.getElementById('pLabel').textContent = p.label;
+    document.getElementById('promptBox').textContent = p.prompt;
+    document.getElementById('termOut').innerHTML = `<span class="c">Ready. Click "▶ Run in OpenCode Terminal" to see what the Agent executes step-by-step.</span>`;
+    document.getElementById('copyStatus').textContent = '';
+  }
+}
+
+function runSim() {
+  document.getElementById('termOut').innerHTML = PROMPTS[currentPromptKey].sim;
+}
+
+function copyPrompt() {
+  navigator.clipboard?.writeText(PROMPTS[currentPromptKey].prompt);
+  document.getElementById('copyStatus').textContent = '✓ Copied to clipboard';
+}
+
+renderFolders(0);
+</script>
+</body>
+</html>

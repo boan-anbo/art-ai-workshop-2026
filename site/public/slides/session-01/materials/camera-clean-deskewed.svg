@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#f4f4f2"/>
+  <!-- Rectified, white-balanced album leaf -->
+  <rect x="110" y="42" width="740" height="456" fill="#fbf9f3" stroke="#111111" stroke-width="2"/>
+  <rect x="142" y="68" width="676" height="404" fill="#fdfcf8" stroke="#dededc" stroke-width="1.5"/>
+  <!-- Clean registration crop ticks -->
+  <path d="M95,42 L125,42 M110,27 L110,57 M835,42 L865,42 M850,27 L850,57 M95,498 L125,498 M110,483 L110,513 M835,498 L865,498 M850,483 L850,513" stroke="#e31f27" stroke-width="2"/>
+  <!-- Rectified bamboo, rock, and colophon -->
+  <g transform="translate(210,105)">
+    <path d="M180,280 C186,205 194,125 200,35" stroke="#141413" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+    <path d="M196,165 C235,148 268,132 302,126" stroke="#141413" stroke-width="4.5" fill="none"/>
+    <path d="M192,112 C155,96 128,82 96,86" stroke="#141413" stroke-width="4" fill="none"/>
+    <ellipse cx="135" cy="272" rx="72" ry="40" fill="#4a4946" opacity="0.5"/>
+    <!-- Highlighted bounding box around colophon -->
+    <rect x="382" y="22" width="92" height="245" fill="none" stroke="#e31f27" stroke-width="2" stroke-dasharray="6,4"/>
+    <text x="382" y="14" fill="#e31f27" font-family="JetBrains Mono, monospace" font-size="14">CROP-01: COLOPHON</text>
+    <g fill="#111111" font-family="Songti TC, Noto Serif TC, serif" font-size="24">
+      <text x="438" y="55">乾</text><text x="438" y="88">隆</text><text x="438" y="121">丙</text><text x="438" y="154">子</text><text x="438" y="187">秋</text><text x="438" y="220">寫</text><text x="438" y="253">竹</text>
+      <text x="396" y="55">板</text><text x="396" y="88">橋</text><text x="396" y="121">鄭</text><text x="396" y="154">燮</text>
+    </g>
+    <rect x="394" y="175" width="28" height="28" fill="#c52028"/>
+  </g>
+  <rect x="28" y="24" width="470" height="44" fill="#e31f27"/>
+  <text x="44" y="52" fill="#ffffff" font-family="JetBrains Mono, monospace" font-size="18">PROCESSED: Deskewed + White-Balanced + Cropped</text>
+</svg>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>M6 · HTML vs SVG vs Image API & 5-to-1 Evolutionary Ideation (Demo 08)</title>
+  <style>
+    :root {
+      --bg: #ffffff; --ink: #111111; --body: #222220; --muted: #6b6b66;
+      --red: #e31f27; --rule: #dededc; --frame: #1a1a18; --soft: #f7f7f5;
+      --sans: 'DM Sans', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      --serif: 'Newsreader', 'Songti TC', 'Noto Serif TC', serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 14px 18px; font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; border-bottom: 1.5px solid var(--frame); padding-bottom: 10px; flex-wrap: wrap; }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { font: 700 12px/1 var(--mono); padding: 8px 13px; border: 1.5px solid var(--frame); background: #fff; cursor: pointer; }
+    .pill.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .five-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 14px; }
+    .cand { border: 1.5px solid var(--frame); padding: 10px; background: #fff; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; }
+    .cand.picked { border: 2.5px solid var(--red); background: #fff4f4; }
+    .cand h5 { font: 600 13.5px/1.25 var(--serif); margin: 6px 0 4px; }
+    .cand p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.35; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .box { position: relative; border: 1.5px solid var(--frame); padding: 18px 14px 12px; background: #fff; }
+    .box.hot { border-color: var(--red); border-width: 2px; }
+    .box > .lbl {
+      position: absolute; top: 0; left: 12px; transform: translateY(-50%);
+      background: #fff; padding: 0 7px; font: 700 11px/1 var(--mono); letter-spacing: .11em; text-transform: uppercase; color: var(--red);
+    }
+    .code { font: 13px/1.5 var(--mono); background: var(--soft); border: 1px solid var(--rule); padding: 10px 12px; white-space: pre-wrap; }
+    .evolve-btn { font: 700 12px/1 var(--mono); padding: 8px 14px; background: var(--red); color: #fff; border: 0; cursor: pointer; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="pills">
+      <button class="pill active" id="rBtn0" onclick="setRound(0)">Round 1 · 5 Divergent Visual Directions</button>
+      <button class="pill" id="rBtn1" onclick="setRound(1)">Round 2 · 5 Variations from Winner 1B</button>
+      <button class="pill" id="rBtn2" onclick="setRound(2)">Round 3 · Final Material &amp; Lighting Convergence</button>
+    </div>
+    <button class="evolve-btn" onclick="nextRound()">▶ Evolve Selected Winner into Next 5 Variations</button>
+  </div>
+
+  <div class="five-grid" id="fiveGrid"></div>
+
+  <div class="grid2">
+    <div class="box">
+      <span class="lbl">HUMAN CURATION &amp; DIRECTION FEEDBACK (WHOSE IDEA IS THIS?)</span>
+      <div class="code" id="humanFeedback"></div>
+    </div>
+    <div class="box hot">
+      <span class="lbl">OPENROUTER IMAGE API CALL &amp; ARTIFACT PROVENANCE LOG</span>
+      <div class="code" id="apiLog"></div>
+    </div>
+  </div>
+
+<script>
+const ROUNDS = [
+  {
+    name: "Round 1 (Divergent Exploration · google/gemini-3.1-flash-image)",
+    winner: 1,
+    cands: [
+      { id: "1A", title: "High-Contrast Hanging Scroll", desc: "Dramatic spotlight on vertical ink scroll; too theatrical.", color: "#2b2b29" },
+      { id: "1B", title: "Floor Xuan Paper & Charcoal", desc: "12 floor sheets with smudged charcoal footsteps — matches our concept!", color: "#8c3b2b" },
+      { id: "1C", title: "Glass Vitrine Display", desc: "Museum glass case; blocks bodily participation.", color: "#4b6278" },
+      { id: "1D", title: "Digital Projection Wall", desc: "Glowing screen; loses physical paper attrition.", color: "#3d5a45" },
+      { id: "1E", title: "Outdoor Courtyard Stones", desc: "Weathering stone slabs; wrong material medium.", color: "#736854" }
+    ],
+    feedback: `[Human Selection · Round 1 → Picked 1B]:
+"淘汰 1A/1C/1D/1E。只有 1B（地面鋪設宣紙與炭粉被腳步帶開）符合我想表達的『觀眾身體介入造成的物質抹除』。
+下一輪請沿著 1B 衍生 5 個不同展廳光線、紙張接縫與第 1/7/14 天磨損程度的變體。"`,
+    api: `$ uv run python3 scripts/generate_5to1.py --round 1 --model google/gemini-3.1-flash-image
+✓ Saved 5 sketches → my-work/artifacts/5to1/round1_1A..1E.png (git-ignored)
+✓ Logged prompt, seed, cost ($0.019) & human selection (1B) to my-work/research/ideation-log.md`
+  },
+  {
+    name: "Round 2 (Mutating Winner 1B · ByteDance Seedream / Nano Banana 2)",
+    winner: 2,
+    cands: [
+      { id: "2A", title: "Single Long Roll (Center)", desc: "No paper seams; less sense of modular fragile sheets.", color: "#5c5346" },
+      { id: "2B", title: "Grid of 24 Small Leaves", desc: "Too fragmented; looks like stepping stones.", color: "#4a4a48" },
+      { id: "2C", title: "12 Overlapping Sheets + Side Grazing Light", desc: "Low grazing light reveals torn fiber edges & shoe tracks!", color: "#a82424" },
+      { id: "2D", title: "Overhead Top-Down Lighting", desc: "Flattens paper wrinkles and charcoal texture.", color: "#6e6a63" },
+      { id: "2E", title: "Heavy Wet Ink Puddles", desc: "Wet ink prevents viewers from walking across.", color: "#2f3640" }
+    ],
+    feedback: `[Human Selection · Round 2 → Picked 2C]:
+"選 2C！低角度側光（grazing light）能把宣紙邊緣被踩皺的纖維與炭粉深淺層次照出來。
+第 3 輪請固定 2C 的 12 張重疊宣紙與低側光，測試 Day 1 / Day 7 / Day 14 的時間衰減對比。"`,
+    api: `$ uv run python3 scripts/generate_5to1.py --round 2 --parent 1B --model bytedance/seedream-3.0
+✓ Saved 5 variations → my-work/artifacts/5to1/round2_2A..2E.png
+✓ Logged lineage (1B → 2C) & human rationale in my-work/research/ideation-log.md`
+  },
+  {
+    name: "Round 3 (Final Convergence + SVG Floorplan Schematic)",
+    winner: 3,
+    cands: [
+      { id: "3A", title: "Day 1 · Crisp Central Charcoal", desc: "Initial state before audience entry.", color: "#333330" },
+      { id: "3B", title: "Day 4 · First Narrow Path", desc: "Early hesitation tracks along right edge.", color: "#4f4a42" },
+      { id: "3C", title: "Day 7 · Dispersed Gray Halo", desc: "Mid-exhibition state; center softened.", color: "#6b6358" },
+      { id: "3D", title: "Day 14 · Complete Edge Migration + SVG Plan", desc: "Selected final concept + paired with exact SVG floor dimensions!", color: "#c52028" },
+      { id: "3E", title: "Over-Torn Paper Shreds", desc: "Paper completely destroyed; loses trace legibility.", color: "#7a7267" }
+    ],
+    feedback: `[Human Selection · Round 3 → Picked 3D + Exported SVG Schematic]:
+"生圖 API 幫我們逼近了 3D（第 14 天炭粉向四周擴散的視覺氛圍），但施工尺寸不能靠生圖！
+現在讓 Agent 用 SVG 畫出精確的 6m × 3m 展廳 12 張宣紙鋪設尺寸圖。"`,
+    api: `$ uv run python3 scripts/export_svg_floorplan.py --from-winner 3D
+✓ Image concept locked: my-work/artifacts/5to1/round3_3D.png
+✓ Vector floorplan generated: my-work/research/figures/installation-floorplan.svg`
+  }
+];
+
+let curR = 0;
+let curPick = 1;
+
+function setRound(r) {
+  curR = r;
+  curPick = ROUNDS[r].winner;
+  [0,1,2].forEach(i => document.getElementById('rBtn'+i).classList.toggle('active', i === r));
+  renderRound();
+}
+
+function pickCand(idx) {
+  curPick = idx;
+  renderRound();
+}
+
+function nextRound() {
+  setRound((curR + 1) % 3);
+}
+
+function renderRound() {
+  const rd = ROUNDS[curR];
+  document.getElementById('fiveGrid').innerHTML = rd.cands.map((c, i) => `
+    <div class="cand ${i === curPick ? 'picked' : ''}" onclick="pickCand(${i})">
+      <div>
+        <svg viewBox="0 0 180 95" width="100%" style="border:1px solid #dededc;">
+          <rect width="180" height="95" fill="${c.color}"/>
+          <rect x="18" y="14" width="144" height="67" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-dasharray="3,3"/>
+          <text x="90" y="54" text-anchor="middle" fill="#ffffff" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">${c.id}</text>
+        </svg>
+        <h5>${c.id} · ${c.title}</h5>
+        <p>${c.desc}</p>
+      </div>
+      <div style="margin-top:8px;font:700 11px var(--mono);color:${i === curPick ? '#e31f27' : '#6b6b66'};">
+        ${i === curPick ? '★ SELECTED FOR NEXT ROUND' : 'Click to select'}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('humanFeedback').textContent = rd.feedback;
+  document.getElementById('apiLog').textContent = rd.api;
+}
+
+setRound(0);
+</script>
+</body>
+</html>

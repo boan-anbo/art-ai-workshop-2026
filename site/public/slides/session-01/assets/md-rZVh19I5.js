@@ -1,0 +1,13 @@
+import{ac as n,j as e}from"./index-DL0jsxY9.js";import{D as r}from"./default-DfD4E5fS.js";import{e as l,f as i,S as o}from"./layoutHelper-Cs3kI60C.js";import"./modules/file-saver-C5aOAFwN.js";/* empty css                      */import"./slidev/academic-react-C6rKkPeO.js";function x({children:s}){const{$frontmatter:t}=n(),d=e.jsxs(e.Fragment,{children:[e.jsx("h1",{"data-v-slidev-62":"",children:"Then let the agent tidy up: which folder, which names."}),e.jsxs("div",{"data-v-slidev-62":"",className:"term",children:[e.jsx("div",{"data-v-slidev-62":"",className:"term-bar",children:e.jsx("span",{"data-v-slidev-62":"",children:"OpenCode · art-ai-workshop-2026"})}),e.jsxs("pre",{"data-v-slidev-62":"",children:[`
+`,e.jsx("span",{"data-v-slidev-62":"",className:"you",children:"Move the PDFs I downloaded today into my-work/sources/raw/,"}),`
+`,e.jsx("span",{"data-v-slidev-62":"",className:"you",children:"rename each as author-year-short-title, and list them in my log."}),`
+ 
+`,e.jsx("span",{"data-v-slidev-62":"",className:"blk",children:"$ mv ~/Downloads/*.pdf my-work/sources/raw/"}),`
+`,e.jsx("span",{"data-v-slidev-62":"",className:"tool",children:"← Edit"}),` my-work/research/log.md
+ 
+`,e.jsx("span",{"data-v-slidev-62":"",className:"ok",children:"Renamed 3 files:"}),`
+  ccc-1908-field-and-work-in-china.pdf
+  corbett-1963-lingnan-university.pdf
+  mou-2018-liberal-arts-curriculum.pdf
+`,e.jsx("span",{"data-v-slidev-62":"",className:"dim",children:"▣ Build · DeepSeek V4.1 Flash"}),`
+`]}),e.jsx("div",{"data-v-slidev-62":"",className:"term-foot",children:"Build · DeepSeek V4.1 Flash · OpenCode Go · max"})]}),e.jsx(o,{name:"read",children:e.jsx("p",{"data-v-slidev-62":"",children:"After downloading, tell the agent which folder the files go into and how to name them; it moves, renames and logs them."})})]}),a=l(d.props.children);return e.jsx(r,{...i(t,61),slots:a,children:a.default||s})}export{x as default};

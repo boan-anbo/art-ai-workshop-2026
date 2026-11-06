@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 780" font-family="DM Sans, Helvetica, Arial, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="504.1" y="349.4" width="1055.9" height="350.6" fill="#e31f27" fill-opacity="0.07"/>
+<line x1="100" y1="700" x2="1560" y2="700" stroke="#111" stroke-width="1.5"/><line x1="100" y1="20" x2="100" y2="700" stroke="#111" stroke-width="1.5"/>
+<text x="100.0" y="736" font-size="26" fill="#6b7280" text-anchor="middle">$0.1</text>
+<text x="661.1" y="736" font-size="26" fill="#6b7280" text-anchor="middle">$1</text>
+<text x="1222.2" y="736" font-size="26" fill="#6b7280" text-anchor="middle">$10</text>
+<text x="86" y="709.0" font-size="26" fill="#6b7280" text-anchor="end">0</text>
+<text x="86" y="496.5" font-size="26" fill="#6b7280" text-anchor="end">20</text>
+<text x="86" y="284.0" font-size="26" fill="#6b7280" text-anchor="end">40</text>
+<text x="86" y="71.5" font-size="26" fill="#6b7280" text-anchor="end">60</text>
+<text x="1560" y="768" font-size="26" fill="#374151" text-anchor="end">price per million tokens →</text>
+<text x="112" y="42" font-size="26" fill="#374151">score ↑</text>
+<circle cx="87.5" cy="636.2" r="7" fill="#9ca3af"/>
+<circle cx="117.6" cy="646.9" r="7" fill="#9ca3af"/>
+<circle cx="236.4" cy="413.1" r="7" fill="#9ca3af"/>
+<circle cx="268.9" cy="317.5" r="7" fill="#9ca3af"/>
+<circle cx="268.9" cy="402.5" r="7" fill="#9ca3af"/>
+<circle cx="310.8" cy="402.5" r="7" fill="#9ca3af"/>
+<circle cx="335.2" cy="391.9" r="7" fill="#9ca3af"/>
+<circle cx="335.2" cy="657.5" r="7" fill="#9ca3af"/>
+<circle cx="346.5" cy="551.2" r="7" fill="#9ca3af"/>
+<circle cx="466.5" cy="381.2" r="7" fill="#9ca3af"/>
+<circle cx="504.1" cy="498.1" r="7" fill="#9ca3af"/>
+<circle cx="504.1" cy="561.9" r="7" fill="#9ca3af"/>
+<circle cx="504.1" cy="636.2" r="7" fill="#9ca3af"/>
+<circle cx="510.9" cy="381.2" r="7" fill="#9ca3af"/>
+<circle cx="536.6" cy="508.8" r="7" fill="#9ca3af"/>
+<circle cx="621.5" cy="572.5" r="7" fill="#9ca3af"/>
+<circle cx="673.0" cy="423.8" r="7" fill="#9ca3af"/>
+<circle cx="689.8" cy="487.5" r="7" fill="#9ca3af"/>
+<circle cx="689.8" cy="572.5" r="7" fill="#9ca3af"/>
+<circle cx="715.0" cy="328.1" r="7" fill="#9ca3af"/>
+<circle cx="747.4" cy="391.9" r="7" fill="#9ca3af"/>
+<circle cx="759.9" cy="370.6" r="7" fill="#9ca3af"/>
+<circle cx="799.2" cy="572.5" r="7" fill="#9ca3af"/>
+<circle cx="827.6" cy="455.6" r="7" fill="#9ca3af"/>
+<circle cx="830.0" cy="158.1" r="7" fill="#9ca3af"/>
+<circle cx="830.0" cy="434.4" r="7" fill="#9ca3af"/>
+<circle cx="847.6" cy="360.0" r="7" fill="#9ca3af"/>
+<circle cx="928.8" cy="328.1" r="7" fill="#9ca3af"/>
+<circle cx="928.8" cy="338.8" r="7" fill="#9ca3af"/>
+<circle cx="928.8" cy="646.9" r="7" fill="#9ca3af"/>
+<circle cx="998.9" cy="115.6" r="7" fill="#9ca3af"/>
+<circle cx="998.9" cy="115.6" r="7" fill="#9ca3af"/>
+<circle cx="998.9" cy="211.2" r="7" fill="#9ca3af"/>
+<circle cx="1167.8" cy="62.5" r="7" fill="#9ca3af"/>
+<circle cx="1167.8" cy="73.1" r="7" fill="#9ca3af"/>
+<circle cx="1167.8" cy="168.8" r="7" fill="#9ca3af"/>
+<circle cx="1167.8" cy="232.5" r="7" fill="#9ca3af"/>
+<circle cx="1391.1" cy="94.4" r="7" fill="#9ca3af"/>
+<circle cx="1391.1" cy="168.8" r="7" fill="#9ca3af"/>
+<polyline points="87.5,636.2 236.4,636.2 236.4,413.1 268.9,413.1 268.9,317.5 830.0,317.5 830.0,158.1 998.9,158.1 998.9,115.6 1167.8,115.6 1167.8,62.5" fill="none" stroke="#e31f27" stroke-width="5" stroke-linejoin="round"/>
+<circle cx="504.1" cy="349.4" r="14" fill="#e31f27" stroke="#ffffff" stroke-width="3"/>
+<text x="1179.8" y="70.5" font-size="23" fill="#374151" text-anchor="start">Gemini 4 Carbon</text>
+<text x="1155.8" y="81.1" font-size="23" fill="#374151" text-anchor="end">Claude Opus 5.5</text>
+<text x="1403.1" y="102.4" font-size="23" fill="#374151" text-anchor="start">GPT-6 Astra</text>
+<text x="1010.9" y="123.6" font-size="23" fill="#374151" text-anchor="start">GPT-6.1 Sol</text>
+<text x="986.9" y="123.6" font-size="23" fill="#374151" text-anchor="end">Claude Sonnet 5.5</text>
+<text x="1010.9" y="219.2" font-size="23" fill="#374151" text-anchor="start">Kimi K3.1 Pro</text>
+<text x="280.9" y="287.5" font-size="23" fill="#374151" text-anchor="start">Claude Haiku 5.5</text>
+<text x="747.9" y="378.6" font-size="23" fill="#374151" text-anchor="end">Gemini 3.8 Flash</text>
+<text x="859.6" y="368.0" font-size="23" fill="#374151" text-anchor="start">GLM-5.3</text>
+<text x="839.6" y="463.6" font-size="23" fill="#374151" text-anchor="start">DeepSeek V4 Pro</text>
+<text x="661.0" y="431.8" font-size="23" fill="#374151" text-anchor="end">Mistral Large 4</text>
+<text x="842.0" y="422.4" font-size="23" fill="#374151" text-anchor="start">Muse Spark Open</text>
+<text x="498.9" y="369.2" font-size="23" fill="#374151" text-anchor="end">MiMo-V2.6-Pro</text>
+<text x="701.8" y="495.5" font-size="23" fill="#374151" text-anchor="start">Qwen3.8 27B</text>
+<text x="528.1" y="309.4" font-size="30" font-weight="700" fill="#111" text-anchor="start">DeepSeek V4.1 Flash</text>
+</svg>

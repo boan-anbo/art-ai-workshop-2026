@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>M3 · Browser Collection, URL Tricks & Batch Download Organizer (Demo 01)</title>
+  <style>
+    :root {
+      --bg: #ffffff; --ink: #111111; --body: #222220; --muted: #6b6b66;
+      --red: #e31f27; --rule: #dededc; --frame: #1a1a18; --soft: #f7f7f5;
+      --sans: 'DM Sans', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      --serif: 'Newsreader', 'Songti TC', 'Noto Serif TC', serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 14px 18px; font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; border-bottom: 1.5px solid var(--frame); padding-bottom: 10px; }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { font: 700 12px/1 var(--mono); padding: 9px 13px; border: 1.5px solid var(--frame); background: #fff; cursor: pointer; }
+    .pill.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .run-btn { font: 700 12.5px/1 var(--mono); padding: 9px 14px; background: var(--ink); color: #fff; border: 1.5px solid var(--ink); cursor: pointer; text-transform: uppercase; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 16px; }
+    .box { position: relative; border: 1.5px solid var(--frame); padding: 20px 16px 14px; background: #fff; }
+    .box.hot { border-color: var(--red); border-width: 2px; }
+    .box > .lbl {
+      position: absolute; top: 0; left: 12px; transform: translateY(-50%);
+      background: #fff; padding: 0 8px; font: 700 11.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--red);
+    }
+    .code { font: 13.5px/1.5 var(--mono); background: var(--soft); border: 1px solid var(--rule); padding: 10px 12px; white-space: pre-wrap; }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    th { text-align: left; font: 700 11.5px/1.2 var(--mono); text-transform: uppercase; color: var(--muted); padding: 8px 8px; border-bottom: 1.5px solid var(--frame); }
+    td { padding: 8px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    tr.active-row { background: #fff4f4; }
+    .tag { display: inline-block; font: 700 11px/1 var(--mono); padding: 3px 6px; border: 1px solid var(--frame); }
+    .tag.cc0 { color: #1b6e32; border-color: #1b6e32; background: #eefaf0; }
+    .tag.res { color: var(--red); border-color: var(--red); background: #fff2f2; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="pills">
+      <button class="pill active" onclick="selectCase(0, this)">Case 1 · The Met Open API (CC0 Batch)</button>
+      <button class="pill" onclick="selectCase(1, this)">Case 2 · DuXiu Hidden URL Params (yearstat/yearend)</button>
+      <button class="pill" onclick="selectCase(2, this)">Case 3 · Seal Script 0-OCR Gap (Finding Aid)</button>
+      <button class="pill" onclick="selectCase(3, this)">Case 4 · Straits Newspapers (HITL Login + Alias)</button>
+    </div>
+    <button class="run-btn" onclick="simulateBatch()">▶ Run Batch Download &amp; Manifest Update</button>
+  </div>
+
+  <div class="grid" id="caseDetail"></div>
+
+  <div class="box">
+    <span class="lbl">AUTO-GENERATED MANIFEST · my-work/sources/processed/sample-manifest.csv</span>
+    <table>
+      <thead>
+        <tr>
+          <th>source_id</th>
+          <th>Archive / Entry</th>
+          <th>Clue / Trick Saved to Skill</th>
+          <th>5-Stage Access State</th>
+          <th>4-Layer Rights Status</th>
+        </tr>
+      </thead>
+      <tbody id="manifestBody"></tbody>
+    </table>
+  </div>
+
+<script>
+const CASES = [
+  {
+    id: "MET-49156",
+    archive: "The Met Collection API",
+    title: "Bamboo and Rock (竹石圖) · Zheng Xie (18th c.)",
+    browser: `GET https://collectionapi.metmuseum.org/public/collection/v1/objects/49156
+{
+  "objectID": 49156,
+  "title": "Bamboo and Rock",
+  "artistDisplayName": "Zheng Xie",
+  "accessionNumber": "1986.267.35",
+  "isPublicDomain": true,
+  "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/DP153705.jpg"
+}`,
+    agent: `$ uv run python3 scripts/run_met_search.py --query "bamboo colophon Qing"
+✓ Downloaded high-res image → my-work/sources/raw/MET-49156.jpg
+✓ Saved accession 1986.267.35 + CC0 license to sample-manifest.csv
+✓ Skill note: Prefer official REST/IIIF API over scraping HTML DOM.`,
+    trick: "REST API + primaryImage JSON field",
+    state: "4 · High-res downloaded to raw/",
+    rights: "CC0 Public Domain (Git & Web safe)",
+    rightsClass: "cc0"
+  },
+  {
+    id: "DUXIU-1908-01",
+    archive: "DuXiu Academic Search (讀秀)",
+    title: "清代書畫題跋輯錄（卷四）· 1796 (嘉慶元年)",
+    browser: `Browser URL Bar Inspection:
+https://book.duxiu.com/search?sw=%E9%A1%8C%E8%B7%8B&yearstat=1750&yearend=1820
+
+Why this matters:
+The web sidebar hides the custom date-range filter, but appending
+&yearstat=1750&yearend=1820 filters 18th-century editions directly!`,
+    agent: `[Human-in-the-Loop]: You log in via campus VPN in your Chrome profile.
+[Agent Action]: Reads result list DOM, appends URL rule (&yearstat / &yearend) to 01-archive-search-skill.md, and logs SSID + TOC metadata to sample-manifest.csv.`,
+    trick: "Hidden URL params: yearstat=1750&yearend=1820",
+    state: "2 · Metadata & TOC read",
+    rights: "Subscription only (Keep PDF in .gitignore)",
+    rightsClass: "res"
+  },
+  {
+    id: "SEAL-CAT-03",
+    archive: "Late-Qing Seal Impression Catalogue",
+    title: "完白山人印譜（初拓本）· 鄧石如 (Late 18th c.)",
+    browser: `Full-Text Search Box: "完白山人" → 0 Results Found!
+Why?
+Seal script (篆書) and carved side-inscriptions (邊款) were never OCRed.
+"0 hits in search box" ≠ "0 materials in archive"!`,
+    agent: `[Agent Diagnostic]: Switching from full-text search to catalogue finding aid & artist alias ("鄧石如 / 完白山人").
+✓ Located album SEAL-1802-09 (12 leaves).
+✓ Logged Pipeline Gap: "Image viewable, 0 OCR layer — route to M4 Crop + Shape Rules."`,
+    trick: "Bypass 0-OCR full-text trap via finding aid",
+    state: "3 · Image viewable (No OCR layer)",
+    rights: "Restricted image (Share metadata only)",
+    rightsClass: "res"
+  },
+  {
+    id: "NYONYA-DIR-04",
+    archive: "Straits Directory & Peranakan Museum",
+    title: "Phoenix-and-Peony Kamcheng (粉彩鳳穿牡丹蓋盅)",
+    browser: `Cross-Lingual Clues Tested by Agent across Chrome Tabs:
+- English colonial directory: "Chopra Guan" / "kamcheng"
+- Chinese newspaper & porcelain terms: "蓋盅" / "娘惹瓷"
+- Malay term: "kemcheng"`,
+    agent: `[HITL Chrome Profile]: Human passes CAPTCHA once; Agent batches 4 language queries, downloads open directory clippings to raw/, and links museum accession PER-1921-88.`,
+    trick: "HITL Chrome login + multilingual alias table",
+    state: "5 · Closely read & cross-verified",
+    rights: "Museum terms apply (Local workbench only)",
+    rightsClass: "res"
+  }
+];
+
+let activeIdx = 0;
+
+function selectCase(idx, btn) {
+  activeIdx = idx;
+  if (btn) {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const c = CASES[idx];
+  document.getElementById('caseDetail').innerHTML = `
+    <div class="box">
+      <span class="lbl">BROWSER / NETWORK INSPECTION · ${c.id}</span>
+      <div class="code">${c.browser}</div>
+    </div>
+    <div class="box hot">
+      <span class="lbl">AGENT HITL ACTION &amp; SKILL ACCUMULATION</span>
+      <div class="code">${c.agent}</div>
+    </div>
+  `;
+  renderTable();
+}
+
+function renderTable(highlightAll = false) {
+  document.getElementById('manifestBody').innerHTML = CASES.map((c, i) => `
+    <tr class="${(i === activeIdx || highlightAll) ? 'active-row' : ''}" onclick="selectCase(${i})" style="cursor:pointer;">
+      <td><strong>${c.id}</strong></td>
+      <td>${c.archive}<br><span style="color:#6b6b66;font-size:12px;">${c.title}</span></td>
+      <td><code>${c.trick}</code></td>
+      <td>${c.state}</td>
+      <td><span class="tag ${c.rightsClass}">${c.rights}</span></td>
+    </tr>
+  `).join('');
+}
+
+function simulateBatch() {
+  renderTable(true);
+  const c = CASES[activeIdx];
+  document.querySelector('#caseDetail .box.hot .code').textContent =
+    c.agent + `\n\n[BATCH COMPLETE]: 4 records synced to my-work/sources/processed/sample-manifest.csv; raw files locked in my-work/sources/raw/.`;
+}
+
+selectCase(0);
+</script>
+</body>
+</html>

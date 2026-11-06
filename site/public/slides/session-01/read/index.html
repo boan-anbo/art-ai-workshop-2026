@@ -1,0 +1,2715 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI &amp; Art Research · Session One: Basic Research Workflow with LLMs · CUHK Fine Arts</title>
+<meta name="citation_title" content="AI &amp; Art Research · Session One: Basic Research Workflow with LLMs · CUHK Fine Arts">
+<meta name="citation_author" content="Bo An · Lingnan University">
+<meta name="citation_publication_date" content="2026-11-06">
+<meta name="citation_language" content="en">
+<meta name="DC.title" content="AI &amp; Art Research · Session One: Basic Research Workflow with LLMs · CUHK Fine Arts">
+<meta name="DC.type" content="Presentation">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"PresentationDigitalDocument","name":"AI & Art Research · Session One: Basic Research Workflow with LLMs · CUHK Fine Arts","inLanguage":"en","author":[{"@type":"Person","name":"Bo An · Lingnan University"}],"datePublished":"2026-11-06"}</script>
+<style>
+:root{--ink:#111;--body:#222;--sub:#6b7280;--rule:rgba(17,17,17,.14);--red:#e31f27;--paper:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#f2f2f0;--body:#dedede;--sub:#9aa0aa;--rule:rgba(255,255,255,.18);--paper:#141414}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{overflow-wrap:anywhere}
+body{margin:0;background:var(--paper);color:var(--body);font:400 18px/1.62 "Newsreader",Georgia,"Songti SC","Noto Serif CJK SC",serif}
+main{max-width:42rem;margin:0 auto;padding:2.5rem 1.25rem 5rem}
+header.t{margin-bottom:3rem}h1{font-weight:400;font-size:clamp(2rem,6vw,3rem);line-height:1.1;color:var(--ink);margin:0 0 .6rem}
+.m{font:400 .8rem/1.5 ui-monospace,Menlo,monospace;color:var(--sub);letter-spacing:.02em}
+.m a{color:inherit}
+nav.toc{border-block:1px solid var(--rule);padding:1rem 0;margin:2rem 0 3rem}nav.toc ol{margin:0;padding-left:1.4rem}nav.toc a{color:var(--body);text-decoration:none}nav.toc a:hover{color:var(--red)}
+section{margin:0 0 3.25rem;scroll-margin-top:1rem}section>h2{font-weight:400;font-size:1.55rem;line-height:1.22;color:var(--ink);margin:0 0 .85rem}
+section>h2 a{color:inherit;text-decoration:none}section>h2 .no{color:var(--sub);font-variant-numeric:tabular-nums;margin-right:.45em;font-size:.8em}
+.body h1,.body h2{display:none}.body h3{font-size:1.1rem;color:var(--ink)}
+.read{border-left:2px solid var(--red);padding-left:1rem;margin-top:1.1rem;color:var(--ink)}
+figure{margin:1.3rem 0}img{max-width:100%;height:auto;display:block}figcaption{font:400 .82rem/1.45 system-ui,sans-serif;color:var(--sub);margin-top:.5rem}
+.details{font-size:.95rem}table{border-collapse:collapse;width:100%;margin:1.2rem 0;font:400 .9rem/1.4 system-ui,sans-serif}th{text-align:left;font-weight:500;color:var(--sub);border-bottom:1px solid var(--ink);padding:.35rem .8rem .35rem 0}td{border-bottom:1px solid var(--rule);padding:.4rem .8rem .4rem 0;vertical-align:top}caption{text-align:left;color:var(--sub);padding-bottom:.4rem}
+.table-wrap{overflow-x:auto}blockquote{margin:1rem 0;padding-left:1rem;border-left:2px solid var(--rule)}
+a{color:var(--ink);text-decoration-color:var(--red);text-underline-offset:.15em}sup.n a{color:var(--red);text-decoration:none;font-size:.8em}a.c{text-decoration:none;color:var(--sub)}
+.elsewhere,.withheld{font:400 .85rem/1.4 system-ui,sans-serif;color:var(--sub);border:1px dashed var(--rule);padding:.7rem .9rem}
+ol.refs{padding:0;list-style:none}ol.refs li{padding-left:1.6em;text-indent:-1.6em;margin-bottom:.7rem;scroll-margin-top:1rem}ol.refs li:target{color:var(--red)}
+.rs-parallel{font-style:normal}
+@media print{body{font-size:11.5pt}main{max-width:none;padding:0}nav.toc{display:none}section{break-inside:avoid}a{text-decoration:none}}
+</style>
+</head>
+<body>
+<main>
+<header class="t"><h1>AI &amp; Art Research · Session One: Basic Research Workflow with LLMs · CUHK Fine Arts</h1><p class="m">Bo An · Lingnan University · 2026-11-06 · Reading edition · <a href="../">Slides</a></p></header>
+<nav class="toc" aria-label="Contents"><ol><li><a href="#s01">Session One: Basic Research Workflow with LLMs</a></li><li><a href="#s01b">Two sessions: today and next week.</a></li><li><a href="#s02">Today: six modules of one research loop.</a></li><li><a href="#s02b">Everything you see today is in the workspace, so you can replay it.</a></li><li><a href="#m1-01">Module 1: Models and harness.</a></li><li><a href="#m1-02">Most people choose a model from a ranking like this.</a></li><li><a href="#m1-03">The model we use today is 16th, at less than a tenth of the leader's price.</a></li><li><a href="#m1-03b">DeepSeek V4.1 Flash beats 16 of 40 models: they cost more and score lower.</a></li><li><a href="#m1-03d">Why DeepSeek is used so much: subscriptions and regions.</a></li><li><a href="#m1-03c">For writing and knowledge: Text Arena.</a></li><li><a href="#m1-04">The card of the model we use: DeepSeek V4.1 Flash 1017.</a></li><li><a href="#m1-08">Price is per million tokens; writing costs more than reading.</a></li><li><a href="#m1-10">Context window: what the model sees at once.</a></li><li><a href="#m1-10b">One model, many providers: 38 on OpenRouter.</a></li><li><a href="#m1-13">A paradigm shift: from chat to agent.</a></li><li><a href="#m1-24">What is a harness? The program between you, the model and your computer.</a></li><li><a href="#m1-24b">Several harnesses do the same job, with different models and rules.</a></li><li><a href="#m1-25">Underneath: we give the model a tool, it asks for it, OpenCode runs it.</a></li><li><a href="#m1-23">Programmers now direct agents; for scholars the stakes are higher.</a></li><li><a href="#m6-hall">A model is intelligence, not a knowledge base.</a></li><li><a href="#m1-17b">OpenCode comes as a desktop app and as a terminal program; we use the terminal.</a></li><li><a href="#m1-17">Open OpenCode inside the workspace.</a></li><li><a href="#m1-15">Your workspace is one folder, downloaded from GitHub.</a></li><li><a href="#m1-29">OpenCode Go: $10 a month buys $100 of DeepSeek V4.1 Flash.</a></li><li><a href="#m1-28a">Get your key, connect, choose the model.</a></li><li><a href="#m1-26">Type @ and part of a name; OpenCode finds the file.</a></li><li><a href="#m1-18">Proofreading: a note with mistakes, one sentence, the file fixed.</a></li><li><a href="#m1-train">Where the training data comes from: nearly everything that can be read.</a></li><li><a href="#p-00">Privacy: no one can guarantee your data or your research ideas are safe.</a></li><li><a href="#p-01">Where your data goes, from safest to riskiest.</a></li><li><a href="#p-02">Where it goes, what can happen, what you can do.</a></li><li><a href="#m1-30b">Two recent cases: what you send may be read, kept, or learned from.</a></li><li><a href="#m1-31">Privacy checklist: what you can do.</a></li><li><a href="#m1-31b">A local model: nothing leaves, but it is not yet practical.</a></li><li><a href="#qa-1">Your questions, Module 1: Models and harness.</a></li><li><a href="#q-1">Any questions?</a></li><li><a href="#m2-01">Module 2: Notes.</a></li><li><a href="#m2-02">Keep two kinds of document: a design doc and a log.</a></li><li><a href="#m2-03">Ask OpenCode to create the design doc.</a></li><li><a href="#m2-04">Markdown is plain text with a few marks.</a></li><li><a href="#m2-05">Seven marks cover almost everything.</a></li><li><a href="#m2-06">Plain text is future-proof.</a></li><li><a href="#m2-08">&quot;Where did Lingnan begin?&quot; Two answers disagree.</a></li><li><a href="#m2-10">Write it down: tell OpenCode what you found and what comes next.</a></li><li><a href="#qa-2">Your questions, Module 2: Notes.</a></li><li><a href="#q-2">Any questions?</a></li><li><a href="#break">Break: five minutes.</a></li><li><a href="#m3-01">Module 3: Search for sources.</a></li><li><a href="#m3-01b">Match the search to the source.</a></li><li><a href="#m3-02">Built-in web search: fine for a quick question, not for research.</a></li><li><a href="#m3-04">An API: the same OpenAlex search, for people and for programs.</a></li><li><a href="#m3-05b">Let the agent use the API, with your own free key.</a></li><li><a href="#m3-05c">Agents are fluent with APIs: if a source has one, tell the agent to use it.</a></li><li><a href="#m3-06">Ask OpenCode to query OpenAlex for you.</a></li><li><a href="#m3-07">What comes back is data, and the first hit can be irrelevant.</a></li><li><a href="#m3-05d">The same works for museums: the Met's API, searched for &quot;Canton&quot;.</a></li><li><a href="#m3-05e">On top of an API, the agent can build you a small search engine.</a></li><li><a href="#m3-09">Google Scholar has no API: you search, or use a third-party one.</a></li><li><a href="#m3-10">Give the agent a browser: a Chrome MCP, or agent-browser.</a></li><li><a href="#m3-08">The agent turns the data into a reading list you can check.</a></li><li><a href="#m3-08b">Found it; now the agent can help you download it.</a></li><li><a href="#m3-10c">Then let the agent tidy up: which folder, which names.</a></li><li><a href="#m3-11">Record where you searched, under which names, and what you found.</a></li><li><a href="#m3-11b">Stock-take: what we have now.</a></li><li><a href="#qa-3">Your questions, Module 3: Search for sources.</a></li><li><a href="#q-3">Any questions?</a></li><li><a href="#sk-01">Module 4: Skills.</a></li><li><a href="#m3-13b">Remember the search? With a skill, one sentence does it all.</a></li><li><a href="#m3-13">The skill behind it: a plain-text file, in plain language.</a></li><li><a href="#m3-12a">A prompt is said once; a skill is saved and used again.</a></li><li><a href="#m3-14a">When to write a skill: when you keep telling it the same thing.</a></li><li><a href="#m3-14b">Keep skills short, plain, and combinable.</a></li><li><a href="#sk-write">You need not write a skill yourself: the agent writes it, you test it.</a></li><li><a href="#sk-share">Use other people's skills; write and share your own.</a></li><li><a href="#qa-sk">Your questions, Module 4: Skills.</a></li><li><a href="#q-sk">Any questions?</a></li><li><a href="#m4-01">Module 5: Search within sources.</a></li><li><a href="#m4-02">One question, and what we now hold.</a></li><li><a href="#m4-04">Just ask: the agent searches your files, expanding the words.</a></li><li><a href="#m4-05">It shows you where: each hit with its source, page and snippet.</a></li><li><a href="#m4-05s">Two problems follow.</a></li><li><a href="#m4-09">A scan is only a picture; OCR turns it into text.</a></li><li><a href="#m4-ocrbatch">For ordinary OCR, the agent writes the calls and runs the batch.</a></li><li><a href="#m4-12">A vision model can transcribe too: OpenCode writes the request.</a></li><li><a href="#m4-13b">A vision model reads even a poor scan: all five characters right.</a></li><li><a href="#m4-11">OCR errors hide words: five in a single line.</a></li><li><a href="#m4-13">Both err: OCR drops a character; the model rewrites a name.</a></li><li><a href="#m4-19b">Now the memoir joins the search.</a></li><li><a href="#m4-15">A crowded newspaper page is cut into blocks first.</a></li><li><a href="#v-1">To search a picture, turn it into words: its subject, and its style.</a></li><li><a href="#v-2">Then search the words: by keyword, or by meaning.</a></li><li><a href="#m4-18">A page with pictures and text: transcribe and describe in one pass.</a></li><li><a href="#m4-07">Keyword search matches words; semantic search matches meaning.</a></li><li><a href="#m4-emb">An embedding turns a text into numbers; close meanings sit close.</a></li><li><a href="#m5-10">Abstract themes are harder to search: 'the passing of time'.</a></li><li><a href="#m5-13">Ask for a one-line note on every passage, in one language.</a></li><li><a href="#m5-14">One search finds four, and the model flags where they differ.</a></li><li><a href="#m5-02">107 pages: the agent lowers the density; you decide where to read.</a></li><li><a href="#m5-03">The agent drafts a review sheet; you decide where to start.</a></li><li><a href="#qa-4">Your questions, Module 5: Search within sources.</a></li><li><a href="#q-4">Any questions?</a></li><li><a href="#m5-01">Module 6: Read and synthesize.</a></li><li><a href="#m5-06">Read where your notes stay usable: often, that means a PDF.</a></li><li><a href="#m5-07">Mark the passage, comment beside it; the agent extracts both.</a></li><li><a href="#m5-08">Two sources on Macao, read and extracted together.</a></li><li><a href="#m5-09">The agent organises the notes; every line says where, whose and when.</a></li><li><a href="#m6-02">After many rounds, the agent summarises and marks disagreements.</a></li><li><a href="#m6-sheet">After reading, I add my judgement; the synthesis sheet states the fact.</a></li><li><a href="#m6-03">By now each claim is several steps away from the page.</a></li><li><a href="#qa-5">Your questions, Module 6: Read and synthesize.</a></li><li><a href="#m6-ch">Your challenge for next week: how do you know your conclusion is true?</a></li><li><a href="#m6-ch2">Pointers for your method: questions, not answers.</a></li><li><a href="#q-6">Any questions?</a></li><li><a href="#m6-16">Next week: advanced workflows. Verifying, data, maps and publication.</a></li><li><a href="#appx-00">Appendix: if there is time.</a></li><li><a href="#m2-10b">When it misses your meaning, ask for options and choose.</a></li><li><a href="#m3-10b">Another skill, agent-browser: it opens the page and saves the file.</a></li><li><a href="#m4-16">Each block is read on its own, turned the right way, then put in order.</a></li><li><a href="#m5-16">Whose idea is this? Keep four voices apart.</a></li></ol></nav>
+<section id="s01"><h2><a href="#s01"><span class="no">1</span>Session One: Basic Research Workflow with LLMs</a></h2>
+<div class="body"><h1>Session One: Basic Research Workflow with LLMs</h1>
+</div>
+<div class="read"><p>Session One walks through a research workflow with large language models, through a coding agent: tools and notes, finding sources, skills, searching within sources, reading and synthesis, using the early history of Lingnan.</p>
+</div></section>
+<section id="s01b"><h2><a href="#s01b"><span class="no">2</span>Two sessions: today and next week.</a></h2>
+<div class="body"><h1>Two sessions: today and next week.</h1>
+<div class="body">
+<div class="frame hot"><span class="label">Today &#xb7; Basic research workflow</span><div class="text">
+<ul>
+<li>one researcher, one coding agent</li>
+<li>from a first idea to a first conclusion</li>
+<li>the everyday workflow of a project</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">Next week &#xb7; Advanced workflows</span><div class="text">
+<ul>
+<li>your own database</li>
+<li>your own software and research tools</li>
+<li>verifying your claims</li>
+<li>more advanced methods of analysis</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Session 1 covers one researcher&apos;s everyday workflow with a coding agent; Session 2 builds on it with databases, software and advanced analysis.</p>
+</div></section>
+<section id="s02"><h2><a href="#s02"><span class="no">3</span>Today: six modules of one research loop.</a></h2>
+<div class="body"><h1>Today: six modules of one research loop.</h1>
+<div class="grid">
+<div class="frame"><span class="label">1</span><div class="text">
+<p><mark>Models and harness</mark></p>
+<p>models, agent, workspace</p>
+</div></div>
+<div class="frame"><span class="label">2</span><div class="text">
+<p><mark>Notes</mark></p>
+<p>ideas, questions, changes</p>
+</div></div>
+<div class="frame"><span class="label">3</span><div class="text">
+<p><mark>Find sources</mark></p>
+<p>web, browser, API</p>
+</div></div>
+<div class="frame"><span class="label">4</span><div class="text">
+<p><mark>Skills</mark></p>
+<p>your method, saved and reused</p>
+</div></div>
+<div class="frame"><span class="label">5</span><div class="text">
+<p><mark>Search within</mark></p>
+<p>OCR, images, meaning, review sheet</p>
+</div></div>
+<div class="frame"><span class="label">6</span><div class="text">
+<p><mark>Read and synthesize</mark></p>
+<p>PDF annotation, notes, a conclusion</p>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Six modules form one research loop: models and harness, notes, finding sources, skills, searching within sources, and reading and synthesis. A five-minute break follows Module 2; verification comes next week.</p>
+</div></section>
+<section id="s02b"><h2><a href="#s02b"><span class="no">4</span>Everything you see today is in the workspace, so you can replay it.</a></h2>
+<div class="body"><h1>Everything you see today is in the workspace, so you can replay it.</h1>
+<div class="body">
+<div class="frame hot"><span class="label">For you</span><div class="text">
+<ul>
+<li>the slides and every example file</li>
+<li>run each step yourself and compare</li>
+<li>check every result against its source</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">For your agent</span><div class="text">
+<ul>
+<li>the skills and notes are instructions it can read</li>
+<li>point it at a folder and it can follow the same method</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>All slides and example files are in the workspace: you can replay and check every step, and your agent can read the same files as instructions.</p>
+</div></section>
+<section id="m1-01"><h2><a href="#m1-01"><span class="no">5</span>Module 1: Models and harness.</a></h2>
+<div class="body"><h1>Module 1: Models and harness.</h1>
+<p class="sub">Models, the harness, and your workspace.</p>
+</div>
+<div class="read"><p>Module 1 covers the basic setup: tools, models and the workspace.</p>
+</div></section>
+<section id="m1-02"><h2><a href="#m1-02"><span class="no">6</span>Most people choose a model from a ranking like this.</a></h2>
+<div class="body"><h1>Most people choose a model from a ranking like this.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Model</th>
+<th>Maker</th>
+<th>Score</th>
+<th>Context</th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><mark>1</mark></td>
+<td><mark>Gemini 4 Carbon</mark></td>
+<td><mark>Google</mark></td>
+<td><span></span>60</td>
+<td><mark>1M</mark></td>
+<td><mark>&#x24;4.00</mark></td>
+<td><mark>&#x24;20.00</mark></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Claude Opus 5.5</td>
+<td>Anthropic</td>
+<td><span></span>59</td>
+<td>1M</td>
+<td>&#x24;4.00</td>
+<td>&#x24;20.00</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GPT-6 Astra</td>
+<td>OpenAI</td>
+<td><span></span>57</td>
+<td>1M</td>
+<td>&#x24;10.00</td>
+<td>&#x24;50.00</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GPT-6.1 Sol</td>
+<td>OpenAI</td>
+<td><span></span>55</td>
+<td>1M</td>
+<td>&#x24;2.00</td>
+<td>&#x24;10.00</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Claude Sonnet 5.5</td>
+<td>Anthropic</td>
+<td><span></span>55</td>
+<td>1M</td>
+<td>&#x24;2.00</td>
+<td>&#x24;10.00</td>
+</tr>
+<tr>
+<td>6</td>
+<td>GPT-6.1 Terra</td>
+<td>OpenAI</td>
+<td><span></span>51</td>
+<td>1M</td>
+<td>&#x24;1.00</td>
+<td>&#x24;5.00</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Gemini 4 Argon</td>
+<td>Google</td>
+<td><span></span>50</td>
+<td>1M</td>
+<td>&#x24;4.00</td>
+<td>&#x24;20.00</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Muse Wonder Full</td>
+<td>Meta</td>
+<td><span></span>50</td>
+<td>1M</td>
+<td>&#x2014;</td>
+<td>&#x2014;</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Claude Fable 5.1</td>
+<td>Anthropic</td>
+<td><span></span>50</td>
+<td>1M</td>
+<td>&#x24;10.00</td>
+<td>&#x24;50.00</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Kimi K3.1 Pro</td>
+<td>Kimi</td>
+<td><span></span>46</td>
+<td>1M</td>
+<td>&#x24;2.00</td>
+<td>&#x24;10.00</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>The top ten models on the Artificial Analysis ranking of 6 November 2026, with score, context window, and input and output prices per million tokens.</p>
+</div></section>
+<section id="m1-03"><h2><a href="#m1-03"><span class="no">7</span>The model we use today is 16th, at less than a tenth of the leader's price.</a></h2>
+<div class="body"><h1>The model we use today is 16th, at less than a tenth of the leader&apos;s price.</h1>
+<div class="body">
+<div class="frame"><span class="label">Artificial Analysis ranking</span><div class="text">
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Model</th>
+<th>Score</th>
+<th>In / out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Gemini 4 Carbon</td>
+<td><span></span>60</td>
+<td>&#x24;4 / &#x24;20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Opus 5.5</td>
+<td><span></span>59</td>
+<td>&#x24;4 / &#x24;20</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><mark>16</mark></td>
+<td><mark>DeepSeek Flash</mark></td>
+<td><span></span>33</td>
+<td><mark>&#x24;0.30 / &#x24;1.20</mark></td>
+</tr>
+<tr>
+<td>17</td>
+<td>GLM-5.3</td>
+<td><span></span>32</td>
+<td>&#x24;1.40 / &#x24;4.40</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+<div class="frame hot"><span class="label">OpenRouter &#xb7; tokens this week</span><div class="text">
+<div class="bars">
+<div class="n">DeepSeek V4.1 Flash 1017</div><div class="b red"></div><div class="v">57.6T</div>
+<div class="n">DeepSeek V4.1 Flash</div><div class="b red"></div><div class="v">16.2T</div>
+<div class="n">GLM 5.3 Flash</div><div class="b"></div><div class="v">15.9T</div>
+<div class="n">GPT-6 Luna</div><div class="b"></div><div class="v">8.95T</div>
+<div class="n">Hy4 preview</div><div class="b"></div><div class="v">8.1T</div>
+<div class="n">Claude Opus 5.5</div><div class="b"></div><div class="v">6.81T</div>
+<div class="n">Step 5 Preview</div><div class="b"></div><div class="v">6.73T</div>
+<div class="n">MiniMax M3.1 Flash</div><div class="b"></div><div class="v">6.35T</div>
+<div class="n">GPT-5.6 Luna</div><div class="b"></div><div class="v">5.25T</div>
+<div class="n">GPT-6.1 Sol</div><div class="b"></div><div class="v">4.11T</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="read"><p>DeepSeek V4.1 Flash ranks 16th with a score of 33, at &#x24;0.30 input and &#x24;1.20 output per million tokens, less than a tenth of the leader&apos;s price.</p>
+</div></section>
+<section id="m1-03b"><h2><a href="#m1-03b"><span class="no">8</span>DeepSeek V4.1 Flash beats 16 of 40 models: they cost more and score lower.</a></h2>
+<div class="body"><h1>DeepSeek V4.1 Flash beats 16 of 40 models: they cost more and score lower.</h1>
+<div class="frame fit"><div class="pic"><figure><img src="assets/abb8957b8b-pareto-2026-11-06.svg" alt="Score against price for 40 models; DeepSeek V4.1 Flash marked at score 33, &#x24;0.53, at the top of the open-weights frontier." loading="lazy"><figcaption>Chart by the workshop from Artificial Analysis leaderboard data, read 6 Nov 2026</figcaption></figure></div></div>
+</div>
+<div class="read"><p>On a chart of score against price, DeepSeek V4.1 Flash beats 16 of 40 models outright and sits at the top of the open-weights frontier: no open model is both cheaper and better. Among all models, Claude Haiku 5.5 is cheaper and slightly higher.</p>
+</div></section>
+<section id="m1-03d"><h2><a href="#m1-03d"><span class="no">9</span>Why DeepSeek is used so much: subscriptions and regions.</a></h2>
+<div class="body"><h1>Why DeepSeek is used so much: subscriptions and regions.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Subscription, US&#x24; per month</th>
+<th>Hong Kong</th>
+<th>Mainland China</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude</td>
+<td>20 &#x2013; 200</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>ChatGPT</td>
+<td>20 &#x2013; 200</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Gemini</td>
+<td>20 &#x2013; 250</td>
+<td>yes, but not frontier models like Argon</td>
+<td>no</td>
+</tr>
+<tr>
+<td>GLM</td>
+<td>from 18</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><mark>DeepSeek</mark></td>
+<td><mark>no official plan;</mark><br><mark>through OpenCode Go and others</mark></td>
+<td><mark>yes</mark></td>
+<td><mark>yes</mark></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>Much use of Claude, ChatGPT and Gemini runs through subscriptions that OpenRouter does not see, and those services are restricted in Hong Kong and mainland China; DeepSeek has no official subscription but is offered through third-party plans such as OpenCode Go, and works in both.</p>
+</div></section>
+<section id="m1-03c"><h2><a href="#m1-03c"><span class="no">10</span>For writing and knowledge: Text Arena.</a></h2>
+<div class="body"><h1>For writing and knowledge: Text Arena.</h1>
+<div class="bars">
+<div class="n">Gemini 4 Carbon</div><div class="b red"></div><div class="v">1528</div>
+<div class="n">Gemini 4 Argon</div><div class="b"></div><div class="v">1520</div>
+<div class="n">Claude Opus 5.5</div><div class="b"></div><div class="v">1509</div>
+<div class="n">Muse Wonder</div><div class="b"></div><div class="v">1507</div>
+<div class="n">Claude Fable 5.1</div><div class="b"></div><div class="v">1504</div>
+<div class="n">Claude Fable 5</div><div class="b"></div><div class="v">1504</div>
+<div class="n">Claude Opus 4.6</div><div class="b"></div><div class="v">1503</div>
+<div class="n">Claude Opus 4.7</div><div class="b"></div><div class="v">1501</div>
+<div class="n">Gemini 3.8 Flash</div><div class="b"></div><div class="v">1496</div>
+<div class="n">Muse Spark 1.3</div><div class="b"></div><div class="v">1495</div>
+</div>
+</div>
+<div class="read"><p>On LMArena Text, where people compare two anonymous answers, Google, Anthropic and Meta lead the ranking.</p>
+</div></section>
+<section id="m1-04"><h2><a href="#m1-04"><span class="no">11</span>The card of the model we use: DeepSeek V4.1 Flash 1017.</a></h2>
+<div class="body"><h1>The card of the model we use: DeepSeek V4.1 Flash 1017.</h1>
+<div class="grid">
+<div class="frame"><span class="label">Maker</span><div class="text">
+<p><strong>DeepSeek</strong></p>
+</div></div>
+<div class="frame"><span class="label">Generation</span><div class="text">
+<p><strong>V4.1</strong></p>
+</div></div>
+<div class="frame hot"><span class="label">Tier</span><div class="text">
+<p><strong>Flash</strong></p>
+<p class="cap">small, fast; a newer Flash beats an older Pro (33 vs 23)</p>
+</div></div>
+<div class="frame"><span class="label">Release</span><div class="text">
+<p><strong>1017</strong></p>
+</div></div>
+<div class="frame"><span class="label">Score</span><div class="text">
+<p><strong>33</strong></p>
+<p class="cap">a composite of tests: knowledge, reasoning, maths, coding</p>
+</div></div>
+<div class="frame"><span class="label">Context</span><div class="text">
+<p><strong>1M tokens</strong></p>
+<p class="cap">how much it sees at once</p>
+</div></div>
+<div class="frame"><span class="label">Input</span><div class="text">
+<p><strong>&#x24;0.30 / 1M</strong></p>
+<p class="cap">per million tokens; a token is a piece of text</p>
+</div></div>
+<div class="frame"><span class="label">Output</span><div class="text">
+<p><strong>&#x24;1.20 / 1M</strong></p>
+<p class="cap">writing costs 4&#xd7; reading</p>
+</div></div>
+<div class="frame"><span class="label">Cached input</span><div class="text">
+<p><strong>&#x24;0.01 / 1M</strong></p>
+</div></div>
+<div class="frame"><span class="label">Speed</span><div class="text">
+<p><strong>173 tokens/s</strong></p>
+</div></div>
+<div class="frame"><span class="label">First answer</span><div class="text">
+<p><strong>&#x2248; 52 s at max</strong></p>
+<p class="cap">at max thinking; non-reasoning answers in ~1 s</p>
+</div></div>
+<div class="frame"><span class="label">Weights</span><div class="text">
+<p><strong>open &#xb7; MIT</strong></p>
+<p class="cap">anyone may run it</p>
+</div></div>
+</div>
+</div>
+<div class="read"><p>The full card of DeepSeek V4.1 Flash 1017: maker, generation, tier, release, score, context, input, output and cached prices, speed, time to first answer, and open weights.</p>
+</div></section>
+<section id="m1-08"><h2><a href="#m1-08"><span class="no">12</span>Price is per million tokens; writing costs more than reading.</a></h2>
+<div class="body"><h1>Price is per million tokens; writing costs more than reading.</h1>
+<div class="sub mcard"><span class="f"><b>Model</b>DeepSeek V4.1 Flash</span><span class="f"><b>Tier</b>Flash</span><span class="f"><b>Score</b>33</span><span class="f on"><b>Input &#xb7; per million tokens</b>&#x24;0.30</span><span class="f on"><b>Output &#xb7; per million tokens</b>&#x24;1.20</span><span class="f"><b>Thinking</b>max</span><span class="f"><b>Context</b>1 million tokens</span><span class="f"><b>Weights</b>open</span></div>
+<div class="body">
+<div class="frame"><span class="label">The task</span><div class="text">
+<ul>
+<li>read a 300-page book: about 160,000 tokens</li>
+<li>write a 5-page summary: about 4,000 tokens</li>
+</ul>
+</div></div>
+<div class="frame wide"><div class="text">
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>DeepSeek V4.1 Flash</th>
+<th>Gemini 4 Carbon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reading, per million tokens</td>
+<td>&#x24;0.30</td>
+<td>&#x24;4</td>
+</tr>
+<tr>
+<td>Writing, per million tokens</td>
+<td>&#x24;1.20</td>
+<td>&#x24;20</td>
+</tr>
+<tr>
+<td>Read the book</td>
+<td>&#x24;0.048</td>
+<td>&#x24;0.64</td>
+</tr>
+<tr>
+<td>Write the summary</td>
+<td>&#x24;0.005</td>
+<td>&#x24;0.08</td>
+</tr>
+<tr>
+<td><mark>The task</mark></td>
+<td><mark>about &#x24;0.05</mark></td>
+<td><mark>about &#x24;0.72</mark></td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Reading a 300-page book and writing a 5-page summary costs about &#x24;0.05 with DeepSeek V4.1 Flash and about &#x24;0.72 with the leading model, Gemini 4 Carbon; thinking tokens are charged as writing.</p>
+</div></section>
+<section id="m1-10"><h2><a href="#m1-10"><span class="no">13</span>Context window: what the model sees at once.</a></h2>
+<div class="body"><h1>Context window: what the model sees at once.</h1>
+<div class="sub mcard"><span class="f"><b>Model</b>DeepSeek V4.1 Flash</span><span class="f"><b>Tier</b>Flash</span><span class="f"><b>Score</b>33</span><span class="f"><b>Input &#xb7; per million tokens</b>&#x24;0.30</span><span class="f"><b>Output &#xb7; per million tokens</b>&#x24;1.20</span><span class="f"><b>Thinking</b>max</span><span class="f on"><b>Context</b>1 million tokens</span><span class="f"><b>Weights</b>open</span></div>
+<div class="body">
+<div class="frame"><span class="label">What counts</span><div class="text">
+<ul>
+<li>your instructions</li>
+<li>the files</li>
+<li>earlier turns and tool results</li>
+</ul>
+</div></div>
+<div class="frame wide"><span class="label">Found, by length of input</span>
+<div class="bars">
+<div class="n">4&#x2013;8K</div><div class="b"></div><div class="v">97.3%</div>
+<div class="n">8&#x2013;16K</div><div class="b"></div><div class="v">91.4%</div>
+<div class="n">16&#x2013;32K</div><div class="b"></div><div class="v">97.2%</div>
+<div class="n">32&#x2013;64K</div><div class="b"></div><div class="v">90.5%</div>
+<div class="n">64&#x2013;128K</div><div class="b"></div><div class="v">86.0%</div>
+<div class="n">128&#x2013;256K</div><div class="b"></div><div class="v">79.3%</div>
+<div class="n">256&#x2013;512K</div><div class="b red"></div><div class="v">57.5%</div>
+<div class="n">512K&#x2013;1M</div><div class="b red"></div><div class="v">36.6%</div>
+</div>
+</div>
+</div>
+</div>
+<div class="read"><p>The context window is everything the model sees at once, one million tokens here. In OpenAI&apos;s long-context test, GPT-5.4 finds 90% or more of what it is asked for in short material but only 37% near one million tokens; give selected, numbered excerpts instead.</p>
+</div></section>
+<section id="m1-10b"><h2><a href="#m1-10b"><span class="no">14</span>One model, many providers: 38 on OpenRouter.</a></h2>
+<div class="body"><h1>One model, many providers: 38 on OpenRouter.</h1>
+<div class="sub mcard"><span class="f"><b>Model</b>DeepSeek V4.1 Flash</span><span class="f"><b>Tier</b>Flash</span><span class="f"><b>Score</b>33</span><span class="f"><b>Input &#xb7; per million tokens</b>&#x24;0.30</span><span class="f"><b>Output &#xb7; per million tokens</b>&#x24;1.20</span><span class="f"><b>Thinking</b>max</span><span class="f"><b>Context</b>1 million tokens</span><span class="f on"><b>Weights</b>open</span></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Input, per million tokens</th>
+<th>Output, per million tokens</th>
+<th>Precision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><mark>Relace</mark></td>
+<td><mark>&#x24;0.006</mark></td>
+<td><mark>&#x24;0.50</mark></td>
+<td><mark>fp4</mark></td>
+</tr>
+<tr>
+<td>DeepInfra</td>
+<td>&#x24;0.112</td>
+<td>&#x24;0.336</td>
+<td>fp8</td>
+</tr>
+<tr>
+<td>Baidu</td>
+<td>&#x24;0.13</td>
+<td>&#x24;0.52</td>
+<td>fp8</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>&#x24;0.30</td>
+<td>&#x24;1.20</td>
+<td>&#x2014;</td>
+</tr>
+<tr>
+<td>Together</td>
+<td>&#x24;0.30</td>
+<td>&#x24;1.20</td>
+<td>&#x2014;</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>Because DeepSeek published the weights, 38 providers run the same model on OpenRouter, at different prices and precisions, and with different data policies.</p>
+</div></section>
+<section id="m1-13"><h2><a href="#m1-13"><span class="no">15</span>A paradigm shift: from chat to agent.</a></h2>
+<div class="body"><h1>A paradigm shift: from chat to agent.</h1>
+<div class="body">
+<div class="frame fit"><span class="label">Chat</span><div class="pic"><figure><p class="withheld">A Gemini chat: a pasted paragraph with spelling mistakes, and the corrected version returned as text. (Image shown in class only.)</p><figcaption>Screenshot of Google Gemini, DHG508 (2026)</figcaption></figure></div></div>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">@my-work/research/lingnan-note.md</span>
+<span class="you">Please proofread this note.</span>
+&#xa0;
+<span class="tool">&#x2190; Edit</span> my-work/research/lingnan-note.md
+<span class="del">- Lingnan begun as Canton Christian Collage in 1888.</span>
+<span class="add">+ Lingnan began as Canton Christian College in 1888.</span>
+<span class="del">- In June 1900 the school were moved to Macao,</span>
+<span class="add">+ In June 1900 the school was moved to Macao,</span>
+<span class="ok">Four fixes, no wording changed.</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+</div>
+<div class="read"><p>A chat returns corrected text that you copy back by hand; an agent opens the file, edits it and saves it.</p>
+</div></section>
+<section id="m1-24"><h2><a href="#m1-24"><span class="no">16</span>What is a harness? The program between you, the model and your computer.</a></h2>
+<div class="body"><h1>What is a harness? The program between you, the model and your computer.</h1>
+<div class="frame fit"><div class="pic"><figure><img src="assets/744460d0e5-harness-diagram.svg" alt="OpenCode between your files and programs on one side and the models it can call on the other." loading="lazy"><figcaption>Diagram by the workshop</figcaption></figure></div></div>
+</div>
+<div class="read"><p>The model only reads and writes text. OpenCode, the harness, gives it tools on your computer: reading, editing and writing files, running commands, searching the web, and asking your permission.</p>
+</div></section>
+<section id="m1-24b"><h2><a href="#m1-24b"><span class="no">17</span>Several harnesses do the same job, with different models and rules.</a></h2>
+<div class="body"><h1>Several harnesses do the same job, with different models and rules.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Harness</th>
+<th>Maker</th>
+<th>Models</th>
+<th>Open</th>
+<th>You pay</th>
+<th>Our view</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><mark>Pi</mark></td>
+<td><mark>M. Zechner</mark></td>
+<td><mark>almost any</mark></td>
+<td><mark>yes</mark></td>
+<td><mark>the provider</mark></td>
+<td><mark>most flexible; harder</mark></td>
+</tr>
+<tr>
+<td><mark>OpenCode</mark></td>
+<td><mark>Anomaly</mark></td>
+<td><mark>almost any</mark></td>
+<td><mark>yes</mark></td>
+<td><mark>provider, or Go</mark></td>
+<td><mark>used today</mark></td>
+</tr>
+<tr>
+<td>DeepSeek Harness</td>
+<td>DeepSeek</td>
+<td>mostly DeepSeek</td>
+<td>yes</td>
+<td>the DeepSeek API</td>
+<td>promising; growing fast</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>Anthropic</td>
+<td>Claude</td>
+<td>no</td>
+<td>plan or API</td>
+<td></td>
+</tr>
+<tr>
+<td>Codex CLI</td>
+<td>OpenAI</td>
+<td>GPT</td>
+<td>yes</td>
+<td>plan or API</td>
+<td></td>
+</tr>
+<tr>
+<td>Antigravity CLI</td>
+<td>Google</td>
+<td>Gemini</td>
+<td>no</td>
+<td>plan</td>
+<td></td>
+</tr>
+<tr>
+<td>WorkBuddy</td>
+<td>Tencent</td>
+<td>Hy, DeepSeek &#x2026;</td>
+<td>no</td>
+<td>free; Pro &#x24;10</td>
+<td>not recommended</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>Pi, OpenCode, Claude Code, Codex CLI and Antigravity CLI all let a model work on your files; they differ in models, price and their own instructions to the model. Pi is the most flexible; DeepSeek Harness is new and growing fast; today we use OpenCode.</p>
+</div></section>
+<section id="m1-25"><h2><a href="#m1-25"><span class="no">18</span>Underneath: we give the model a tool, it asks for it, OpenCode runs it.</a></h2>
+<div class="body"><h1>Underneath: we give the model a tool, it asks for it, OpenCode runs it.</h1>
+<p class="sub">Question: &#x5149;&#x7dd2;&#x4e8c;&#x5341;&#x516d;&#x5e74;&#x662f;&#x516c;&#x5143;&#x54ea;&#x4e00;&#x5e74;&#xff1f;</p>
+<div class="body">
+<div class="frame"><span class="label">1 &#xb7; The tool we give it</span><div class="text">
+<p><code>dynasty_years</code></p>
+<p>turns a reign year into Western dates</p>
+</div></div>
+<div class="frame"><span class="label">2 &#xb7; The model asks for it</span><div class="text">
+<p><code>dynasty_years</code></p>
+<p>era &#x5149;&#x7dd2;, year 26</p>
+</div></div>
+<div class="frame hot"><span class="label">3 &#xb7; OpenCode runs it</span><div class="text">
+<p>31 Jan 1900 &#x2013; 18 Feb 1901</p>
+<p>the model answers: mostly 1900</p>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Tool calling: we give the model a tool (here dynasty_years, which turns a reign year into Western dates); the model asks for it with the reign and year; OpenCode runs it and returns a small JSON result; the model answers from that result.</p>
+</div></section>
+<section id="m1-23"><h2><a href="#m1-23"><span class="no">19</span>Programmers now direct agents; for scholars the stakes are higher.</a></h2>
+<div class="body"><h1>Programmers now direct agents; for scholars the stakes are higher.</h1>
+<div class="body">
+<div class="frame"><span class="label">Programmers</span><div class="text">
+<ul>
+<li>describe the task; the agent writes the code</li>
+<li>many no longer read every line</li>
+<li>tests catch mistakes; they can iterate</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Scholars</span><div class="text">
+<ul>
+<li>the agent may silently rewrite a sentence</li>
+<li>one misquoted line is misconduct</li>
+<li>so we borrow their tests and verification</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>For scholars the risk is higher than for programmers: an agent can silently change a quotation while editing, and one misquoted line is misconduct. We borrow programmers&apos; habits of testing and verification.</p>
+</div></section>
+<section id="m6-hall"><h2><a href="#m6-hall"><span class="no">20</span>A model is intelligence, not a knowledge base.</a></h2>
+<div class="body"><h1>A model is intelligence, not a knowledge base.</h1>
+<div class="body">
+<div class="frame fit"><div class="pic"><figure><p class="withheld">Without search, even the best AI models get 1 in 4 answers wrong: Claude Opus 5.5 and GPT-6 Astra 23%, down to MiMo-V2.6-Pro 43%. (Image shown in class only.)</p><figcaption>Chart by Randal S. Olson; data: Artificial Analysis Intelligence Index v4.3, 29 Sep 2026</figcaption></figure></div></div>
+<div class="frame hot"><span class="label">For us, as academics</span><div class="text">
+<ul>
+<li>AI that can tackle Fields-Medal-level maths still gets basic facts wrong</li>
+<li>it remembers only roughly: intelligence, not a knowledge base</li>
+<li>so give it knowledge: your sources, databases it can query</li>
+<li>and guardrails: another agent checks its work</li>
+<li>that is how we deal with our biggest fear: making things up</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>A model is intelligence, not a knowledge base: without search, even the best models get about one in four specific facts wrong. Pair it with your own data and set guardrails around it, and only then is it a tool for scholarship.</p>
+</div></section>
+<section id="m1-17b"><h2><a href="#m1-17b"><span class="no">21</span>OpenCode comes as a desktop app and as a terminal program; we use the terminal.</a></h2>
+<div class="body"><h1>OpenCode comes as a desktop app and as a terminal program; we use the terminal.</h1>
+<div class="body">
+<div class="frame"><span class="label">Desktop app</span><div class="text">
+<ul>
+<li>a window like any other app</li>
+<li>easiest to install on Windows</li>
+<li>fine to use; catching up</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Terminal &#xb7; recommended</span><div class="text">
+<ul>
+<li>the full and fastest version</li>
+<li>opens inside any folder</li>
+<li>on Windows, install WSL first: well worth it</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>OpenCode comes as a desktop app and as a terminal program. The terminal version is the fullest and fastest; on Windows it needs WSL first, which is worth the effort. The desktop app is fine too.</p>
+</div></section>
+<section id="m1-17"><h2><a href="#m1-17"><span class="no">22</span>Open OpenCode inside the workspace.</a></h2>
+<div class="body"><h1>Open OpenCode inside the workspace.</h1>
+<div class="body">
+<div class="term">
+<div class="term-bar"><span>Terminal</span></div>
+<pre>
+&#x24; cd art-ai-workshop-2026
+&#x24; opencode
+</pre>
+</div>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+&#xa0;
+<span class="dim">     &#x2588;&#x2580;&#x2580;&#x2588; &#x2588;&#x2580;&#x2580;&#x2588; &#x2588;&#x2580;&#x2580;&#x2588; &#x2588;&#x2580;&#x2580;&#x2584; &#x2588;&#x2580;&#x2580;&#x2580; &#x2588;&#x2580;&#x2580;&#x2588; &#x2588;&#x2580;&#x2580;&#x2584; &#x2588;&#x2580;&#x2580;&#x2588;</span>
+<span class="dim">     &#x2588;  &#x2588; &#x2588;  &#x2588; &#x2588;&#x2580;&#x2580;&#x2580; &#x2588;  &#x2588; &#x2588;    &#x2588;  &#x2588; &#x2588;  &#x2588; &#x2588;&#x2580;&#x2580;&#x2580;</span>
+<span class="dim">     &#x2580;&#x2580;&#x2580;&#x2580; &#x2588;&#x2580;&#x2580;&#x2580; &#x2580;&#x2580;&#x2580;&#x2580; &#x2580;&#x2580;&#x2580;&#x2580; &#x2580;&#x2580;&#x2580;&#x2580; &#x2580;&#x2580;&#x2580;&#x2580; &#x2580;&#x2580;&#x2580;  &#x2580;&#x2580;&#x2580;&#x2580;</span>
+&#xa0;
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<p class="sub">Desktop app: open the workspace folder from the app.</p>
+</div>
+<div class="read"><p>Opened inside the workspace, OpenCode shows one input box and, under it, the agent, the model, the plan and the thinking tier.</p>
+</div></section>
+<section id="m1-15"><h2><a href="#m1-15"><span class="no">23</span>Your workspace is one folder, downloaded from GitHub.</a></h2>
+<div class="body"><h1>Your workspace is one folder, downloaded from GitHub.</h1>
+<div class="body">
+<div class="tree"><span class="label">art-ai-workshop-2026/</span><pre>
+&#x251c;&#x2500; .opencode/skills/   <span class="dim">skills</span>
+&#x251c;&#x2500; AGENTS.md           <span class="dim">rules for the agent</span>
+&#x251c;&#x2500; README.md
+&#x251c;&#x2500; my-work/            <span class="dim">your project:</span>
+&#x2502;  &#x251c;&#x2500; sources/raw/        <span class="dim">originals, never edited</span>
+&#x2502;  &#x251c;&#x2500; sources/processed/  <span class="dim">crops, OCR, tables</span>
+&#x2502;  &#x251c;&#x2500; research/           <span class="dim">design doc, log, notes</span>
+&#x2502;  &#x2514;&#x2500; artifacts/          <span class="dim">large outputs, not in Git</span>
+&#x251c;&#x2500; session-01/
+&#x251c;&#x2500; session-02/
+&#x2514;&#x2500; &#x2026;
+</pre></div>
+<div class="frame hot"><span class="label">From GitHub</span><div class="text">
+<ul>
+<li><code><a href="http://github.com/boan-anbo/art-ai-workshop-2026">github.com/boan-anbo/art-ai-workshop-2026</a></code></li>
+<li>Download once; today we work inside it</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Your workspace is one folder. Download <code>github.com/boan-anbo/art-ai-workshop-2026</code> once; everything we do today happens inside it.</p>
+</div></section>
+<section id="m1-29"><h2><a href="#m1-29"><span class="no">24</span>OpenCode Go: $10 a month buys $100 of DeepSeek V4.1 Flash.</a></h2>
+<div class="body"><h1>OpenCode Go: &#x24;10 a month buys &#x24;100 of DeepSeek V4.1 Flash.</h1>
+<p class="sub">Every five hours you may use 20% of the monthly limit; off-peak hours cost half.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Monthly limit, Go (&#x24;10)</th>
+<th>Requests per 5 hours</th>
+<th>Requests per month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><mark>DeepSeek V4.1 Flash</mark></td>
+<td><mark>&#x24;100</mark></td>
+<td><mark>43,330</mark></td>
+<td><mark>216,670</mark></td>
+</tr>
+<tr>
+<td>GLM-5.3-Flash</td>
+<td>&#x24;60</td>
+<td>6,320</td>
+<td>31,580</td>
+</tr>
+<tr>
+<td>DeepSeek V4 Pro</td>
+<td>&#x24;15</td>
+<td>1,050</td>
+<td>5,200</td>
+</tr>
+<tr>
+<td>Kimi K3</td>
+<td>&#x24;15</td>
+<td>110</td>
+<td>490</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>OpenCode Go costs &#x24;10 a month (Go Plus &#x24;40), with request allowances per five hours that vary by model: 43,330 for DeepSeek V4.1 Flash, 110 for Kimi K3.</p>
+</div></section>
+<section id="m1-28a"><h2><a href="#m1-28a"><span class="no">25</span>Get your key, connect, choose the model.</a></h2>
+<div class="body"><h1>Get your key, connect, choose the model.</h1>
+<div class="grid">
+<div class="frame fit"><span class="label">1 &#xb7; opencode.ai &#x2192; Console, sign in</span><div class="pic"><figure><p class="withheld">opencode.ai home page with the Console link marked. (Image shown in class only.)</p><figcaption>opencode.ai, captured 6 Nov 2026</figcaption></figure></div></div>
+<div class="frame fit"><span class="label">2 &#xb7; Account &#x2192; Add API key</span><div class="pic"><figure><p class="withheld">Personal API keys with the Add API key button marked; key values removed. (Image shown in class only.)</p><figcaption>opencode.ai, captured 6 Nov 2026; key values removed</figcaption></figure></div></div>
+<div class="term">
+<div class="term-bar"><span>3 &#xb7; /connect</span></div>
+<pre>
+<span class="ok">Connect a provider</span>
+<span class="hl">OpenCode Go</span>
+&#xa0;
+<span class="dim">API key</span>
+<span class="blk">oc_sk_&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</span>
+</pre>
+</div>
+<div class="term">
+<div class="term-bar"><span>4 &#xb7; /models</span></div>
+<pre>
+<span class="ok">Select model</span>
+<span class="hl">&#x25cf; DeepSeek V4.1 Flash</span>   <span class="dim">OpenCode Go</span>
+  GLM-5.3               <span class="dim">OpenCode Go</span>
+  Kimi K3               <span class="dim">OpenCode Go</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="read"><p>Open <a href="http://opencode.ai">opencode.ai</a>, go to the Console and sign in; under Account, add an API key and copy it; in OpenCode type /connect, choose OpenCode Go and paste the key; then type /models and choose DeepSeek V4.1 Flash. Keep the key private.</p>
+</div></section>
+<section id="m1-26"><h2><a href="#m1-26"><span class="no">26</span>Type @ and part of a name; OpenCode finds the file.</a></h2>
+<div class="body"><h1>Type @ and part of a name; OpenCode finds the file.</h1>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="blk"><span class="hl">my-work/research/lingnan-note.md</span></span>
+<span class="blk">my-work/self-introduction.example.md</span>
+<span class="blk">site/src/components/QuestionAnswers.astro</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>Type @ and part of a file name; OpenCode lists matching files in the workspace, so the agent reads exactly the one you choose.</p>
+</div></section>
+<section id="m1-18"><h2><a href="#m1-18"><span class="no">27</span>Proofreading: a note with mistakes, one sentence, the file fixed.</a></h2>
+<div class="body"><h1>Proofreading: a note with mistakes, one sentence, the file fixed.</h1>
+<div class="grid">
+<div class="file"><div class="file-bar">1 &#xb7; lingnan-note.md</div><pre>
+Lingnan <span class="hl">begun</span> as Canton
+Christian <span class="hl">Collage</span> in 1888.
+In June 1900 the school
+<span class="hl">were</span> moved to Macao,
+and it <span class="hl">move</span> back to
+Canton in 1904.
+</pre></div>
+<div class="term">
+<div class="term-bar"><span>2 &#xb7; OpenCode</span></div>
+<pre>
+<span class="you">@my-work/research/</span>
+<span class="you">lingnan-note.md</span>
+<span class="you">Please proofread this note.</span>
+<span class="you">Fix spelling and grammar only.</span>
+&#xa0;
+<span class="dim">+ Thought &#xb7; 0.3s</span>
+<span class="tool">&#x2192; Explored:</span> 1 read
+</pre>
+</div>
+<div class="term">
+<div class="term-bar"><span>3 &#xb7; &#x2190; Edit</span></div>
+<pre>
+<span class="del">- begun</span>    <span class="add">+ began</span>
+<span class="del">- Collage</span>  <span class="add">+ College</span>
+<span class="del">- were</span>     <span class="add">+ was</span>
+<span class="del">- move</span>     <span class="add">+ moved</span>
+&#xa0;
+<span class="ok">Four fixes, no wording</span>
+<span class="ok">changed.</span>
+<span class="dim">&#x25a3; DeepSeek V4.1 Flash &#xb7; 9.8s</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="read"><p>A note with four mistakes; one sentence asks OpenCode to fix spelling and grammar only; it edits the file in place, shows the four changes, and changes no wording.</p>
+</div></section>
+<section id="m1-train"><h2><a href="#m1-train"><span class="no">28</span>Where the training data comes from: nearly everything that can be read.</a></h2>
+<div class="body"><h1>Where the training data comes from: nearly everything that can be read.</h1>
+<div class="rows">
+<div class="row"><span class="label">Web</span><p class="plain">1 trillion pages, crawled at about 10 billion a day</p></div>
+<div class="row hot"><span class="label">Documents</span><p class="plain">2 billion scientific PDFs, read by OCR</p></div>
+<div class="row"><span class="label">Books</span><p class="plain">50 million books, layout reordered, garbled text filtered</p></div>
+<div class="row"><span class="label">Code</span><p class="plain">500 million repositories, turned into tasks with real tests</p></div>
+<div class="row"><span class="label">Video</span><p class="plain">10 billion videos</p></div>
+<div class="row"><span class="label">Audio</span><p class="plain">300 million hours, transcribed into trillions of tokens</p></div>
+</div>
+</div>
+<div class="read"><p>A frontier model is trained on nearly everything that can be read: about a trillion web pages, two billion scientific PDFs, fifty million books, half a billion code repositories, ten billion videos and three hundred million hours of audio.</p>
+</div></section>
+<section id="p-00"><h2><a href="#p-00"><span class="no">29</span>Privacy: no one can guarantee your data or your research ideas are safe.</a></h2>
+<div class="body"><h1>Privacy: no one can guarantee your data or your research ideas are safe.</h1>
+<ul>
+<li>but knowing where your data goes lowers the risk</li>
+<li>every step it passes through can be made safer</li>
+</ul>
+</div>
+<div class="read"><p>No one can guarantee that your data or your research ideas are safe. But knowing where your data goes, and making each step safer, lowers the risk.</p>
+</div></section>
+<section id="p-01"><h2><a href="#p-01"><span class="no">30</span>Where your data goes, from safest to riskiest.</a></h2>
+<div class="body"><h1>Where your data goes, from safest to riskiest.</h1>
+<div class="frame fit"><div class="pic"><figure><img src="assets/d99a1db031-privacy-routes.svg" alt="Five routes from your computer, ranked from safest to riskiest by how many others see your data." loading="lazy"><figcaption>Diagram by the workshop</figcaption></figure></div></div>
+</div>
+<div class="read"><p>Your data goes by one of five routes to a provider, the company that runs the model. A local model is safest: nothing leaves. The official API, OpenCode Go and OpenRouter rate the same: your content may be read and is likely to be used for training. A reseller is the least safe: your data passes through its own database and may be leaked or sold, though not necessarily trained on.</p>
+</div></section>
+<section id="p-02"><h2><a href="#p-02"><span class="no">31</span>Where it goes, what can happen, what you can do.</a></h2>
+<div class="body"><h1>Where it goes, what can happen, what you can do.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Where</th>
+<th>What it can see or keep</th>
+<th>What you can do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Your harness</td>
+<td>your files; logs on your disk</td>
+<td>no keys or passwords in files; read others&apos; skills first</td>
+</tr>
+<tr>
+<td>Official API, OpenCode Go, OpenRouter</td>
+<td>the route and the provider; kept 0&#x2013;30 days; may train</td>
+<td>opt out of training; check each provider&apos;s retention and region</td>
+</tr>
+<tr>
+<td>Reseller (&#x4e2d;&#x8f6c;&#x7ad9;)</td>
+<td>everything passes through its own database; many are known to sell it</td>
+<td>avoid it</td>
+</tr>
+<tr>
+<td>Local model</td>
+<td>nothing leaves</td>
+<td>costs money and power (see next)</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>Each step carries its own risk: the harness keeps logs on your disk; a reseller sees everything and may keep or resell it; a router passes your requests on; providers keep data for up to 30 days and may train on it. Opt out of training, check retention and regions, avoid resellers, and use a local model for the most sensitive material.</p>
+</div></section>
+<section id="m1-30b"><h2><a href="#m1-30b"><span class="no">32</span>Two recent cases: what you send may be read, kept, or learned from.</a></h2>
+<div class="body"><h1>Two recent cases: what you send may be read, kept, or learned from.</h1>
+<div class="body">
+<div class="frame"><span class="label">OpenAI &#xb7; Sept&#x2013;Oct 2026</span><div class="text">
+<ul>
+<li>mathematicians say its new proofs drew on their unpublished work and their ChatGPT and Codex sessions</li>
+<li>OpenAI denies it, but cannot rule out that de-identified user data improved its models</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Anthropic &#xb7; Sept 2026</span><div class="text">
+<ul>
+<li>its public threat report described what users had sent to Claude</li>
+<li>including sensitive details about another company&apos;s customers</li>
+</ul>
+</div></div>
+</div>
+<p class="sub">Allegations and reports, not settled findings; the lesson holds either way.</p>
+</div>
+<div class="read"><p>Two recent cases: mathematicians allege that OpenAI&apos;s announced proofs drew on their unpublished work and chat sessions, which OpenAI denies; Anthropic&apos;s public threat report described the content users had sent to Claude. What you send may be read, kept or learned from.</p>
+</div></section>
+<section id="m1-31"><h2><a href="#m1-31"><span class="no">33</span>Privacy checklist: what you can do.</a></h2>
+<div class="body"><h1>Privacy checklist: what you can do.</h1>
+<div class="grid">
+<div class="frame hot"><span class="label">Route</span><div class="text">
+<ul>
+<li>never a reseller (&#x4e2d;&#x8f6c;&#x7ad9;)</li>
+<li>the official API where you can</li>
+<li>strictly confidential: a local model, or the university&apos;s own service</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">Settings</span><div class="text">
+<ul>
+<li>&#x201c;help improve our models&#x201d;: off</li>
+<li>&#x201c;share your data?&#x201d;: no</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">Habits</span><div class="text">
+<ul>
+<li>nothing private in a conversation: names, keys, passwords</li>
+<li>clean up local logs, or keep them somewhere safe</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Never use a reseller, and prefer the official API. Turn off &quot;help improve our models&quot; and decline to share your data. Keep names, keys and passwords out of conversations, and clean up or safely store local logs. For strictly confidential material, use a local model or the university&apos;s own service.</p>
+</div></section>
+<section id="m1-31b"><h2><a href="#m1-31b"><span class="no">34</span>A local model: nothing leaves, but it is not yet practical.</a></h2>
+<div class="body"><h1>A local model: nothing leaves, but it is not yet practical.</h1>
+<ul>
+<li>capable open-weight models need hardware of HK&#x24;100,000 or more</li>
+<li>then each run costs almost nothing; through an API it is cheap to start</li>
+<li>open-weight models now reach about last year&apos;s frontier, but the largest are hard to host</li>
+</ul>
+<p class="sub">My estimate: two to three years before the intelligence we need runs on our own machines.</p>
+</div>
+<div class="read"><p>A local model is the only full protection, since nothing leaves your machine, but it is not yet practical: capable open-weight models need hardware of HK&#x24;100,000 or more, and the largest are hard to host. Bo&apos;s estimate: two to three years before the intelligence we need runs locally.</p>
+</div></section>
+<section id="qa-1"><h2><a href="#qa-1"><span class="no">35</span>Your questions, Module 1: Models and harness.</a></h2>
+<div class="body"><h1>Your questions, Module 1: Models and harness.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Your question</th>
+<th>Short answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>05.2</td>
+<td>&#x5982;&#x4f55;&#x70ba;&#x5716;&#x50cf;&#x7814;&#x7a76;&#x9078;&#x64c7;&#x6a21;&#x578b;&#xff1f;</td>
+<td>Start from a ranking, the price and the context window; then test on ten of your own images. Module 5 compares OCR and vision models on one line.</td>
+</tr>
+<tr>
+<td>&#x2014;</td>
+<td>&#x6211;&#x7684;&#x6750;&#x6599;&#x6703;&#x4e0d;&#x6703;&#x5916;&#x6d29;&#xff1f;</td>
+<td>No route can guarantee it. Only a local model keeps it on your computer; official APIs and routers may read and train on it; resellers leak it. Use the checklist.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>The participants&apos; questions for Module 1, each with a short answer drawn from the slides before.</p>
+</div></section>
+<section id="q-1"><h2><a href="#q-1"><span class="no">36</span>Any questions?</a></h2>
+<div class="body"><h1>Any questions?</h1>
+<p class="sub">Module 1: Models and harness.</p>
+</div>
+<div class="read"><p>End of Module 1. Questions are welcome now or after the session.</p>
+</div></section>
+<section id="m2-01"><h2><a href="#m2-01"><span class="no">37</span>Module 2: Notes.</a></h2>
+<div class="body"><h1>Module 2: Notes.</h1>
+<p class="sub">Ideas, questions, and how they change.</p>
+</div>
+<div class="read"><p>Module 2 shows how to keep notes that grow with the project: a design doc, a log, and plain-text Markdown.</p>
+</div></section>
+<section id="m2-02"><h2><a href="#m2-02"><span class="no">38</span>Keep two kinds of document: a design doc and a log.</a></h2>
+<div class="body"><h1>Keep two kinds of document: a design doc and a log.</h1>
+<div class="body">
+<div class="frame">
+<span class="label">Design doc</span>
+<div class="text">
+<ul>
+<li>where the project stands now</li>
+<li>rewritten as you go</li>
+</ul>
+</div>
+</div>
+<div class="frame hot">
+<span class="label">Log</span>
+<div class="text">
+<ul>
+<li>what happened, by date</li>
+<li>only ever added to</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="read"><p>Keep two kinds of document: a design doc that describes where the project stands now and is rewritten as it changes, and a log that records what happened by date and is only added to.</p>
+</div></section>
+<section id="m2-03"><h2><a href="#m2-03"><span class="no">39</span>Ask OpenCode to create the design doc.</a></h2>
+<div class="body"><h1>Ask OpenCode to create the design doc.</h1>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Create my-work/research/design-doc.md for my Lingnan project.</span>
+<span class="you">Question: Lingnan&apos;s beginnings, 1888&#x2013;1904: where did it begin,</span>
+<span class="you">and what did it teach? Add sources so far and next steps. Keep it short.</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span> my-work/research/design-doc.md
+&#xa0;
+Created my-work/research/design-doc.md.
+<span class="hl">I deliberately did not add historical facts beyond your note.</span>
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash &#xb7; 28.4s</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>OpenCode can create the project&apos;s design doc from one instruction: the question, the sources so far, and the next steps. The result is a file in the workspace, not a message in a chat.</p>
+</div></section>
+<section id="m2-04"><h2><a href="#m2-04"><span class="no">40</span>Markdown is plain text with a few marks.</a></h2>
+<div class="body"><h1>Markdown is plain text with a few marks.</h1>
+<div class="file"><div class="file-bar">my-work/research/design-doc.md</div><pre>
+# Design Doc &#x2014; Lingnan Project
+&#xa0;
+## Question
+Lingnan&apos;s beginnings, 1888&#x2013;1904:
+where did it begin, and what did it teach?
+&#xa0;
+## Sources so far
+- lingnan-note.md: three dates, <span class="hl">no citation yet &#x2014; unverified</span>
+&#xa0;
+## Next steps
+1. Verify the dates against one primary source.
+2. Start a log of every search.
+</pre></div>
+</div>
+<div class="read"><p>A design doc is a Markdown file: a heading, a question, the sources so far, and the next step. It stays readable as plain text in any editor.</p>
+</div></section>
+<section id="m2-05"><h2><a href="#m2-05"><span class="no">41</span>Seven marks cover almost everything.</a></h2>
+<div class="body"><h1>Seven marks cover almost everything.</h1>
+<div class="grid">
+<div class="file"><div class="file-bar">You type</div><pre>
+# Lingnan&apos;s beginnings
+## Sources
+- memoir, 1954
+1. read the 1908 booklet
+the college opened in **1899**
+see [Digital Commons](https://commons.ln.edu.hk)
+&gt; the school was moved to Macao
+open `log.md`
+</pre></div>
+<div class="frame"><span class="label">You get</span><div class="text">
+<h3>Lingnan&apos;s beginnings</h3>
+<h4>Sources</h4>
+<ul>
+<li>memoir, 1954</li>
+</ul>
+<ol>
+<li>read the 1908 booklet</li>
+</ol>
+<p>the college opened in <strong>1899</strong></p>
+<p>see <a href="https://commons.ln.edu.hk">Digital Commons</a></p>
+<blockquote>
+<p>the school was moved to Macao</p>
+</blockquote>
+<p>open <code>log.md</code></p>
+</div></div>
+<div class="frame hot"><span class="label">The seven marks</span><div class="text">
+<ul>
+<li><code>#</code> <code>##</code> heading</li>
+<li><code>-</code> list</li>
+<li><code>1.</code> numbered list</li>
+<li><code>**&#x2026;**</code> bold</li>
+<li><code>[text](link)</code> link</li>
+<li><code>&gt;</code> quotation</li>
+<li><code>`&#x2026;`</code> code, file name</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Seven Markdown marks cover most notes: # and ## for headings, - for a list, 1. for a numbered list, ** for bold, <a href="link">text</a> for a link, &gt; for a quotation and backticks for code. The full syntax is on the Markdown Guide cheat sheet.</p>
+</div></section>
+<section id="m2-06"><h2><a href="#m2-06"><span class="no">42</span>Plain text is future-proof.</a></h2>
+<div class="body"><h1>Plain text is future-proof.</h1>
+<div class="grid">
+<div class="frame"><span class="label">Word</span><div class="text">
+<p class="badge">.docx</p>
+<ul>
+<li>a packaged file, read through Word</li>
+<li>layout and text mixed together</li>
+<li>an agent must convert it first</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">Notion</span><div class="text">
+<p class="badge">notion.so</p>
+<ul>
+<li>kept on Notion&apos;s servers</li>
+<li>export goes through them</li>
+<li>an agent needs their login to read it</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Markdown</span><div class="text">
+<p class="badge">.md</p>
+<ul>
+<li>plain text, on your disk</li>
+<li>opens in any editor, for decades</li>
+<li>an agent reads and edits it directly</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">LaTeX</span><div class="text">
+<p class="badge">.tex</p>
+<ul>
+<li>plain text with commands</li>
+<li>for papers and books</li>
+<li>next week</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Word packages layout and text together and needs conversion; Notion keeps your notes on its servers; Markdown is plain text on your disk that any editor and any agent can read; LaTeX is plain text with commands, for papers, next week.</p>
+</div></section>
+<section id="m2-08"><h2><a href="#m2-08"><span class="no">43</span>&quot;Where did Lingnan begin?&quot; Two answers disagree.</a></h2>
+<div class="body"><h1>&quot;Where did Lingnan begin?&quot; Two answers disagree.</h1>
+<div class="body">
+<div class="frame fit"><span class="label">Google &#xb7; AI Overview</span><div class="pic"><figure><p class="withheld">Google AI Overview answering that Lingnan University was founded in Guangzhou in 1888, moved to Macau in 1900 and returned in 1904. (Image shown in class only.)</p><figcaption>Google AI Overview for &apos;Was Lingnan university founded in Guangzhou or Macau?&apos;. Screenshot of Google Search, DHG508 (2026), Screenshot for teaching commentary</figcaption></figure></div></div>
+<div class="frame hot fit"><span class="label">&#x6556;&#x58eb;&#x6d32; &#xb7; memoir manuscript</span><div class="pic"><figure><p class="withheld">Manuscript column: &#x672c;&#x6821;&#x5728;&#x6b64;&#x570b;&#x60c5;&#x4e4b;&#x969b;&#xff0c;&#x5927;&#x62b5;&#x65bc;&#x4e00;&#x516b;&#x4e5d;&#x4e5d;&#x5e74;&#x958b;&#x59cb;&#x79df;&#x5c4b;&#x5275;&#x8fa6;&#x65bc;&#x6fb3;&#x9580; &#x2014; the school was probably founded in rented premises in Macao around 1899. (Image shown in class only.)</p><figcaption>&#x6556;&#x58eb;&#x6d32;&#x300a;&#x4e94;&#x5341;&#x5e74;&#x524d;&#x4e4b;&#x5dba;&#x5357;&#x300b; (1954), manuscript, detail.. Lingnan University Library, Library manuscript, reproduced for teaching</figcaption></figure></div></div>
+</div>
+</div>
+<div class="read"><p>A quick AI answer says Lingnan began in Guangzhou in 1888; a memoir written in 1954 says it began in rented rooms in Macao around 1899. Neither settles the question, so we look for the earliest original.</p>
+</div></section>
+<section id="m2-10"><h2><a href="#m2-10"><span class="no">44</span>Write it down: tell OpenCode what you found and what comes next.</a></h2>
+<div class="body"><h1>Write it down: tell OpenCode what you found and what comes next.</h1>
+<p class="sub">Tip: dictate instead of typing; voice input is much faster for instructions.</p>
+<div class="body">
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">I searched quickly myself. An AI answer says Guangzhou, 1888;</span>
+<span class="you">a 1954 memoir says Macao, c. 1899. Add this to my log, and note</span>
+<span class="you">what I want next: more sources, starting with the 1908 booklet.</span>
+&#xa0;
+<span class="tool">&#x2190; Edit</span> my-work/research/log.md
+<span class="ok">Added today&apos;s entry: question, findings, next step.</span>
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="file"><div class="file-bar">my-work/research/log.md</div><pre>
+## 6 Nov 2026
+Question: where did Lingnan begin? (first half)
+Found: an AI answer (Guangzhou, 1888) and a 1954
+       memoir (Macao, c. 1899) disagree.
+Next: <span class="hl">more sources, starting with the</span>
+      <span class="hl">1908 college booklet</span>.
+</pre></div>
+</div>
+</div>
+<div class="read"><p>Tell OpenCode what you found and what you want next; it appends a dated entry to the log: the question, the two disagreeing answers, and the next step, the 1908 college booklet.</p>
+</div></section>
+<section id="qa-2"><h2><a href="#qa-2"><span class="no">45</span>Your questions, Module 2: Notes.</a></h2>
+<div class="body"><h1>Your questions, Module 2: Notes.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Your question</th>
+<th>Short answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01.3</td>
+<td>&#x5982;&#x4f55;&#x7d44;&#x7e54;&#x7b46;&#x8a18;&#x8207;&#x53cd;&#x601d;&#x6027;&#x5beb;&#x4f5c;&#xff1f;</td>
+<td>Keep notes in plain text: quick to search, always saved, never locked in, no version trouble. A design doc you rewrite, a log you add to. Edit them in VS Code or Obsidian.</td>
+</tr>
+<tr>
+<td>11.1</td>
+<td>&#x5982;&#x4f55;&#x7528; AI &#x5354;&#x52a9;&#x69cb;&#x601d;&#x8207;&#x6aa2;&#x9a57;&#x65b0;&#x60f3;&#x6cd5;&#xff1f;</td>
+<td>Talk with it and let it write your notes. More in later modules.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>The participants&apos; questions for Module 2, each with a short answer drawn from the slides before.</p>
+</div></section>
+<section id="q-2"><h2><a href="#q-2"><span class="no">46</span>Any questions?</a></h2>
+<div class="body"><h1>Any questions?</h1>
+<p class="sub">Module 2: Notes.</p>
+</div>
+<div class="read"><p>End of Module 2. Questions are welcome now or after the session.</p>
+</div></section>
+<section id="break"><h2><a href="#break"><span class="no">47</span>Break: five minutes.</a></h2>
+<div class="body"><h1>Break: five minutes.</h1>
+<p class="sub">Then Module 3: Search for sources.</p></div>
+</section>
+<section id="m3-01"><h2><a href="#m3-01"><span class="no">48</span>Module 3: Search for sources.</a></h2>
+<div class="body"><h1>Module 3: Search for sources.</h1>
+<p class="sub">Web search, browsers, APIs and downloads.</p>
+</div>
+<div class="read"><p>Module 3 asks whether AI can find everything and how to collect sources from databases and archives. It answers questions 07.2 and 02.3.</p>
+</div></section>
+<section id="m3-01b"><h2><a href="#m3-01b"><span class="no">49</span>Match the search to the source.</a></h2>
+<div class="body"><h1>Match the search to the source.</h1>
+<div class="rows">
+<div class="row"><span class="label">A quick question</span><p class="plain">built-in web search: fast, open web only</p></div>
+<div class="row"><span class="label">OpenAlex</span><p class="plain">a scholarly index of many publishers: its API</p></div>
+<div class="row"><span class="label">Google Scholar</span><p class="plain">the core for most of us, but no API: you search, or a third-party API</p></div>
+<div class="row"><span class="label">A collection with an API</span><p class="plain">the Met, its own database: its API</p></div>
+<div class="row"><span class="label">A site made for people</span><p class="plain">no API, only a search box: a browser</p></div>
+</div>
+</div>
+<div class="read"><p>Choose the search by the source: built-in web search for a quick question; an API for a scholarly index such as OpenAlex or a collection such as the Met; Google Scholar by hand or through a third-party API; a browser for a site made only for people.</p>
+</div></section>
+<section id="m3-02"><h2><a href="#m3-02"><span class="no">50</span>Built-in web search: fine for a quick question, not for research.</a></h2>
+<div class="body"><h1>Built-in web search: fine for a quick question, not for research.</h1>
+<div class="body">
+<div class="term wide">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Find one early primary source on when and where Lingnan was founded.</span>
+&#xa0;
+<span class="blk ask">Web Search</span>
+<span class="blk ask">Allow OpenCode to search the web for up-to-date information?</span>
+<span class="blk ask">1. Allow search via Exa, Firecrawl, Parallel, Tavily, TinyFish</span>
+&#xa0;
+   <span class="tool">&#x2192; Explored:</span> 2 searches
+   <span class="tool">&#x2192; Explored:</span> 2 fetches
+   <span class="tool">&#x2192; Explored:</span> 1 fetch, 1 search
+   <span class="hl">&#x2026; 3 minutes, 130K tokens, no source settled</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="frame hot"><span class="label">It sees only part</span><div class="text">
+<ul>
+<li>no catalogues or databases behind a login</li>
+<li>weak on old and Chinese names</li>
+<li><mark>no record of where it looked</mark></li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>OpenCode can search the web by itself, which is fine for a quick question. But it cannot reach catalogues behind a login, is weak on old and Chinese names, and keeps no record of where it looked.</p>
+</div></section>
+<section id="m3-04"><h2><a href="#m3-04"><span class="no">51</span>An API: the same OpenAlex search, for people and for programs.</a></h2>
+<div class="body"><h1>An API: the same OpenAlex search, for people and for programs.</h1>
+<div class="body">
+<div class="frame fit"><span class="label">Browser &#xb7; made for people</span><div class="pic"><figure><p class="withheld">openalex.org search results for Canton Christian College. (Image shown in class only.)</p><figcaption>openalex.org, captured 6 Nov 2026</figcaption></figure></div></div>
+<div class="frame hot fit"><span class="label">API &#xb7; made for programs</span><div class="pic"><figure><p class="withheld">The same search from the OpenAlex API, as JSON. (Image shown in class only.)</p><figcaption>api.openalex.org, captured 6 Nov 2026</figcaption></figure></div></div>
+</div>
+</div>
+<div class="read"><p>A browser route lets the agent see what you see after login; an API asks a database directly and returns data in fixed fields.</p>
+</div></section>
+<section id="m3-05b"><h2><a href="#m3-05b"><span class="no">52</span>Let the agent use the API, with your own free key.</a></h2>
+<div class="body"><h1>Let the agent use the API, with your own free key.</h1>
+<div class="body">
+<div class="frame fit"><span class="label">1 &#xb7; The website: &#x201c;use our API&#x201d;</span><div class="pic"><figure><p class="withheld">OpenAlex page: Looks like you&apos;re a bot &#x2014; please use our free API instead. Free key, own &#x24;1/day budget. (Image shown in class only.)</p><figcaption>Screenshot of openalex.org, 6 Nov 2026</figcaption></figure></div></div>
+<div class="json"><pre>
+{
+  &quot;error&quot;: &quot;<span class="hl">Rate limit exceeded</span>&quot;,
+  &quot;message&quot;: &quot;Anonymous search is temporarily
+    rate-limited while the search cluster is under
+    elevated load. Please retry in 36s, or use a
+    <span class="hl">free API key</span> for uninterrupted access.&quot;
+}
+</pre></div>
+</div>
+</div>
+<div class="read"><p>The OpenAlex website sends agents to its API, and the API without a key can be throttled at busy times. Let the agent use the API with your own free key.</p>
+</div></section>
+<section id="m3-05c"><h2><a href="#m3-05c"><span class="no">53</span>Agents are fluent with APIs: if a source has one, tell the agent to use it.</a></h2>
+<div class="body"><h1>Agents are fluent with APIs: if a source has one, tell the agent to use it.</h1>
+<div class="body">
+<div class="frame"><span class="label">Why an API</span><div class="text">
+<ul>
+<li>built for programs, so agents read it easily</li>
+<li>exact fields: title, year, author, link</li>
+<li>the same request gives the same answer</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Get a key</span><div class="text">
+<ul>
+<li>most APIs need one, like OpenCode Go</li>
+<li>OpenAlex: free key, &#x24;1 of searches a day</li>
+<li>without a key: &#x24;0.10 a day, shared</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Agents use APIs fluently, so if a source has an API, ask the agent to use it. Most APIs need a key: OpenAlex gives a free key with &#x24;1 of searches a day; without one there is &#x24;0.10 a day, shared.</p>
+</div></section>
+<section id="m3-06"><h2><a href="#m3-06"><span class="no">54</span>Ask OpenCode to query OpenAlex for you.</a></h2>
+<div class="body"><h1>Ask OpenCode to query OpenAlex for you.</h1>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Search OpenAlex for &quot;Canton Christian College curriculum&quot; with curl</span>
+<span class="you">and save the first ten results to my-work/sources/processed/.</span>
+&#xa0;
+<span class="blk">&#x24; curl -s &quot;https://api.openalex.org/works?search=Canton+Christian</span>
+<span class="blk">+College+curriculum&amp;per-page=10&quot; -o openalex-ccc-curriculum.json</span>
+&#xa0;
+Saved: my-work/sources/processed/openalex-ccc-curriculum.json
+<span class="hl">Matches: 2,071</span>
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash &#xb7; 1m 32s</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>OpenCode sends the OpenAlex query with curl and saves the first ten results as JSON; tonight the index reported 2,071 matches.</p>
+</div></section>
+<section id="m3-07"><h2><a href="#m3-07"><span class="no">55</span>What comes back is data, and the first hit can be irrelevant.</a></h2>
+<div class="body"><h1>What comes back is data, and the first hit can be irrelevant.</h1>
+<div class="json"><pre>
+{
+  &quot;meta&quot;: { &quot;count&quot;: 2071 },
+  &quot;results&quot;: [
+    { &quot;title&quot;: &quot;<span class="hl">The Development of a Program in Humanities
+               for the Junior College Curriculum</span>&quot;,
+      &quot;publication_year&quot;: 1961,
+      &quot;id&quot;: &quot;https://openalex.org/W289137080&quot; },
+    &#x2026;
+  ]
+}
+</pre></div>
+</div>
+<div class="read"><p>The JSON reports 2,071 matches, and the first is a 1961 junior-college humanities study: data, not yet a relevant source.</p>
+</div></section>
+<section id="m3-05d"><h2><a href="#m3-05d"><span class="no">56</span>The same works for museums: the Met's API, searched for &quot;Canton&quot;.</a></h2>
+<div class="body"><h1>The same works for museums: the Met&apos;s API, searched for &quot;Canton&quot;.</h1>
+<div class="body">
+<div class="json"><pre>
+{ &quot;total&quot;: 1693,
+  &quot;objectIDs&quot;: [<span class="hl">7859</span>, <span class="hl">500595</span>, 387080, &#x2026;] }
+&#xa0;
+<span class="dim">/objects/7859</span>   Spoon Rack &#xb7; <span class="hl">Canton Glass Company</span>
+                <span class="hl">&quot;city&quot;: &quot;Canton&quot;, &quot;country&quot;: &quot;United States&quot;</span>
+&#xa0;
+<span class="dim">/objects/500595</span>
+{ &quot;title&quot;: &quot;Yangqin (&#x63da;&#x7434;)&quot;,
+  &quot;artistDisplayName&quot;: &quot;Shop of Refined Tones, Guangzhou (Canton)&quot;,
+  &quot;city&quot;: &quot;Canton&quot;, &quot;country&quot;: &quot;China&quot;,
+  &quot;objectDate&quot;: &quot;19th century&quot;,
+  &quot;isPublicDomain&quot;: true }
+</pre></div>
+<div class="frame fit"><span class="label">Yangqin, Guangzhou (Canton), 19th century</span><div class="pic"><figure><img src="assets/2487d51c1e-met-500595-yangqin.jpg" alt="Yangqin, a hammered dulcimer made in Guangzhou." loading="lazy"><figcaption>Yangqin, Shop of Refined Tones, Guangzhou (Canton), 19th century. The Metropolitan Museum of Art, The Crosby Brown Collection of Musical Instruments, 1889 (Open Access, CC0)</figcaption></figure></div></div>
+</div>
+</div>
+<div class="read"><p>Museum collections have APIs too. Searching the Met&apos;s API for &quot;Canton&quot; returns 1,693 works with images; the first is from Canton, Ohio, the second a 19th-century yangqin made in Guangzhou, with its maker, city, date and public-domain status in fixed fields.</p>
+</div></section>
+<section id="m3-05e"><h2><a href="#m3-05e"><span class="no">57</span>On top of an API, the agent can build you a small search engine.</a></h2>
+<div class="body"><h1>On top of an API, the agent can build you a small search engine.</h1>
+<div class="body">
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Make a simple Google-style search page for the Met</span>
+<span class="you">Collection API: one search box; for each result show</span>
+<span class="you">the image, title, artist, date, and public domain.</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span> session-01/examples/met-search/index.html
+<span class="ok">Open it in your browser and type a search.</span>
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="frame hot fit"><span class="label">session-01/examples/met-search/</span><div class="pic"><figure><img src="assets/034c4a591f-met-search-page.png" alt="The Search the Met page with results for Canton." loading="lazy"><figcaption>Page built for the workshop on the Met Collection API; images: The Metropolitan Museum of Art, Open Access</figcaption></figure></div></div>
+</div>
+</div>
+<div class="read"><p>On top of an API, the agent can build a small search page of your own: one sentence describes it, and the page fetches results from the Met&apos;s API and previews them, with image, title, artist, date and rights.</p>
+</div></section>
+<section id="m3-09"><h2><a href="#m3-09"><span class="no">58</span>Google Scholar has no API: you search, or use a third-party one.</a></h2>
+<div class="body"><h1>Google Scholar has no API: you search, or use a third-party one.</h1>
+<p class="sub">Third-party APIs such as Serper work, but Google does not allow them. Here the agent suggests the queries.</p>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">I will search Google Scholar and Baidu myself. Suggest five queries</span>
+<span class="you">for each, in English and Chinese, for: what did early Lingnan teach?</span>
+&#xa0;
+<span class="dim">+ Thought &#xb7; 5.4s</span>
+Google Scholar (English)
+1. &quot;Canton Christian College&quot; curriculum 1888 1904
+3. Happer &quot;Christian College&quot; Canton secular curriculum English Chinese classics
+Baidu (Chinese)
+1. &#x5cad;&#x5357;&#x5927;&#x5b66; &#x524d;&#x8eab; &#x683c;&#x81f4;&#x4e66;&#x9662; &#x8bfe;&#x7a0b; 1888
+3. &#x5cad;&#x5357;&#x5b66;&#x5802; 1904 &#x5eb7;&#x4e50; &#x5b66;&#x5236; &#x8bfe;&#x7a0b;
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash &#xb7; 8.2s</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>Google Scholar, Bing and Baidu do not allow automated searching, so you search them; the agent suggests queries in English and Chinese, including old names such as &#x683c;&#x81f4;&#x4e66;&#x9662;.</p>
+</div></section>
+<section id="m3-10"><h2><a href="#m3-10"><span class="no">59</span>Give the agent a browser: a Chrome MCP, or agent-browser.</a></h2>
+<div class="body"><h1>Give the agent a browser: a Chrome MCP, or agent-browser.</h1>
+<p class="sub">It can click &#x201c;buy&#x201d; or &#x201c;send&#x201d; as easily as &#x201c;search&#x201d;: never give it your passwords.</p>
+<div class="body">
+<div class="frame"><span class="label">Chrome DevTools MCP</span><div class="text">
+<ul>
+<li>drives your own Chrome</li>
+<li>sees what you see, logged in</li>
+<li>ask the agent to set it up</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">agent-browser</span><div class="text">
+<ul>
+<li>a browser made for agents</li>
+<li>already in the workspace</li>
+<li>installed as a skill</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">You</span><div class="text">
+<ul>
+<li>log in, solve CAPTCHAs</li>
+<li>approve each action</li>
+<li>keep private pages closed</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>An agent can use a browser through a Chrome DevTools MCP (your own Chrome) or a browser made for agents (agent-browser). It can click &quot;buy&quot; or &quot;send&quot; as easily as &quot;search&quot;: you log in, approve its actions, and never give it your passwords.</p>
+</div></section>
+<section id="m3-08"><h2><a href="#m3-08"><span class="no">60</span>The agent turns the data into a reading list you can check.</a></h2>
+<div class="body"><h1>The agent turns the data into a reading list you can check.</h1>
+<div class="file"><div class="file-bar">my-work/research/reading-list.md</div><pre>
+| Year | Author   | Title                                              |
+|------|----------|----------------------------------------------------|
+| 2008 | Barwick  | Faith, Identity, and Nationalism &#x2026; Christian Colleges |
+| 2018 | Mou      | The Liberal Arts Curriculum in China&apos;s Christian &#x2026; |
+| 2002 | Bolton   | Chinese Englishes: from Canton jargon to global &#x2026;  |
+</pre></div>
+</div>
+<div class="read"><p>The JSON becomes a short reading list with year, title and author; the next step is still to open each work and judge whether it answers the question.</p>
+</div></section>
+<section id="m3-08b"><h2><a href="#m3-08b"><span class="no">61</span>Found it; now the agent can help you download it.</a></h2>
+<div class="body"><h1>Found it; now the agent can help you download it.</h1>
+<div class="grid">
+<div class="frame"><span class="label">Open web</span><div class="text">
+<ul>
+<li>Digital Commons, Internet Archive</li>
+<li>ask the agent; it downloads for you</li>
+<li>into sources/raw/, named by source</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">Blocked</span><div class="text">
+<ul>
+<li>a login or a CAPTCHA stops it</li>
+<li>you log in yourself</li>
+<li>then the agent helps again</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Library databases</span><div class="text">
+<ul>
+<li>through your library&apos;s access</li>
+<li>the agent helps inside your logged-in browser</li>
+<li>keep to its terms: what, and how much</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Where to download depends on where the source lives: on the open web, the agent downloads it; when a login or CAPTCHA blocks it, you log in and the agent continues; library databases go through your library&apos;s access, in your logged-in browser.</p>
+</div></section>
+<section id="m3-10c"><h2><a href="#m3-10c"><span class="no">62</span>Then let the agent tidy up: which folder, which names.</a></h2>
+<div class="body"><h1>Then let the agent tidy up: which folder, which names.</h1>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Move the PDFs I downloaded today into my-work/sources/raw/,</span>
+<span class="you">rename each as author-year-short-title, and list them in my log.</span>
+&#xa0;
+<span class="blk">&#x24; mv ~/Downloads/*.pdf my-work/sources/raw/</span>
+<span class="tool">&#x2190; Edit</span> my-work/research/log.md
+&#xa0;
+<span class="ok">Renamed 3 files:</span>
+  ccc-1908-field-and-work-in-china.pdf
+  corbett-1963-lingnan-university.pdf
+  mou-2018-liberal-arts-curriculum.pdf
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>After downloading, tell the agent which folder the files go into and how to name them; it moves, renames and logs them.</p>
+</div></section>
+<section id="m3-11"><h2><a href="#m3-11"><span class="no">63</span>Record where you searched, under which names, and what you found.</a></h2>
+<div class="body"><h1>Record where you searched, under which names, and what you found.</h1>
+<div class="file"><div class="file-bar">my-work/research/log.md</div><pre>
+## 6 Nov 2026 &#xb7; what did early Lingnan teach?
+OpenAlex  &quot;canton christian college&quot;           31 hits, all read
+OpenAlex  &#x683c;&#x81f4;&#x66f8;&#x9662; 122 &#xb7; &#x5dba;&#x5357;&#x5b78;&#x5802; 16 &#xb7; &#x5cad;&#x5357;&#x5b66;&#x5802; 97   mostly unrelated
+OpenAlex  &quot;Canton Christian College curriculum&quot;  2,071 hits, top 10 saved
+Met API   &quot;Canton&quot;   1,693 objects; first hit is Canton, Ohio
+Problem   a script bug used up the day&apos;s OpenAlex budget:
+          queries 12&#x2013;21 not saved, to redo tomorrow
+Saved     3 PDFs to sources/raw/: 1908 booklet, Corbett 1963, Mou 2018
+To do     Google Scholar and Baidu, by me
+<span class="hl">Not yet: newspaper databases, Yale Divinity Library</span>
+</pre></div>
+</div>
+<div class="read"><p>A search log records the date, database, query, hits and what was saved, and above all where you have not yet searched.</p>
+</div></section>
+<section id="m3-11b"><h2><a href="#m3-11b"><span class="no">64</span>Stock-take: what we have now.</a></h2>
+<div class="body"><h1>Stock-take: what we have now.</h1>
+<div class="frame fit"><div class="pic"><figure><img src="assets/24bf739b3c-stock-take.svg" alt="The my-work folder as a tree, each file linked by a line to an icon: three PDFs, OpenAlex results, the design doc, the log and the reading list." loading="lazy"><figcaption>Diagram by the workshop</figcaption></figure></div></div>
+<p class="sub">Ready for research: next, make the sources searchable.</p>
+</div>
+<div class="read"><p>After three modules, the workspace holds a design doc with the question, a log, three PDFs, search results and a reading list: enough to start the research.</p>
+</div></section>
+<section id="qa-3"><h2><a href="#qa-3"><span class="no">65</span>Your questions, Module 3: Search for sources.</a></h2>
+<div class="body"><h1>Your questions, Module 3: Search for sources.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Your question</th>
+<th>Short answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>07.2</td>
+<td>&#x5177;&#x9ad4;&#x6307;&#x4ee4;&#x80fd;&#x627e;&#x5230;&#x6240;&#x6709;&#x76f8;&#x95dc;&#x6750;&#x6599;&#x55ce;&#xff1f;</td>
+<td>Partly. AI combines and speeds up existing resources and methods; it does not make missing material appear, and no &quot;one-stop&quot; academic AI exists. Combine the three ways, search every name, log the gaps.</td>
+</tr>
+<tr>
+<td>02.3</td>
+<td>&#x5982;&#x4f55;&#x5354;&#x52a9;&#x53d6;&#x5f97;&#x8207;&#x6574;&#x7406;&#x8cc7;&#x6599;&#x5eab;&#x6750;&#x6599;&#xff1f;</td>
+<td>An API where there is one (with a free key), your logged-in browser where not; download through your library&apos;s access, keep to each database&apos;s terms, name every file by its source.</td>
+</tr>
+<tr>
+<td>10.2</td>
+<td>&#x5982;&#x4f55;&#x7cfb;&#x7d71;&#x6574;&#x7406;&#x4e00;&#x500b;&#x6a5f;&#x69cb;&#x7684;&#x7dda;&#x4e0a;&#x8cc7;&#x6e90;&#xff1f;</td>
+<td>Step by step: its API where it has one (as with the Met), the agent&apos;s browser where not; keep raw files, log every search, write the method as a skill.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>The participants&apos; questions for Module 3, each with a short answer drawn from the slides before.</p>
+</div></section>
+<section id="q-3"><h2><a href="#q-3"><span class="no">66</span>Any questions?</a></h2>
+<div class="body"><h1>Any questions?</h1>
+<p class="sub">Module 3: Search for sources.</p>
+</div>
+<div class="read"><p>End of Module 3. Questions are welcome now or after the session.</p>
+</div></section>
+<section id="sk-01"><h2><a href="#sk-01"><span class="no">67</span>Module 4: Skills.</a></h2>
+<div class="body"><h1>Module 4: Skills.</h1>
+<p class="sub">Your method, written once, reused by any agent.</p>
+</div>
+<div class="read"><p>Module 4 is about skills: writing your method down once, so that any agent can reuse it.</p>
+</div></section>
+<section id="m3-13b"><h2><a href="#m3-13b"><span class="no">68</span>Remember the search? With a skill, one sentence does it all.</a></h2>
+<div class="body"><h1>Remember the search? With a skill, one sentence does it all.</h1>
+<div class="body">
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Use the scholarly-search skill: find scholarship</span>
+<span class="you">on what early Lingnan taught, 1888-1904.</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span> my-work/research/openalex_search.py
+<span class="blk">&#x24; python3 research/openalex_search.py</span>
+&#xa0;
+<span class="ok">Saved: openalex-01 &#x2026; openalex-10, one file per name</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="file"><div class="file-bar">my-work/sources/processed/</div><pre>
+openalex-01-canton-christian-college.json
+openalex-02-christian-college-in-china.json
+&#x2026;
+<span class="hl">openalex-06-gezhi-shuyuan.json</span>
+<span class="hl">openalex-07-lingnan-xuetang-trad.json</span>
+<span class="hl">openalex-08-lingnan-xuetang-simp.json</span>
+&#x2026;
+openalex-10-christian-higher-education-china.json
+</pre></div>
+</div>
+</div>
+<div class="read"><p>Told only to use the scholarly-search skill, the agent searched OpenAlex under nine names, including &#x683c;&#x81f4;&#x66f8;&#x9662; and &#x5dba;&#x5357;&#x5b78;&#x5802;, and saved every result.</p>
+</div></section>
+<section id="m3-13"><h2><a href="#m3-13"><span class="no">69</span>The skill behind it: a plain-text file, in plain language.</a></h2>
+<div class="body"><h1>The skill behind it: a plain-text file, in plain language.</h1>
+<div class="file"><div class="file-bar">.opencode/skills/scholarly-search/SKILL.md</div><pre>
+---
+name: scholarly-search
+<span class="hl">description: Find scholarship on a research question. Prefer OpenAlex</span>
+<span class="hl">  by API; Google Scholar through a third-party search API, or by me.</span>
+---
+&#xa0;
+Search for scholarship on the question I give you.
+&#xa0;
+- Prefer OpenAlex: query its API with my key; save the raw results
+  in my-work/sources/processed/.
+- Decide whether the search needs expanding: other names of the
+  subject, other languages, older spellings.
+- For Google Scholar and similar sites, use a third-party search API
+  (such as Serper) if one is set up; otherwise suggest queries.
+- Make a reading list: year, title, author, link.
+- Record every search in research/log.md, and what was not searched.
+- Never describe a work you have not opened.
+</pre></div>
+</div>
+<div class="read"><p>A skill is a short plain-text file: a name, a one-line description the agent keeps in mind, and the steps it reads when a task matches.</p>
+</div></section>
+<section id="m3-12a"><h2><a href="#m3-12a"><span class="no">70</span>A prompt is said once; a skill is saved and used again.</a></h2>
+<div class="body"><h1>A prompt is said once; a skill is saved and used again.</h1>
+<div class="grid">
+<div class="file"><div class="file-bar">.opencode/skills/format-paper/SKILL.md</div><pre>
+---
+name: format-paper
+description: Format my paper in Chicago style.
+---
+&#xa0;
+Format the paper I give you in Chicago style,
+notes and bibliography:
+&#xa0;
+- footnotes, not author&#x2013;date
+- first note in full, later notes shortened
+- bibliography at the end, by author&apos;s surname
+- keep Chinese titles in characters, with pinyin
+- change only the format, never my wording
+- check each rule in Purdue OWL, Chicago 18th ed.
+</pre></div>
+<div class="stack">
+<div class="frame"><span class="label">Prompt</span><div class="text">
+<ul>
+<li>typed into one conversation</li>
+<li>gone when the conversation ends</li>
+<li>you remember it and type it again</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Skill</span><div class="text">
+<ul>
+<li>a file in your workspace, in plain language</li>
+<li>read by the agent when the task fits</li>
+<li>reusable and combinable, kept in Git</li>
+</ul>
+</div></div>
+</div>
+</div>
+</div>
+<div class="read"><p>A prompt lives in one conversation and must be typed again; a skill is a plain-language file the agent reads when the task fits, reusable and combinable. The format-paper skill on the left is one example.</p>
+</div></section>
+<section id="m3-14a"><h2><a href="#m3-14a"><span class="no">71</span>When to write a skill: when you keep telling it the same thing.</a></h2>
+<div class="body"><h1>When to write a skill: when you keep telling it the same thing.</h1>
+<div class="grid">
+<div class="frame"><span class="label">Signs</span><div class="text">
+<ul>
+<li>it keeps getting the same thing wrong</li>
+<li>not a matter of intelligence: it cannot guess</li>
+<li>your preferences, your field&apos;s rare sources and tools</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Rule of thumb</span><div class="text">
+<p>If you find yourself explaining the same thing again, it is probably a skill.</p>
+<p><em>&#x201c;Format my paper&#x201d;</em>: which Chicago? Footnotes? Chinese titles?</p>
+</div></div>
+<div class="frame"><span class="label">Write the details</span><div class="text">
+<ul>
+<li>the exact convention, not just its name</li>
+<li>what it must not do: &#x201c;never change my wording&#x201d;</li>
+<li>where to look it up: the manual, a model paper</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Write a skill when you find yourself explaining the same thing again. Spell out the exact convention, what it must not do, and where to look it up.</p>
+</div></section>
+<section id="m3-14b"><h2><a href="#m3-14b"><span class="no">72</span>Keep skills short, plain, and combinable.</a></h2>
+<div class="body"><h1>Keep skills short, plain, and combinable.</h1>
+<div class="grid">
+<div class="frame hot"><span class="label">Pointers</span><div class="text">
+<ul>
+<li>natural language is enough; no code needed</li>
+<li>one job per skill; one can call another</li>
+<li>read someone else&apos;s skill before you install it</li>
+</ul>
+</div></div>
+<div class="file"><div class="file-bar">skills/format-paper/SKILL.md</div><pre>
+---
+name: format-paper
+description: Format my paper in
+  the style I name.
+---
+&#xa0;
+Ask which style, if I did not say.
+&#xa0;
+- Chicago: use <span class="hl">chicago-style</span>
+- another style: ask me first
+&#xa0;
+Change only the format,
+never my wording.
+</pre></div>
+<div class="file"><div class="file-bar">skills/chicago-style/SKILL.md</div><pre>
+---
+name: chicago-style
+description: Chicago notes and
+  bibliography, 18th edition.
+---
+&#xa0;
+Check every rule in:
+- Purdue OWL, Chicago 18th ed.
+- the manual: references/cmos-18.pdf
+&#xa0;
+In short:
+- first note in full:
+  Charles Hodge Corbett, Lingnan
+  University (1963), 31.
+- later notes: Corbett, Lingnan, 31.
+- Chinese titles: characters, pinyin
+</pre></div>
+</div>
+</div>
+<div class="read"><p>Keep skills short, plain and single-purpose, so one can call another: format-paper asks which style and hands Chicago to chicago-style, which points to Purdue OWL and the manual and sums up the common forms in plain language.</p>
+</div></section>
+<section id="sk-write"><h2><a href="#sk-write"><span class="no">73</span>You need not write a skill yourself: the agent writes it, you test it.</a></h2>
+<div class="body"><h1>You need not write a skill yourself: the agent writes it, you test it.</h1>
+<div class="body">
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">That search worked. Save it as a skill called</span>
+<span class="you">scholarly-search: every name we used, which sites</span>
+<span class="you">I search myself, the steps, and what to check.</span>
+<span class="you">Keep it short.</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span> .opencode/skills/scholarly-search/SKILL.md
+<span class="ok">Saved. Next time say &quot;use scholarly-search&quot;.</span>
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="frame hot"><span class="label">Then, like a teacher</span><div class="text">
+<ol>
+<li>ask it to save what worked</li>
+<li>run it, and watch what it does</li>
+<li>give it a standard to meet</li>
+<li>if it falls short, it revises the skill itself</li>
+</ol>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Ask the agent to save what worked as a skill. Then act like a teacher: run it, give it a standard to meet, and let it revise the skill itself when it falls short.</p>
+</div></section>
+<section id="sk-share"><h2><a href="#sk-share"><span class="no">74</span>Use other people's skills; write and share your own.</a></h2>
+<div class="body"><h1>Use other people&apos;s skills; write and share your own.</h1>
+<div class="body">
+<div class="frame"><span class="label">Use</span><div class="text">
+<ul>
+<li><a href="http://github.com/anthropics/skills">github.com/anthropics/skills</a></li>
+<li><a href="http://github.com/K-Dense-AI/scientific-agent-skills">github.com/K-Dense-AI/scientific-agent-skills</a></li>
+<li>copy one into .opencode/skills/, after reading it</li>
+</ul>
+</div></div>
+<div class="frame hot"><span class="label">Share</span><div class="text">
+<ul>
+<li>few skills exist yet for the humanities</li>
+<li>write and share some for art history</li>
+<li>the workshop&apos;s seven skills are a start</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Skills are folders, so they travel: copy someone else&apos;s into .opencode/skills/ after reading it, and share your own with your team through Git. The workshop&apos;s seven skills are a place to start.</p>
+</div></section>
+<section id="qa-sk"><h2><a href="#qa-sk"><span class="no">75</span>Your questions, Module 4: Skills.</a></h2>
+<div class="body"><h1>Your questions, Module 4: Skills.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Your question</th>
+<th>Short answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11.2</td>
+<td>&#x600e;&#x6a23;&#x63d0;&#x554f;&#xff0c;&#x624d;&#x80fd;&#x5f97;&#x5230;&#x53ef;&#x6aa2;&#x67e5;&#x7684;&#x5e6b;&#x52a9;&#xff1f;</td>
+<td>State five things: purpose, material, action, output, and how it will be checked. When a request works, save it as a skill.</td>
+</tr>
+<tr>
+<td>07.1</td>
+<td>&#x5982;&#x4f55;&#x628a;&#x8996;&#x89ba;&#x89c0;&#x5bdf;&#x5beb;&#x6210;&#x53ef;&#x6aa2;&#x67e5;&#x7684;&#x65b9;&#x6cd5;&#xff1f;</td>
+<td>Give explicit observation rules with an example, as a skill: describe what is visible and where before interpreting; ask neutrally. No training needed.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>The participants&apos; questions for Module 4: how to ask so the help can be checked, and how to turn a visual method into rules an agent can follow.</p>
+</div></section>
+<section id="q-sk"><h2><a href="#q-sk"><span class="no">76</span>Any questions?</a></h2>
+<div class="body"><h1>Any questions?</h1>
+<p class="sub">Module 4: Skills.</p>
+</div>
+<div class="read"><p>End of Module 4. Questions are welcome now or after the session.</p>
+</div></section>
+<section id="m4-01"><h2><a href="#m4-01"><span class="no">77</span>Module 5: Search within sources.</a></h2>
+<div class="body"><h1>Module 5: Search within sources.</h1>
+<p class="sub">Module 3 found the documents; now we find what is in them.</p>
+</div>
+<div class="read"><p>Module 5 searches within the sources we already hold: ask the agent to search, then deal with two problems: sources that cannot be searched yet, and too many hits to use as they are.</p>
+</div></section>
+<section id="m4-02"><h2><a href="#m4-02"><span class="no">78</span>One question, and what we now hold.</a></h2>
+<div class="body"><h1>One question, and what we now hold.</h1>
+<div class="rows">
+<div class="row hot"><span class="label">Question, second half</span><p class="plain">What did Lingnan teach, 1888&#x2013;1904?</p></div>
+<div class="row"><span class="label">Corbett 1963</span><p class="plain">Lingnan University: a history &#xb7; text, searchable</p></div>
+<div class="row"><span class="label">Mou 2018</span><p class="plain">liberal arts curricula, a thesis &#xb7; text, searchable</p></div>
+<div class="row"><span class="label">1908 booklet</span><p class="plain">Canton Christian College &#xb7; scanned pages</p></div>
+<div class="row"><span class="label">&#x6556;&#x58eb;&#x6d32; 1954</span><p class="plain">&#x300a;&#x4e94;&#x5341;&#x5e74;&#x524d;&#x4e4b;&#x5dba;&#x5357;&#x300b; &#xb7; a manuscript, images only</p></div>
+</div>
+</div>
+<div class="read"><p>One question, what did Lingnan teach between 1888 and 1904, and four sources: two are searchable text, one is scanned pages and one is a manuscript in images.</p>
+</div></section>
+<section id="m4-04"><h2><a href="#m4-04"><span class="no">79</span>Just ask: the agent searches your files, expanding the words.</a></h2>
+<div class="body"><h1>Just ask: the agent searches your files, expanding the words.</h1>
+<div class="body">
+<div class="term wide">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Find every page about what early Lingnan</span>
+<span class="you">taught, in English and Chinese.</span>
+&#xa0;
+<span class="blk">&#x24; rg -l -i &quot;curriculum|courses|taught|Bible&quot;</span>
+<span class="blk">&#x24; rg -l &quot;&#x8ab2;&#x7a0b;|&#x8ab2;&#x76ee;|&#x82f1;&#x6587;|&#x6f22;&#x6587;|&#x8056;&#x7d93;|&#x9ad4;&#x64cd;&quot;</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span>  my-work/research/notes/hits.md
+&#xa0;
+<span class="ok">Hits in Corbett and Mou, ranked.</span>
+<span class="hl">The memoir is images only: not searched.</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="tree"><span class="label">my-work/sources/raw/</span><pre>
+&#x251c;&#x2500; corbett-1963.pdf   <span class="dim">&#x2713; text</span>
+&#x251c;&#x2500; mou-2018.pdf       <span class="dim">&#x2713; text</span>
+&#x251c;&#x2500; ccc-1908.pdf       <span class="hl">? scans</span>
+&#x2514;&#x2500; memoir-1954/       <span class="hl">? images</span>
+</pre></div>
+</div>
+</div>
+<div class="read"><p>Asked once, the agent expands the question into English and Chinese terms, searches the files and writes a ranked list to research/notes/hits.md; it reports that the memoir, being images only, could not be searched.</p>
+</div></section>
+<section id="m4-05"><h2><a href="#m4-05"><span class="no">80</span>It shows you where: each hit with its source, page and snippet.</a></h2>
+<div class="body"><h1>It shows you where: each hit with its source, page and snippet.</h1>
+<div class="file"><div class="file-bar">my-work/research/notes/hits.md</div><pre>
+#  Source          Place   Terms  Text around the first match
+1  Corbett 1963    p. 31   6      the Chinese classics&#x2026; a Sunday Bible Class
+2  thesis (2018)   PDF 61  6      literature of China. Translation from English&#x2026;
+&#x2026;
+<span class="hl">memoir (1954)   manuscript images: not searchable yet</span>
+</pre></div>
+</div>
+<div class="read"><p>The agent lists each hit with its source, page, the number of terms and a snippet, so you know where to look; the manuscript memoir is not searchable yet.</p>
+</div></section>
+<section id="m4-05s"><h2><a href="#m4-05s"><span class="no">81</span>Two problems follow.</a></h2>
+<div class="body"><h1>Two problems follow.</h1>
+<div class="rows">
+<div class="row hot"><span class="label">1 &#xb7; Not searchable yet</span><p class="plain">scans and manuscripts are only pictures</p></div>
+<div class="row"><span class="label">2 &#xb7; Too many hits</span><p class="plain">the agent cannot read them for you, and you cannot simply trust it: it can make things up</p></div>
+</div>
+</div>
+<div class="read"><p>Two problems: some sources cannot be searched yet (scans, manuscripts); and there are too many hits to use as they are, since the agent cannot read them for you and may make things up.</p>
+</div></section>
+<section id="m4-09"><h2><a href="#m4-09"><span class="no">82</span>A scan is only a picture; OCR turns it into text.</a></h2>
+<div class="body"><h1>A scan is only a picture; OCR turns it into text.</h1>
+<p class="sub">Problem 1: some sources cannot be searched yet.</p>
+<div class="body">
+<div class="frame fit doc-scan"><span class="label">&#x6556;&#x58eb;&#x6d32; memoir, p. 2</span><figure><p class="withheld">Handwritten page 2 of Ao Shizhou&apos;s memoir, vertical writing on ruled paper; nothing in it is machine-readable text. (Image shown in class only.)</p><figcaption>&#x6556;&#x58eb;&#x6d32;&#x300a;&#x4e94;&#x5341;&#x5e74;&#x524d;&#x4e4b;&#x5dba;&#x5357;&#x300b; (1954), manuscript p. 2.. Lingnan University Library, Library manuscript, reproduced for teaching</figcaption></figure></div>
+<div class="stack">
+<div class="frame hot"><span class="label">OCR &#xb7; PaddleOCR (Baidu)</span><div class="text">
+<ul>
+<li>free; online or on your computer</li>
+<li><a href="https://aistudio.baidu.com/paddleocr">aistudio.baidu.com/paddleocr</a></li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">Document AI leaderboard</span><div class="text">
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Model</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Nanonets OCR-3</td>
+<td>85.9</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GPT-5.4</td>
+<td>83.5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Gemini 3 Pro</td>
+<td>82.8</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Gemini 3 Flash</td>
+<td>82.0</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+</div>
+</div>
+<div class="read"><p>A scan is only pixels, with no text to search. OCR turns it into text: PaddleOCR from Baidu is free, online at AI Studio or on your own computer, and gives each line with its position on the page.</p>
+</div></section>
+<section id="m4-ocrbatch"><h2><a href="#m4-ocrbatch"><span class="no">83</span>For ordinary OCR, the agent writes the calls and runs the batch.</a></h2>
+<div class="body"><h1>For ordinary OCR, the agent writes the calls and runs the batch.</h1>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">OCR @my-work/sources/raw/ccc-1908.pdf and every image in</span>
+<span class="you">@my-work/sources/raw/memoir-1954/ with the PaddleOCR API.</span>
+<span class="you">My token is in PADDLE_TOKEN. Save one text file per page to</span>
+<span class="you">sources/processed/, then tell me which pages to check first.</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span> my-work/research/ocr_batch.py
+<span class="blk">&#x24; python my-work/research/ocr_batch.py ccc-1908.pdf memoir-1954/</span>
+  ccc-1908-p001.txt &#x2026;  memoir-p001.txt &#x2026;  <span class="dim">(no uploads by hand)</span>
+&#xa0;
+<span class="ok">Done. <span class="hl">Check memoir p. 2 first:</span> most low-confidence lines.</span>
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>For ordinary OCR, the agent&apos;s help is around the tool: it writes the API calls, runs every page in a batch, saves one text file per page, and tells you which pages to check first.</p>
+</div></section>
+<section id="m4-12"><h2><a href="#m4-12"><span class="no">84</span>A vision model can transcribe too: OpenCode writes the request.</a></h2>
+<div class="body"><h1>A vision model can transcribe too: OpenCode writes the request.</h1>
+<div class="body">
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Transcribe @my-work/sources/raw/shangbao-1923-c05.jpg</span>
+<span class="you">with Gemini Flash through OpenRouter, using the</span>
+<span class="you">transcribe-faithfully prompt. My key is in</span>
+<span class="you">OPENROUTER_API_KEY.</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span> my-work/research/transcribe.py
+<span class="blk">&#x24; python my-work/research/transcribe.py &#x2026;c05.jpg</span>
+<span class="ok">Saved sources/processed/shangbao-1923-c05.txt</span>
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="json"><pre>
+{
+  &quot;model&quot;: &quot;google/gemini-3.8-flash&quot;,
+  &quot;temperature&quot;: 0,
+  &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: [
+    { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;:
+      &quot;Transcribe this page faithfully. Copy the text exactly, in its original script. Keep the line breaks. <span class="hl">Do not correct, modernise, translate or complete anything.</span> Write [?] for a character you cannot read.&quot; },
+    { &quot;type&quot;: &quot;image_url&quot;,
+      &quot;image_url&quot;: { &quot;url&quot;: &quot;data:image/jpeg;base64,&#x2026;&quot; } }
+  ]}]
+}
+</pre></div>
+</div>
+</div>
+<div class="read"><p>A vision model can transcribe a page. Ask OpenCode to send the image to a model through OpenRouter with your key; it writes the request: model, temperature 0, a faithful-transcription prompt and the image.</p>
+</div></section>
+<section id="m4-13b"><h2><a href="#m4-13b"><span class="no">85</span>A vision model reads even a poor scan: all five characters right.</a></h2>
+<div class="body"><h1>A vision model reads even a poor scan: all five characters right.</h1>
+<div class="body">
+<div class="frame fit"><span class="label">memoir p. 2, one column</span><div class="pic"><figure><p class="withheld">One handwritten column from Ao Shizhou&apos;s memoir, page 2. (Image shown in class only.)</p><figcaption>Lingnan University Library</figcaption></figure></div></div>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">@my-work/sources/raw/memoir-p2-col12.png</span>
+<span class="you">Transcribe it faithfully &#x2026; write [?] for a</span>
+<span class="you">character you cannot read.</span>
+&#xa0;
+   <span class="tool">&#x2192; Explored:</span> 1 read
+&#xa0;
+&#x591a;&#x4ee5;&#x82f1;&#x6587;&#x6559;&#x6388;&#x60df;<span class="add">&#x570b;</span>&#x6587;&#x4e00;<span class="add">&#x9580;&#x5247;</span>&#x7531;&#x937e;&#x69ae;<span class="add">&#x5149;</span>&#x5148;&#x751f;<span class="add">&#x8ca0;</span>&#x8cac;&#x8b1b;&#x6388;
+&#x6587;&#x6cd5;&#x53ca;&#x4f5c;&#x6587;&#x5c1a;
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash &#xb7; 18.4s</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+</div>
+<div class="read"><p>Given the faithful-transcription prompt, DeepSeek V4.1 Flash read the same column correctly, keeping the traditional characters, in 18 seconds.</p>
+</div></section>
+<section id="m4-11"><h2><a href="#m4-11"><span class="no">86</span>OCR errors hide words: five in a single line.</a></h2>
+<div class="body"><h1>OCR errors hide words: five in a single line.</h1>
+<div class="body">
+<div class="frame fit"><span class="label">memoir p. 2, one column</span><div class="pic"><figure><p class="withheld">Part of a handwritten column from Ao Shizhou&apos;s memoir, page 2: &#x60df;&#x570b;&#x6587;&#x4e00;&#x9580;&#x5247;&#x7531;&#x937e;&#x69ae;&#x5149;&#x5148;&#x751f;&#x8ca0;&#x8cac;. (Image shown in class only.)</p><figcaption>Lingnan University Library</figcaption></figure></div></div>
+<div class="rows">
+<div class="row"><span class="label">PaddleOCR</span><p class="plain">&#x60df;<span class="mark">&#x56fe;</span>&#x6587;&#x4e00;<span class="mark">&#x95e8;&#x5212;</span>&#x7531;&#x937e;&#x69ae;<span class="mark">&#x5148;</span>&#x5148;&#x751f;<span class="mark">&#x54e1;</span>&#x8cac;</p></div>
+<div class="row"><span class="label">Read by a person</span><p class="plain">&#x60df;&#x570b;&#x6587;&#x4e00;&#x9580;&#x5247;&#x7531;&#x937e;&#x69ae;&#x5149;&#x5148;&#x751f;&#x8ca0;&#x8cac;</p></div>
+</div>
+</div>
+</div>
+<div class="read"><p>In one handwritten column, OCR made five errors (&#x570b;&#x2192;&#x56fe;, &#x9580;&#x2192;&#x95e8;, &#x5247;&#x2192;&#x5212;, &#x5149;&#x2192;&#x5148;, &#x8ca0;&#x2192;&#x54e1;), so a search for &#x570b;&#x6587; never finds this page.</p>
+</div></section>
+<section id="m4-13"><h2><a href="#m4-13"><span class="no">87</span>Both err: OCR drops a character; the model rewrites a name.</a></h2>
+<div class="body"><h1>Both err: OCR drops a character; the model rewrites a name.</h1>
+<div class="body">
+<div class="frame fit"><span class="label">&#x300a;&#x5546;&#x5831;&#x300b; 1923 &#xb7; one column</span><div class="pic"><figure><p class="withheld">One printed column from the 1923 Shangbao notice: &#x9119;&#x4eba;&#x8332;&#x56e0;&#x91ab;&#x52d9;&#x65e5;&#x7e41;&#x4e0d;&#x9051;&#x517c;&#x9867;&#x79d1;&#x767c;&#x85e5;&#x623f;&#x83ef;&#x7e3d;&#x7d93;&#x7406;&#x4e8b;&#x5df2;&#x5411;. (Image shown in class only.)</p><figcaption>&#x300a;&#x5546;&#x5831;&#x300b;, 2 Sept 1923, p. 1, block c05; DH guide, Anatomy of the Newspaper</figcaption></figure></div></div>
+<div class="rows">
+<div class="row"><span class="label">The page</span><p class="plain">&#x9119;&#x4eba;&#x8332;&#x56e0;&#x91ab;&#x52d9;&#x65e5;&#x7e41;&#x4e0d;&#x9051;&#x517c;&#x9867;&#x79d1;&#x767c;&#x85e5;&#x623f;&#x83ef;&#x7e3d;&#x7d93;&#x7406;&#x4e8b;&#x5df2;&#x5411;</p></div>
+<div class="row"><span class="label">PaddleOCR (Baidu)</span><p class="plain">&#x9119;&#x4eba;&#x8332;&#x56e0;&#x91ab;&#x52d9;&#x65e5;&#x7e41;&#x4e0d;<mark>_</mark>&#x517c;&#x9867;&#x79d1;&#x767c;&#x85e5;&#x623f;&#x83ef;&#x7e3d;&#x7d93;&#x7406;&#x4e8b;&#x5df2;&#x5411;<br><span class="cap">&#x9051; missing: a gap you can see</span></p></div>
+<div class="row hot"><span class="label">Gemini Flash</span><p class="plain">&#x9119;&#x4eba;<mark>&#x56e0;&#x696d;&#x52d9;</mark>&#x65e5;&#x7e41;&#x4e0d;&#x9051;&#x517c;&#x9867;<mark>&#x79d1;&#x5b78;&#x91ab;&#x85e5;&#x5b78;</mark>&#x7e3d;&#x7d93;&#x7406;<mark>&#x4e8b;&#x52d9;</mark>&#x5df2;&#x5411;<br><span class="cap">fluent, and a different firm</span></p></div>
+</div>
+</div>
+</div>
+<div class="read"><p>On one 1923 column, PaddleOCR left out one character (&#x9051;), a visible gap; Gemini Flash read fluently but rewrote the firm&apos;s name, &#x79d1;&#x767c;&#x85e5;&#x623f; into &#x79d1;&#x5b78;&#x91ab;&#x85e5;. Both make mistakes; only one hides them.</p>
+</div></section>
+<section id="m4-19b"><h2><a href="#m4-19b"><span class="no">88</span>Now the memoir joins the search.</a></h2>
+<div class="body"><h1>Now the memoir joins the search.</h1>
+<p class="sub">Still check the page: on memoir p. 2 the OCR read &#x570b;&#x6587; as &#x56fe;&#x6587;.</p>
+<div class="file"><div class="file-bar">my-work/research/notes/hits.md</div><pre>
+#  Source          Place   Terms  Text around the first match
+1  <span class="hl">memoir (OCR)    p. 2    9      &#x4e3a;&#x5e7f;&#x5b66;&#x73ed;&#x56db;&#x5e74;&#x7562;&#x4e1a;&#x2026;&#x5168;&#x7a0b;&#x8bfe;&#x76ee;&#x6709;&#x8056;&#x7ecf;&#x82f1;&#x2026;</span>
+2  Corbett 1963    p. 31   6      the Chinese classics&#x2026; a Sunday Bible Class
+3  thesis (2018)   PDF 61  6      literature of China. Translation from English&#x2026;
+&#x2026;  107 pages
+</pre></div>
+</div>
+<div class="read"><p>After digitization the memoir joins the search: page 2 now tops the list with nine terms, out of 107 pages in all. The OCR still hid one word, &#x570b;&#x6587;, read as &#x56fe;&#x6587;.</p>
+</div></section>
+<section id="m4-15"><h2><a href="#m4-15"><span class="no">89</span>A crowded newspaper page is cut into blocks first.</a></h2>
+<div class="body"><h1>A crowded newspaper page is cut into blocks first.</h1>
+<p class="sub">Each coloured box is one block. A specific technique; many tutorials online.</p>
+<div class="body">
+<div class="frame scroll"><span class="label">&#x300a;&#x5546;&#x5831;&#x300b;, 2 Sept 1923, p. 1</span><figure><p class="withheld">The same page with red rectangles drawn around each detected block of text and advertising. (Image shown in class only.)</p><figcaption>Blocks detected on &#x300a;&#x5546;&#x5831;&#x300b;, 2 September 1923, p. 1.. DH guide, Anatomy of the Newspaper, Used as in the DH guide</figcaption></figure></div>
+</div>
+</div>
+<div class="read"><p>Read whole, a newspaper page mixes columns, advertisements and notices. The page is first cut into blocks, each with its own boundary.</p>
+</div></section>
+<section id="v-1"><h2><a href="#v-1"><span class="no">90</span>To search a picture, turn it into words: its subject, and its style.</a></h2>
+<div class="body"><h1>To search a picture, turn it into words: its subject, and its style.</h1>
+<div class="body">
+<div class="frame fit"><span class="label">Hall of Quiet Study &#xb7; Canton, 19th century</span><div class="pic"><figure><img src="assets/47c205e729-met-387080-hall-of-quiet-study.jpg" alt="A Canton watercolour of a scholar&apos;s study seen from a balcony." loading="lazy"><figcaption>Hall of Quiet Study, anonymous, Canton, 19th century, watercolour. The Metropolitan Museum of Art, Gift of Harry G. Friedman, 1959 (Open Access, CC0)</figcaption></figure></div></div>
+<div class="file"><div class="file-bar">hall-of-quiet-study.description.md (AI-generated)</div><pre>
+## Subject
+An elevated view from a verandah into a three-bay Chinese interior.
+- Left room: a man in a blue gown at a desk, writing or reading with a brush.
+- Centre: a second man lounges on a low daybed; hanging scrolls behind.
+## Style and medium
+<span class="hl">Watercolour with opaque body colour (gouache) on paper.</span>
+- Ink outline, flat bright colour; one-point perspective.
+## Visible text
+- Plaque &#x975c;&#x89c0;&#x81ea;&#x5f97;; couplet &#x534a;&#x591c;&#x66f8;&#x8072;&#x6708;&#x5728;&#x5929;
+## Guesses
+- <span class="hl">Canton export painting, c. 1830&#x2013;1870.</span> Reason: green-lacquer joinery, glass bell jars, flat bright watercolour.
+- A scholar&apos;s studio (&#x66f8;&#x9f4b;). Reason: plaque and couplet are about reading.
+</pre></div>
+</div>
+</div>
+<div class="read"><p>A picture cannot be searched until it is put into words. The describe-image skill writes what is shown, the style and medium (watercolour and gouache), the visible text (&#x975c;&#x89c0;&#x81ea;&#x5f97;), and only then its guesses, each with a reason.</p>
+</div></section>
+<section id="v-2"><h2><a href="#v-2"><span class="no">91</span>Then search the words: by keyword, or by meaning.</a></h2>
+<div class="body"><h1>Then search the words: by keyword, or by meaning.</h1>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Search the image descriptions: by keyword for &quot;watercolour&quot;,</span>
+<span class="you">then by meaning for &quot;a scholar reading in his study&quot;.</span>
+&#xa0;
+<span class="blk">&#x24; rg -il &quot;watercolour&quot; sources/processed/*.description.md</span>
+  hall-of-quiet-study   <span class="dim">&quot;Watercolour with opaque body colour (gouache)&quot;</span>
+<span class="blk">&#x24; search by meaning: &quot;a scholar reading in his study&quot;</span>
+  <span class="hl">0.69  hall-of-quiet-study</span>   <span class="dim">&quot;a man &#x2026; writing or reading&quot;; &quot;a scholar&apos;s studio&quot;</span>
+  0.60  ju-lian-insects-and-flowers
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>Once each picture has a description, a keyword search for &quot;watercolour&quot; finds the Canton study, and a search by meaning for &quot;a scholar reading in his study&quot; ranks it first (0.69) because its description mentions a man reading and a scholar&apos;s studio.</p>
+</div></section>
+<section id="m4-18"><h2><a href="#m4-18"><span class="no">92</span>A page with pictures and text: transcribe and describe in one pass.</a></h2>
+<div class="body"><h1>A page with pictures and text: transcribe and describe in one pass.</h1>
+<p class="sub">The page says Macao is &#x201c;near Hongkong&#x201d;, not that the school went on to Hong Kong.</p>
+<div class="body">
+<div class="frame fit"><span class="label">1908 booklet, p. 9</span><div class="pic"><figure><img src="assets/358e787c1f-canton-1908-p12.png" alt="Page 9 of the 1908 Canton Christian College booklet: three oval portraits with captions, and text on the College opening in 1899 and the move to Macao in 1900." loading="lazy"><figcaption>Canton Christian College: its field and work in China (1908), printed p. 9 / scan p. 12. Digital Commons @ Lingnan University.. Canton Christian College Trustees, 1908 (Untouched scan in my-work/sources/raw/), Public domain</figcaption></figure></div></div>
+<div class="file wide"><div class="file-bar">ccc-1908-p12.description.md</div><pre>
+Visible
+- Centre: oval portrait; caption &quot;Rev. Oscar F. Wisner, D.D.&quot;
+- Bottom left: oval portrait; caption &quot;Mr. David Torrens&quot;
+- Text: the College &quot;opened June 3, 1899&quot; with six students;
+  <span class="hl">a move to Macao in 1900 &#x2026; then Hong Kong</span>
+&#xa0;
+Guesses (marked)
+- <span class="hl">Canton Christian College: a guess from the place names,</span>
+  <span class="hl">not from any title on the page</span>
+- Date c. 1908: from the 1907 enrolment figures
+</pre></div>
+</div>
+</div>
+<div class="read"><p>The model lists what is visible (portraits, captions, key sentences) before its guesses, and marks each guess with its basis.</p>
+</div></section>
+<section id="m4-07"><h2><a href="#m4-07"><span class="no">93</span>Keyword search matches words; semantic search matches meaning.</a></h2>
+<div class="body"><h1>Keyword search matches words; semantic search matches meaning.</h1>
+<p class="sub">Question: &#x201c;what subjects were taught?&#x201d;</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Passage</th>
+<th>Keyword</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>memoir p. 2 &#xb7; &#x5168;&#x7a0b;&#x8ab2;&#x76ee;&#x6709;&#x8056;&#x7d93;&#x3001;&#x82f1;&#x6587;&#x3001;&#x6f22;&#x6587;&#x2026;</td>
+<td>no match</td>
+<td><mark>0.72</mark></td>
+</tr>
+<tr>
+<td>1908 booklet p. 9 &#xb7; &#x201c;opened June 3, 1899&#x201d;</td>
+<td>no match</td>
+<td>0.61</td>
+</tr>
+<tr>
+<td>Corbett p. 31 &#xb7; &#x201c;transferred to Macao&#x201d;</td>
+<td>no match</td>
+<td>0.58</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>For &quot;what subjects were taught?&quot;, a keyword search finds none of three passages; a semantic search ranks the Chinese memoir&apos;s course list first (0.72), with no shared word and across languages.</p>
+</div></section>
+<section id="m4-emb"><h2><a href="#m4-emb"><span class="no">94</span>An embedding turns a text into numbers; close meanings sit close.</a></h2>
+<div class="body"><h1>An embedding turns a text into numbers; close meanings sit close.</h1>
+<div class="body">
+<div class="frame fit wide"><span class="label">3,072 dimensions, projected to three</span><div class="pic"><figure><img src="assets/560e91574e-embedding-3d.svg" alt="Six words as points in a box: tennis and basketball near each other, war far from both; each English word sits next to its Chinese counterpart (&#x7db2;&#x7403;, &#x7c43;&#x7403;, &#x6230;&#x722d;)." loading="lazy"><figcaption>Vertex AI gemini-embedding-001, 6 Nov 2026; projection (PCA) by the workshop</figcaption></figure></div></div>
+<div class="frame hot"><span class="label">Similarity</span><div class="text">
+<ul>
+<li>tennis &#xb7; basketball: 0.72</li>
+<li>tennis &#xb7; war: 0.59</li>
+<li>tennis &#xb7; &#x7db2;&#x7403;: <mark>0.80</mark></li>
+<li>war &#xb7; &#x6230;&#x722d;: 0.77</li>
+<li>each word: 3,072 numbers</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>An embedding model turns a text into a list of numbers, a point in space; close meanings get close points. Tennis and basketball sit together, war apart, and each word sits next to its Chinese counterpart (tennis and &#x7db2;&#x7403;: 0.80).</p>
+</div></section>
+<section id="m5-10"><h2><a href="#m5-10"><span class="no">95</span>Abstract themes are harder to search: 'the passing of time'.</a></h2>
+<div class="body"><h1>Abstract themes are harder to search: &apos;the passing of time&apos;.</h1>
+<ul>
+<li>the idea is rarely named</li>
+<li>it is said in many words</li>
+<li>and across languages and traditions</li>
+</ul>
+<div class="frame"><span class="label">Ecclesiastes 1:4 (KJV)</span><div class="text">
+<p>&#x201c;One generation passeth away, and another generation cometh: but the earth abideth for ever.&#x201d;</p>
+</div></div>
+<p class="sub">About time passing, yet the word &#x201c;time&#x201d; never appears, and &#x201c;passeth&#x201d; is not &#x201c;passing&#x201d;.</p>
+</div>
+<div class="read"><p>Abstract themes such as the passing of time are rarely named directly; they are said in many words, across languages and traditions, so a single keyword fails.</p>
+</div></section>
+<section id="m5-13"><h2><a href="#m5-13"><span class="no">96</span>Ask for a one-line note on every passage, in one language.</a></h2>
+<div class="body"><h1>Ask for a one-line note on every passage, in one language.</h1>
+<div class="body">
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">For each passage in</span>
+<span class="you">@my-work/sources/processed/passages.md</span>
+<span class="you">write ONE line of synopsis in simplified</span>
+<span class="you">Chinese, <span class="hl">using the same key terms wherever</span></span>
+<span class="you"><span class="hl">the idea is the same.</span> Save them to</span>
+<span class="you">my-work/research/notes/synopses.md.</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span> my-work/research/notes/synopses.md
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="file"><div class="file-bar">my-work/research/notes/synopses.md (AI-generated)</div><pre>
+P1  Analects 9.17       &#x5b54;&#x5b50;&#x7ad9;&#x5728;&#x6cb3;&#x8fb9;&#x611f;&#x53f9;&#xff0c;<span class="hl">&#x65f6;&#x95f4;&#x6d41;&#x901d;</span>&#x5c31;&#x50cf;&#x8fd9;&#x6cb3;&#x6c34;&#xff0c;&#x663c;&#x591c;&#x4e0d;&#x505c;&#x3002;
+P2  Plato on Heraclitus &#x4e07;&#x7269;&#x7686;&#x53d8;&#x3001;&#x65e0;&#x7269;&#x5e38;&#x4f4f;&#xff0c;&#x7528;&#x6cb3;&#x6d41;&#x6bd4;&#x55bb;<span class="hl">&#x65f6;&#x95f4;&#x6d41;&#x901d;</span>&#x2026;&#x2026;
+P3  Ecclesiastes 1:4    &#x4e00;&#x4ee3;&#x4eba;&#x8fc7;&#x53bb;&#x3001;&#x53e6;&#x4e00;&#x4ee3;&#x4eba;&#x53c8;&#x6765;&#xff0c;&#x8fd9;&#x662f;&#x4e16;&#x4ee3;&#x66f4;&#x66ff;&#xff0c;&#x800c;&#x5927;&#x5730;&#x957f;&#x5b58;&#x3002;
+P4  Marcus Aurelius     &#x628a;<span class="hl">&#x65f6;&#x95f4;&#x6d41;&#x901d;</span>&#x6bd4;&#x4f5c;&#x4e8b;&#x4ef6;&#x7684;&#x6cb3;&#x6d41;&#x2026;&#x2026;
+P5  &#x8607;&#x8efe;&#x300a;&#x8d64;&#x58c1;&#x8ce6;&#x300b;      &#x82cf;&#x8f7c;&#x8bf4;<span class="hl">&#x65f6;&#x95f4;&#x6d41;&#x901d;</span>&#x50cf;&#x8fd9;&#x6cb3;&#x6c34;&#xff0c;&#x5374;&#x672a;&#x5c1d;&#x771f;&#x6b63;&#x6d41;&#x8d70;&#x2026;&#x2026;
+P6  &#x6556;&#x58eb;&#x6d32; memoir p. 3  &#x661f;&#x671f;&#x65e5;&#x4e0b;&#x5348;&#xff0c;&#x6559;&#x5e08;&#x2026;&#x2026;&#x5230;&#x516c;&#x56ed;&#x3001;&#x6d77;&#x6ee8;&#x6216;&#x50fb;&#x9759;&#x4e4b;&#x5904;&#x6e38;&#x884c;&#x3002;
+</pre></div>
+</div>
+</div>
+<div class="read"><p>The model writes a one-line Chinese synopsis for each passage, using the same term, &#x65f6;&#x95f4;&#x6d41;&#x901d;, wherever the idea is the same.</p>
+</div></section>
+<section id="m5-14"><h2><a href="#m5-14"><span class="no">97</span>One search finds four, and the model flags where they differ.</a></h2>
+<div class="body"><h1>One search finds four, and the model flags where they differ.</h1>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+Search &#x65f6;&#x95f4;&#x6d41;&#x901d; (synopses only) &#x2192; <span class="hl">P1, P2, P4, P5</span>
+&#xa0;
+- P3 does not match &#x2026; it talks about generations dying and coming
+  rather than a flow of time. If you consider generational succession
+  a form of &#x65f6;&#x95f4;&#x6d41;&#x901d;, P3 is a borderline case.
+- <span class="hl">P5 matches, but says the opposite of P1/P2/P4.</span> &#x82cf;&#x8f7c; borrows
+  &#x901d;&#x8005;&#x5982;&#x65af; and then denies it (&#x800c;&#x672a;&#x5617;&#x5f80;&#x4e5f;). A term-based search finds it
+  because the image is shared; the claim is not.
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash &#xb7; 51.7s</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>Searching the synopses for &#x65f6;&#x95f4;&#x6d41;&#x901d; finds four passages across languages; the model notes that Su Shi shares the image but argues the opposite, which only reading can settle.</p>
+</div></section>
+<section id="m5-02"><h2><a href="#m5-02"><span class="no">98</span>107 pages: the agent lowers the density; you decide where to read.</a></h2>
+<div class="body"><h1>107 pages: the agent lowers the density; you decide where to read.</h1>
+<p class="sub">Problem 2: too many hits to use as they are.</p>
+<div class="route">
+<div class="step"><p class="what">Too much to read</p><p class="how">107 pages, three sources</p></div>
+<div class="arrow">&#x2192;</div>
+<div class="step"><p class="what">Compressed</p><p class="how">by the agent, with page numbers</p></div>
+<div class="arrow">&#x2192;</div>
+<div class="step red"><p class="what">Your time</p><p class="how">close reading and checking, where it matters</p></div>
+</div>
+</div>
+<div class="read"><p>A search returned 107 pages. The agent compresses them, keeping page numbers, so that you can decide where to spend your time on close reading and checking.</p>
+</div></section>
+<section id="m5-03"><h2><a href="#m5-03"><span class="no">99</span>The agent drafts a review sheet; you decide where to start.</a></h2>
+<div class="body"><h1>The agent drafts a review sheet; you decide where to start.</h1>
+<div class="body">
+<div class="frame"><span class="label">Three steps</span><div class="text">
+<ol>
+<li>107 pages of keyword hits</li>
+<li>one review sheet, with reasons</li>
+<li>a few pages, read closely by you</li>
+</ol>
+<p>Then you collaborate: tell it what you found.</p>
+</div></div>
+<div class="term wide">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="tool">&#x2190; Write</span> my-work/research/review-sheet.md
+&#xa0;
+<span class="ok">Read first</span>
+memoir p. 2      the fullest course list: &#x5723;&#x7ecf;, &#x6f22;&#x6587; &#x2026; &#x9ad4;&#x64cd;
+Corbett p. 15    28 March 1888 opening
+Corbett p. 22    the founding prospectus
+<span class="ok">Set aside</span>
+63 thesis pages  1919&#x2013;1947: nothing on 1888&#x2013;1904
+8 index pages    <span class="hl">index lines: a high count means nothing</span>
+&#xa0;
+<span class="dim">No page was opened: these are leads, not findings. &#xb7; 59.8s</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+</div>
+<div class="read"><p>The agent turns 107 hits into a review sheet in a minute: read first, set aside, each with a reason, and &quot;these are leads, not findings&quot;. Then you collaborate: it ranks, you open and read the pages, and you tell it what you found.</p>
+</div></section>
+<section id="qa-4"><h2><a href="#qa-4"><span class="no">100</span>Your questions, Module 5: Search within sources.</a></h2>
+<div class="body"><h1>Your questions, Module 5: Search within sources.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Your question</th>
+<th>Short answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>03.1</td>
+<td>&#x6750;&#x6599;&#x6578;&#x4f4d;&#x5316;&#x4e0d;&#x8db3;&#x6642;&#x53ef;&#x4ee5;&#x600e;&#x6a23;&#x7814;&#x7a76;&#xff1f;</td>
+<td>OCR, then a vision model with a faithful-transcription prompt; keep the page and the box, so every line can be checked.</td>
+</tr>
+<tr>
+<td>06.2</td>
+<td>&#x5982;&#x4f55;&#x652f;&#x63f4;&#x591a;&#x8a9e;&#x6a94;&#x6848;&#x7814;&#x7a76;&#xff1f;</td>
+<td>The agent expands keywords across languages and scripts; transcribe in the original script, never translate while transcribing.</td>
+</tr>
+<tr>
+<td>02.2</td>
+<td>&#x6bd4;&#x5c0d;&#x984c;&#x8dcb;&#x8207;&#x624b;&#x8de1;&#xff0c;AI &#x53ef;&#x4ee5;&#x600e;&#x6a23;&#x5354;&#x52a9;&#xff1f;</td>
+<td>Next week: using AI to build a small tool that crops and lines up characters for you to compare.</td>
+</tr>
+<tr>
+<td>05.3</td>
+<td>&#x5728;&#x591a;&#x90e8;&#x63d2;&#x5716;&#x96c6;&#x4e2d;&#x5c0b;&#x627e;&#x7279;&#x5b9a;&#x6bcd;&#x984c;</td>
+<td>One description per image, visible first and guesses marked; search the descriptions, then open the page.</td>
+</tr>
+<tr>
+<td>12.1</td>
+<td>&#x5982;&#x4f55;&#x5c0b;&#x627e;&#x9928;&#x85cf;&#x4e2d;&#x7684;&#x7279;&#x5b9a;&#x5716;&#x50cf;&#xff1f;</td>
+<td>Official catalogues first; then describe your own images and search the descriptions.</td>
+</tr>
+<tr>
+<td>01.1</td>
+<td>&#x5982;&#x4f55;&#x5c0b;&#x627e;&#x4e26;&#x806f;&#x7e6b;&#x8de8;&#x5b78;&#x79d1;&#x6750;&#x6599;&#xff1f;</td>
+<td>Expand keywords, search by meaning, and have the model write a one-line synopsis of every passage in one language; then read the originals.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>The participants&apos; questions for Module 5, each with a short answer drawn from the slides before.</p>
+</div></section>
+<section id="q-4"><h2><a href="#q-4"><span class="no">101</span>Any questions?</a></h2>
+<div class="body"><h1>Any questions?</h1>
+<p class="sub">Module 5: Search within sources.</p>
+</div>
+<div class="read"><p>End of Module 5. Questions are welcome now or after the session.</p>
+</div></section>
+<section id="m5-01"><h2><a href="#m5-01"><span class="no">102</span>Module 6: Read and synthesize.</a></h2>
+<div class="body"><h1>Module 6: Read and synthesize.</h1>
+<p class="sub">Close reading, notes, and a conclusion.</p>
+</div>
+<div class="read"><p>Module 6 is close reading and synthesis: in the PDF, with marks turned into notes that keep their page and words, and four voices kept apart.</p>
+</div></section>
+<section id="m5-06"><h2><a href="#m5-06"><span class="no">103</span>Read where your notes stay usable: often, that means a PDF.</a></h2>
+<div class="body"><h1>Read where your notes stay usable: often, that means a PDF.</h1>
+<div class="rows">
+<div class="row"><span class="label">Page</span><p class="plain">every mark keeps its page, and the original&apos;s printed page</p></div>
+<div class="row"><span class="label">Open</span><p class="plain">not locked in one app or a format that needs converting</p></div>
+<div class="row"><span class="label">Time</span><p class="plain">every note has a timestamp: this reading, or the next?</p></div>
+<div class="row hot"><span class="label">Tools</span><p class="plain">programs know the format; PDF tooling is mature</p></div>
+</div>
+</div>
+<div class="read"><p>Whatever you read in, your marks should keep their page, stay out of any one app&apos;s lock-in, carry a timestamp, and be readable by programs. A PDF usually meets all four.</p>
+</div></section>
+<section id="m5-07"><h2><a href="#m5-07"><span class="no">104</span>Mark the passage, comment beside it; the agent extracts both.</a></h2>
+<div class="body"><h1>Mark the passage, comment beside it; the agent extracts both.</h1>
+<div class="grid">
+<div class="frame fit"><span class="label">Corbett 1963, p. 31</span><div class="pic"><figure><p class="withheld">A page of Corbett&apos;s history with the passage &apos;Early in July the situation became so alarming that the College ... was hastily transferred to Macao&apos; highlighted, and a note by Bo An, 7/7/26 17:27:19, reading &apos;In July, 1900&apos;. (Image shown in class only.)</p><figcaption>Corbett, Lingnan University (1963); annotation by Bo An</figcaption></figure></div></div>
+<div class="stack">
+<div class="file"><div class="file-bar">You, in OpenCode</div><pre>
+<span class="you">Use the extract-pdf-annotations skill</span>
+<span class="you">on @sources/raw/corbett-1963.pdf</span>
+</pre></div>
+<div class="json"><pre>
+{
+  &quot;file&quot;: &quot;corbett-1963.pdf&quot;,
+  &quot;printed_page&quot;: 31,
+  &quot;type&quot;: &quot;Highlight&quot;,
+  &quot;text&quot;: &quot;Early in July the situation became so alarming that the College &#x2026; was hastily transferred to Macao&quot;,
+  &quot;note&quot;: &quot;<span class="hl">In July, 1900</span>&quot;,
+  &quot;author&quot;: &quot;Bo An&quot;,
+  &quot;modified&quot;: &quot;<span class="hl">2026-07-07 17:27:19</span>&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="read"><p>A highlight on Corbett (1963), p. 31, with a note &quot;In July, 1900&quot;, signed and timed by the PDF reader. One instruction to OpenCode extracts the file, page, quoted words, note, author and time.</p>
+</div></section>
+<section id="m5-08"><h2><a href="#m5-08"><span class="no">105</span>Two sources on Macao, read and extracted together.</a></h2>
+<div class="body"><h1>Two sources on Macao, read and extracted together.</h1>
+<div class="grid">
+<div class="frame fit"><span class="label">1908 booklet, p. 9</span><div class="pic"><figure><img src="assets/b717decc7b-lingnan-1908-macao-human-note.png" alt="The 1908 booklet page with &apos;In June of 1900 ... the school was moved to Macao, a&apos; highlighted and a note: Macao passage: this supports a temporary move to Macao in 1900, not a simple claim that Lingnan was founded in Macao." loading="lazy"><figcaption>Canton Christian College Trustees, 1908; annotation by Bo An</figcaption></figure></div></div>
+<div class="stack">
+<div class="file"><div class="file-bar">You, in OpenCode</div><pre>
+<span class="you">Extract my annotations again, from</span>
+<span class="you">@ccc-1908.pdf and @corbett-1963.pdf</span>
+</pre></div>
+<div class="json"><pre>
+[
+  { &quot;file&quot;: &quot;ccc-1908.pdf&quot;,
+    &quot;printed_page&quot;: 9, &quot;scan_page&quot;: 12,
+    &quot;text&quot;: &quot;In June of 1900 &#x2026; the school was moved to Macao&quot;,
+    &quot;note&quot;: &quot;<span class="hl">a temporary move to Macao in 1900, not &#x2026; founded in Macao</span>&quot;,
+    &quot;modified&quot;: &quot;2026-07-07 21:40:50&quot; },
+  { &quot;file&quot;: &quot;corbett-1963.pdf&quot;, &quot;printed_page&quot;: 31,
+    &quot;text&quot;: &quot;Early in July &#x2026; transferred to Macao&quot;,
+    &quot;note&quot;: &quot;In July, 1900&quot;,
+    &quot;modified&quot;: &quot;2026-07-07 17:27:19&quot; }
+]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="read"><p>A second source, the 1908 booklet (printed p. 9, scan p. 12), says the school moved to Macao in June 1900. Both sources&apos; annotations are extracted together, each with its pages, quotation, note and time.</p>
+</div></section>
+<section id="m5-09"><h2><a href="#m5-09"><span class="no">106</span>The agent organises the notes; every line says where, whose and when.</a></h2>
+<div class="body"><h1>The agent organises the notes; every line says where, whose and when.</h1>
+<div class="body">
+<div class="file wide"><div class="file-bar">my-work/research/notes/macao.md (organised by the agent from annotations.json)</div><pre>
+## Macao, 1900
+- [&#x636e;] ccc-1908 p. 9: &quot;In June of 1900 &#x2026; moved to Macao&quot;
+  <span class="dim">&#x2190; annotations.json #1 &#xb7; marked 2026-07-07 21:40</span>
+- [&#x636e;] corbett-1963 p. 31: &quot;Early in July &#x2026; transferred to Macao&quot;
+  <span class="dim">&#x2190; annotations.json #2 &#xb7; marked 2026-07-07 17:27</span>
+- <span class="hl">[Bo] a temporary move in 1900, not a founding in Macao</span>
+- [AI] the two sources differ on the month: June or early July
+- [AI] the memoir (1954) dates a founding in Macao to 1899
+</pre></div>
+<div class="frame hot"><span class="label">Ask of every line</span><div class="text">
+<ul>
+<li>its source and page?</li>
+<li>whose: the source, mine or the AI&apos;s?</li>
+<li>written when?</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>The agent organises the extracted annotations into a Markdown note. Ask of every line: what is its source and page, whose is it (the source&apos;s, yours or the AI&apos;s), and when was it written?</p>
+</div></section>
+<section id="m6-02"><h2><a href="#m6-02"><span class="no">107</span>After many rounds, the agent summarises and marks disagreements.</a></h2>
+<div class="body"><h1>After many rounds, the agent summarises and marks disagreements.</h1>
+<div class="file"><div class="file-bar">my-work/research/notes/summary-beginnings.md (excerpt)</div><pre>
+Source              Says                                  Written  Kind
+corbett-1963-p15    classes began 28 March 1888, Fati,    1963     secondary
+                    Canton
+ccc-1908-p12        &quot;new organization&quot; opened 3 June 1899 1908     near-primary
+corbett-1963-p31    to Macao &quot;early in July&quot; 1900         1963     secondary
+memoir-p1-quote     &#x5927;&#x62b5;&#x65bc;&#x4e00;&#x516b;&#x4e5d;&#x4e5d;&#x5e74;&#x2026;&#x5275;&#x8fa6;&#x65bc;&#x6fb3;&#x9580;            1954     memoir
+google-ai-overview  founded 1888 in Guangzhou             2026     AI summary
+&#xa0;
+<span class="hl">Disagree: 1888 vs 1899 &#xb7; Canton vs Macao &#xb7; June vs early July 1900</span>
+</pre></div>
+</div>
+<div class="read"><p>Asked to summarise five sources, the agent cites every claim, records each source&apos;s date and kind, and flags the disagreements: 1888 vs 1899, Canton vs Macao, June vs early July 1900.</p>
+</div></section>
+<section id="m6-sheet"><h2><a href="#m6-sheet"><span class="no">108</span>After reading, I add my judgement; the synthesis sheet states the fact.</a></h2>
+<div class="body"><h1>After reading, I add my judgement; the synthesis sheet states the fact.</h1>
+<div class="file"><div class="file-bar">my-work/research/synthesis.md</div><pre>
+## 1. When did Lingnan begin?
+- [&#x636e;] classes began 28 March 1888, Canton            Corbett 1963, p. 15
+- [&#x636e;] &quot;new organization&quot; opened 3 June 1899          1908 booklet, p. 9
+- [Bo &#xb7; 6 Nov 2026] It began in Canton in 1888; 1899 was a reorganisation.
+&#xa0;
+## 2. What was Macao to Lingnan?
+- [&#x636e;] moved to Macao &quot;in June of 1900&quot;, until 1904   1908 booklet, p. 9
+- [&#x636e;] &quot;Early in July&quot; 1900, &quot;hastily transferred&quot;    Corbett 1963, p. 31
+- [&#x636e;] &#x5927;&#x62b5;&#x65bc;&#x4e00;&#x516b;&#x4e5d;&#x4e5d;&#x5e74;&#x2026;&#x5275;&#x8fa6;&#x65bc;&#x6fb3;&#x9580; (written 1954)     memoir, p. 1
+- [Bo &#xb7; 6 Nov 2026] A refuge for four years, not the founding place.
+  The month, June or July, stays open.
+&#xa0;
+<span class="hl">Fact: Lingnan began in Canton in 1888, and moved to Macao in 1900 for four years.</span>
+</pre></div>
+</div>
+<div class="read"><p>After reading, the researcher adds a judgement to each point, kept apart from the sources and the AI. Lingnan began in Canton in 1888 and moved to Macao in 1900 for four years; every line keeps its source and page.</p>
+</div></section>
+<section id="m6-03"><h2><a href="#m6-03"><span class="no">109</span>By now each claim is several steps away from the page.</a></h2>
+<div class="body"><h1>By now each claim is several steps away from the page.</h1>
+<div class="route">
+<div class="step"><p class="what">Page image</p></div>
+<div class="arrow">&#x2192;</div>
+<div class="step"><p class="what">OCR text</p></div>
+<div class="arrow">&#x2192;</div>
+<div class="step"><p class="what">Search hits</p></div>
+<div class="arrow">&#x2192;</div>
+<div class="step"><p class="what">Review sheet</p></div>
+<div class="arrow">&#x2192;</div>
+<div class="step"><p class="what">Notes</p></div>
+<div class="arrow">&#x2192;</div>
+<div class="step red"><p class="what">Summary &#xb7; draft</p></div>
+</div>
+</div>
+<div class="read"><p>Between the page and the draft lie six steps, each a chance for an error or an invention.</p>
+</div></section>
+<section id="qa-5"><h2><a href="#qa-5"><span class="no">110</span>Your questions, Module 6: Read and synthesize.</a></h2>
+<div class="body"><h1>Your questions, Module 6: Read and synthesize.</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Your question</th>
+<th>Short answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01.2</td>
+<td>&#x5982;&#x4f55;&#x6bd4;&#x8f03;&#x4e0d;&#x540c;&#x5a92;&#x4ecb;&#x7684;&#x6750;&#x6599;&#xff1f;</td>
+<td>Digitize each medium, but read them all as PDF: a painting prints to a high-resolution PDF, so you can mark it freely and the original is untouched. One format, kept for decades.</td>
+</tr>
+<tr>
+<td>07.3</td>
+<td>&#x5982;&#x4f55;&#x8655;&#x7406; AI &#x5354;&#x4f5c;&#x7684;&#x539f;&#x5275;&#x6027;&#x8207;&#x8cac;&#x4efb;&#xff1f;</td>
+<td>Mark who wrote every line: the source, you, other scholars, the AI. The AI can forget to mark its own words, so Git records who wrote what (next week).</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="read"><p>The participants&apos; questions for Module 6, each with a short answer drawn from the slides before.</p>
+</div></section>
+<section id="m6-ch"><h2><a href="#m6-ch"><span class="no">111</span>Your challenge for next week: how do you know your conclusion is true?</a></h2>
+<div class="body"><h1>Your challenge for next week: how do you know your conclusion is true?</h1>
+<ul>
+<li>there is no settled method yet; the sciences are only starting on it</li>
+<li>in writing and peer review, the question is already being asked</li>
+<li>with archives it is harder still: sources are rare, scans and hands vary</li>
+</ul>
+<p class="sub">Design your own way of verifying, and bring it next week; we start from it.</p>
+</div>
+<div class="read"><p>Next week&apos;s challenge: how do you know your conclusion is true? There is no settled method yet, and archives make it harder. Design your own way of verifying and bring it next week.</p>
+</div></section>
+<section id="m6-ch2"><h2><a href="#m6-ch2"><span class="no">112</span>Pointers for your method: questions, not answers.</a></h2>
+<div class="body"><h1>Pointers for your method: questions, not answers.</h1>
+<div class="body">
+<div class="frame hot"><span class="label">Where and whose</span><div class="text">
+<ul>
+<li>what can only you check: a hand, a source&apos;s weight, your own argument?</li>
+<li>what can a language model check for you: quotations, pages, consistency?</li>
+<li>stable pointers: can you find it again, on another machine, after the file has changed?</li>
+<li>who wrote each line, and when: you, or the machine?</li>
+<li>when did it change: is every edit dated?</li>
+<li>one file, two voices: the AI&apos;s summary above, your thoughts below; how do you tell them apart?</li>
+</ul>
+</div></div>
+<div class="frame"><span class="label">Also worth trying</span><div class="text">
+<ul>
+<li>can every quotation be matched, word for word, in the source?</li>
+<li>a fresh agent, given only the sources, checks each claim</li>
+<li>is what you did not search recorded too?</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>Pointers, not answers: decide which checks only you can do and which a language model can do for you; keep stable pointers you can find again, a record of who wrote each line and when, dated edits, and a way to tell your thoughts from the AI&apos;s in one file. Also try matching every quotation word for word, a fresh agent checking each claim against the sources, and recording what you did not search.</p>
+</div></section>
+<section id="q-6"><h2><a href="#q-6"><span class="no">113</span>Any questions?</a></h2>
+<div class="body"><h1>Any questions?</h1>
+<p class="sub">Module 6: Read and synthesize.</p>
+</div>
+<div class="read"><p>End of Module 6. Questions are welcome now or after the session.</p>
+</div></section>
+<section id="m6-16"><h2><a href="#m6-16"><span class="no">114</span>Next week: advanced workflows. Verifying, data, maps and publication.</a></h2>
+<div class="body"><h1>Next week: advanced workflows. Verifying, data, maps and publication.</h1>
+<p class="sub">Session 2 &#xb7; 13 November &#xb7; Modules 7&#x2013;12</p>
+</div>
+<div class="read"><p>Session 2 on 13 November covers Modules 7 to 12.</p>
+</div></section>
+<section id="appx-00"><h2><a href="#appx-00"><span class="no">115</span>Appendix: if there is time.</a></h2>
+<div class="body"><h1>Appendix: if there is time.</h1>
+<p class="sub">Slides from today&apos;s topics, kept for questions and for reading later.</p>
+</div>
+<div class="read"><p>Appendix: extra slides on today&apos;s topics, for questions or for reading later.</p>
+</div></section>
+<section id="m2-10b"><h2><a href="#m2-10b"><span class="no">116</span>When it misses your meaning, ask for options and choose.</a></h2>
+<div class="body"><h1>When it misses your meaning, ask for options and choose.</h1>
+<div class="body">
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Suggest three different next steps for my Lingnan</span>
+<span class="you">project, two lines each. Then draw the one I choose.</span>
+&#xa0;
+A  Primary first: the 1908 booklet, then Corbett, then the memoir.
+B  Scholarship first: an OpenAlex reading list, then the sources.
+C  Pictures first: college photographs, 1899&#x2013;1904.
+&#xa0;
+<span class="you">A. Draw it and add it to the design doc.</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+<div class="file"><div class="file-bar">my-work/research/design-doc.md &#xb7; Next steps</div><pre>
+1908 booklet ---&gt; Corbett 1963 ---&gt; memoir 1954
+      |                 |                |
+      +---- <span class="hl">compare dates and places</span> ----+
+                        |
+                        v
+                note + log entry
+</pre></div>
+</div>
+</div>
+<div class="read"><p>When the agent misses your meaning, ask for several options and choose: here three possible next steps for the Lingnan project; the chosen one is drawn as a path in the design doc.</p>
+</div></section>
+<section id="m3-10b"><h2><a href="#m3-10b"><span class="no">117</span>Another skill, agent-browser: it opens the page and saves the file.</a></h2>
+<div class="body"><h1>Another skill, agent-browser: it opens the page and saves the file.</h1>
+<div class="term">
+<div class="term-bar"><span>OpenCode &#xb7; art-ai-workshop-2026</span></div>
+<pre>
+<span class="you">Use agent-browser: open the 1908 booklet &quot;Canton Christian College:</span>
+<span class="you">its field and work in China&quot; on Digital Commons @ Lingnan University</span>
+<span class="you">and save the PDF to my-work/sources/raw/.</span>
+&#xa0;
+<span class="blk">&#x24; agent-browser open &quot;https://commons.ln.edu.hk/&#x2026;&quot;</span>
+<span class="blk">&#x24; agent-browser click &quot;Download&quot;</span>
+&#xa0;
+<span class="tool">&#x2190; Write</span> my-work/sources/raw/ccc-1908.pdf
+<span class="ok">Saved: ccc-1908.pdf, 1908, Canton Christian College Trustees.</span>
+<span class="dim">&#x25a3; Build &#xb7; DeepSeek V4.1 Flash</span>
+</pre>
+<div class="term-foot">Build &#xb7; DeepSeek V4.1 Flash &#xb7; OpenCode Go &#xb7; max</div>
+</div>
+</div>
+<div class="read"><p>With the agent-browser skill, the agent opens a page in a real browser, as a person would, and saves the file into sources/raw/, on sites that allow it.</p>
+</div></section>
+<section id="m4-16"><h2><a href="#m4-16"><span class="no">118</span>Each block is read on its own, turned the right way, then put in order.</a></h2>
+<div class="body"><h1>Each block is read on its own, turned the right way, then put in order.</h1>
+<div class="body">
+<div class="frame doc-scan"><span class="label">Block c05</span><figure><p class="withheld">A single narrow vertical block, c05, cut from the page: a resignation notice set in vertical columns. (Image shown in class only.)</p><figcaption>Block c05, &#x300a;&#x5546;&#x5831;&#x300b;, 2 September 1923, p. 1.. DH guide, Anatomy of the Newspaper, Used as in the DH guide</figcaption></figure></div>
+<div class="frame hot"><span class="label">Steps</span><div class="text">
+<ul>
+<li>cut</li>
+<li>turn to reading direction</li>
+<li>read</li>
+<li>order and assign to its article</li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="read"><p>A block is read alone, first turned to its reading direction &#x2014; <code>PaddleOCR</code> read c05 across the columns until the block was turned 90&#xb0; &#x2014; then the blocks are put back in page order and assigned to their articles.</p>
+</div></section>
+<section id="m5-16"><h2><a href="#m5-16"><span class="no">119</span>Whose idea is this? Keep four voices apart.</a></h2>
+<div class="body"><h1>Whose idea is this? Keep four voices apart.</h1>
+<div class="rows">
+<div class="row"><span class="label">Source</span><p class="plain">what the page says</p></div>
+<div class="row"><span class="label">You</span><p class="plain">your observation and argument</p></div>
+<div class="row"><span class="label">Scholars</span><p class="plain">cited work</p></div>
+<div class="row hot"><span class="label">AI</span><p class="plain">suggestions, marked as such</p></div>
+</div>
+<p class="sub">Keep your notes and the AI&apos;s notes in separate files; Git records who wrote each line.</p>
+</div>
+<div class="read"><p>Keep four voices apart in every note: what the source says, what you argue, what other scholars wrote, and what the AI suggested.</p>
+</div></section>
+
+<p class="m">Made with Reslides (MIT), based on Slidev.</p>
+</main>
+</body>
+</html>
