@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-494 -426 1098 853" font-family="DM Sans, Helvetica Neue, Arial, sans-serif">
+<line x1="-434" y1="396" x2="-182" y2="220" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="-434" y1="396" x2="-434" y2="-220" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="-434" y1="396" x2="182" y2="396" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="-182" y1="220" x2="-182" y2="-396" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="-182" y1="220" x2="434" y2="220" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="-434" y1="-220" x2="-182" y2="-396" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="-434" y1="-220" x2="182" y2="-220" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="-182" y1="-396" x2="434" y2="-396" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="182" y1="396" x2="434" y2="220" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="182" y1="396" x2="182" y2="-220" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="434" y1="220" x2="434" y2="-396" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="182" y1="-220" x2="434" y2="-396" stroke="#d4d4d8" stroke-width="2"/>
+<line x1="-71" y1="269" x2="-71" y2="-185" stroke="#18181b" stroke-width="2" stroke-dasharray="6 6" opacity=".45"/>
+<circle cx="-71" cy="-185" r="12" fill="#18181b"/>
+<text x="-51" y="-173" font-size="38" font-weight="500" fill="#18181b" text-anchor="start">網球</text>
+<line x1="298" y1="271" x2="298" y2="-22" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 6" opacity=".45"/>
+<circle cx="298" cy="-22" r="12" fill="#dc2626"/>
+<text x="318" y="-10" font-size="38" font-weight="500" fill="#18181b" text-anchor="start">戰爭</text>
+<line x1="-61" y1="274" x2="-61" y2="136" stroke="#18181b" stroke-width="2" stroke-dasharray="6 6" opacity=".45"/>
+<circle cx="-61" cy="136" r="12" fill="#18181b"/>
+<text x="-41" y="148" font-size="38" font-weight="500" fill="#18181b" text-anchor="start">籃球</text>
+<line x1="-189" y1="338" x2="-189" y2="-162" stroke="#18181b" stroke-width="2" stroke-dasharray="6 6" opacity=".45"/>
+<circle cx="-189" cy="-162" r="12" fill="#18181b"/>
+<text x="-209" y="-150" font-size="38" font-weight="500" fill="#18181b" text-anchor="end">tennis</text>
+<line x1="226" y1="346" x2="226" y2="16" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 6" opacity=".45"/>
+<circle cx="226" cy="16" r="12" fill="#dc2626"/>
+<text x="206" y="28" font-size="38" font-weight="500" fill="#18181b" text-anchor="end">war</text>
+<line x1="-202" y1="349" x2="-202" y2="217" stroke="#18181b" stroke-width="2" stroke-dasharray="6 6" opacity=".45"/>
+<circle cx="-202" cy="217" r="12" fill="#18181b"/>
+<text x="-222" y="229" font-size="38" font-weight="500" fill="#18181b" text-anchor="end">basketball</text>
+</svg>
