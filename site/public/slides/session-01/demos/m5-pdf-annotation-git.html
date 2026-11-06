@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>M5 · In-Place PDF Box Annotation, Mechanical Extraction & Git Blame</title>
+  <style>
+    :root {
+      --bg: #ffffff; --ink: #111111; --body: #222220; --muted: #6b6b66;
+      --red: #e31f27; --rule: #dededc; --frame: #1a1a18; --soft: #f7f7f5;
+      --sans: 'DM Sans', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      --serif: 'Newsreader', 'Songti TC', 'Noto Serif TC', serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 14px 18px; font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    .tabs { display: flex; gap: 10px; border-bottom: 1.5px solid var(--frame); padding-bottom: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .tab-btn { font: 700 12.5px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; padding: 9px 15px; border: 1.5px solid var(--frame); background: #fff; cursor: pointer; }
+    .tab-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .grid2 { display: grid; grid-template-columns: 1.05fr 1fr; gap: 18px; }
+    .box { position: relative; border: 1.5px solid var(--frame); padding: 20px 16px 14px; background: #fff; }
+    .box.hot { border-color: var(--red); border-width: 2px; }
+    .box > .lbl {
+      position: absolute; top: 0; left: 12px; transform: translateY(-50%);
+      background: #fff; padding: 0 8px; font: 700 11.5px/1 var(--mono); letter-spacing: .11em; text-transform: uppercase; color: var(--red);
+    }
+    .code { font: 13.5px/1.55 var(--mono); background: var(--soft); border: 1px solid var(--rule); padding: 11px 13px; white-space: pre-wrap; }
+    .act-btn { font: 700 12px/1 var(--mono); padding: 8px 13px; background: var(--red); color: #fff; border: 1.5px solid var(--red); cursor: pointer; text-transform: uppercase; margin-bottom: 10px; }
+    .blame-line { display: grid; grid-template-columns: 210px 1fr; gap: 10px; padding: 8px 10px; border-bottom: 1px solid var(--rule); font: 13.5px/1.45 var(--mono); }
+    .blame-human { background: #f2fbf4; border-left: 4px solid #1b6e32; }
+    .blame-agent { background: #fff5f5; border-left: 4px solid var(--red); }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showM5('pdf', this)">01 · Visual/Text-to-PDF Box Annotation &amp; Mechanical Crop Extractor</button>
+    <button class="tab-btn" onclick="showM5('git', this)">02 · Git Blame: Human Commits vs Agent Commits (Strict Attribution)</button>
+  </div>
+
+  <!-- TAB 1: PDF BOX ANNOTATION -->
+  <div id="m5-pdf" class="grid2">
+    <div class="box">
+      <span class="lbl">WORKING PDF IN ACROBAT / PREVIEW (CLICK ANY RED BOX)</span>
+      <p style="font-size:14px;margin:0 0 8px;color:var(--body);">Convert visual scrolls/leaves to a working PDF in <code>processed/</code> (keeping <code>raw/</code> untouched). Draw boxes &amp; notes anywhere, then click a box below:</p>
+      <svg viewBox="0 0 540 310" width="100%" style="border:1px solid #dededc;background:#fbf8f0;">
+        <rect x="20" y="16" width="500" height="278" fill="#f5ecd8" stroke="#8c7a5b"/>
+        <!-- Bamboo & Rock illustration -->
+        <path d="M210,270 C218,195 228,120 236,38" stroke="#1f1c18" stroke-width="6.5" fill="none"/>
+        <path d="M230,150 C268,132 300,118 334,112" stroke="#1f1c18" stroke-width="4" fill="none"/>
+        <ellipse cx="165" cy="255" rx="64" ry="34" fill="#5c5140" opacity="0.5"/>
+        <!-- Box 1: Colophon -->
+        <g onclick="extractBox(0)" style="cursor:pointer;">
+          <rect x="385" y="34" width="110" height="175" fill="rgba(227,31,39,0.08)" stroke="#e31f27" stroke-width="2.5" stroke-dasharray="5,3"/>
+          <rect x="385" y="16" width="110" height="18" fill="#e31f27"/>
+          <text x="391" y="29" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700">BOX 01 · COLOPHON</text>
+          <text x="440" y="80" font-family="Songti TC, serif" font-size="22" fill="#111">乾隆丙子</text>
+          <text x="440" y="115" font-family="Songti TC, serif" font-size="22" fill="#111">鄭燮寫竹</text>
+        </g>
+        <!-- Box 2: Bamboo joint -->
+        <g onclick="extractBox(1)" style="cursor:pointer;">
+          <rect x="195" y="92" width="145" height="90" fill="rgba(227,31,39,0.08)" stroke="#e31f27" stroke-width="2.5" stroke-dasharray="5,3"/>
+          <rect x="195" y="74" width="135" height="18" fill="#111111"/>
+          <text x="201" y="87" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700">BOX 02 · BRUSHWORK</text>
+        </g>
+        <!-- Box 3: Collector Seal -->
+        <g onclick="extractBox(2)" style="cursor:pointer;">
+          <rect x="45" y="205" width="90" height="72" fill="rgba(227,31,39,0.08)" stroke="#e31f27" stroke-width="2.5" stroke-dasharray="5,3"/>
+          <rect x="45" y="187" width="115" height="18" fill="#111111"/>
+          <text x="51" y="200" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700">BOX 03 · SEAL STAMP</text>
+          <rect x="72" y="222" width="36" height="36" fill="#c52028"/>
+        </g>
+      </svg>
+    </div>
+    <div class="box hot">
+      <span class="lbl">MECHANICAL EXTRACTION OUTPUT (CROPS + MARKDOWN LINKED)</span>
+      <button class="act-btn" onclick="extractAll()">▶ Run uv run python3 extract_pdf_annotations.py</button>
+      <div class="code" id="pdfOut"></div>
+    </div>
+  </div>
+
+  <!-- TAB 2: GIT ATTRIBUTION -->
+  <div id="m5-git" style="display:none;">
+    <div class="box hot">
+      <span class="lbl">GIT BLAME &amp; DUAL-COMMIT ATTRIBUTION TRAIL · my-work/research/notes/bamboo-study.md</span>
+      <p style="font-size:14.5px;margin:0 0 10px;">Never let AI overwrite your prose in place! Keep AI outputs in tagged blocks/files and commit Human vs Agent changes separately so <code>git blame</code> proves who wrote every single line:</p>
+      <div class="blame-line blame-human">
+        <span><strong>a1f4c09</strong> (Human · 15:58)<br><code>[human] own observation</code></span>
+        <span><strong>[Human Observation]</strong>: 在 PDF 框選對比 BOX-01 與 BOX-02 後，我發現題跋用墨比竹葉濃重，應為畫成後重蘸濃墨所題。</span>
+      </div>
+      <div class="blame-line blame-agent">
+        <span><strong>d82e11b</strong> (Agent · 16:01)<br><code>[agent: glm-5.3] OCR &amp; link</code></span>
+        <span><strong>[AI Extracted Locator]</strong>: Extracted <code>BOX-01</code> (`page=1, rect=[385,34,495,209]`) → saved to <code>sources/processed/crops/MET-49156_p1_box01.png</code>.</span>
+      </div>
+      <div class="blame-line blame-agent">
+        <span><strong>d82e11b</strong> (Agent · 16:01)<br><code>[agent: glm-5.3] candidate</code></span>
+        <span><strong>[AI Candidate Hypothesis · Unverified]</strong>: 候選比對建議：可查核《板橋題畫錄》卷二是否有相近詩句（待人工回原書核對）。</span>
+      </div>
+      <div class="blame-line blame-human">
+        <span><strong>f90c334</strong> (Human · 16:06)<br><code>[human] verified &amp; revised</code></span>
+        <span><strong>[Human Verification Decision]</strong>: 已核對《板橋題畫錄》p.34，確認第三句異文為「千枝攢萬葉」，採用三欄轉寫法保留原字。</span>
+      </div>
+    </div>
+  </div>
+
+<script>
+const BOXES = [
+  {
+    id: "BOX-01",
+    rect: "[385, 34, 495, 209]",
+    crop: "my-work/sources/processed/crops/MET-49156_p1_box01_colophon.png",
+    humanNote: "Check cursive ligature on 寫 and ink density transition.",
+    md: `### Annotation BOX-01 · Colophon Region
+- **Source Locator**: \`MET-49156.pdf\` · Page 1 · \`rect=[385, 34, 495, 209]\`
+- **Extracted Crop**: \`![](../sources/processed/crops/MET-49156_p1_box01_colophon.png)\`
+- **[Human Margin Note]**: "Check cursive ligature on 寫 and ink density transition."
+- **[Agent OCR Candidate]**: 乾隆丙子秋九月，板橋道人鄭燮□竹並題`
+  },
+  {
+    id: "BOX-02",
+    rect: "[195, 92, 340, 182]",
+    crop: "my-work/sources/processed/crops/MET-49156_p1_box02_brushwork.png",
+    humanNote: "Upward stroke entry shows swift single-stroke bamboo stalk joint.",
+    md: `### Annotation BOX-02 · Bamboo Stalk & Leaf Joint
+- **Source Locator**: \`MET-49156.pdf\` · Page 1 · \`rect=[195, 92, 340, 182]\`
+- **Extracted Crop**: \`![](../sources/processed/crops/MET-49156_p1_box02_brushwork.png)\`
+- **[Human Margin Note]**: "Upward stroke entry shows swift single-stroke bamboo stalk joint."
+- **[Agent Visible Fact]**: Medium-gray wet ink stalk intersected by two sharp darker leaf strokes.`
+  },
+  {
+    id: "BOX-03",
+    rect: "[45, 205, 135, 277]",
+    crop: "my-work/sources/processed/crops/MET-49156_p1_box03_seal.png",
+    humanNote: "Compare lower-left corner wear with 1756 album seal.",
+    md: `### Annotation BOX-03 · Lower-Left Collector Seal
+- **Source Locator**: \`MET-49156.pdf\` · Page 1 · \`rect=[45, 205, 135, 277]\`
+- **Extracted Crop**: \`![](../sources/processed/crops/MET-49156_p1_box03_seal.png)\`
+- **[Human Margin Note]**: "Compare lower-left corner wear with 1756 album seal."`
+  }
+];
+
+function extractBox(idx) {
+  const b = BOXES[idx];
+  document.getElementById('pdfOut').textContent =
+    `$ uv run python3 scripts/extract_pdf_annotations.py --pdf MET-49156.pdf --box ${b.id}\n` +
+    `✓ Cropped region ${b.rect} → ${b.crop}\n` +
+    `✓ Linked human margin comment into my-work/research/notes/bamboo-annotations.md:\n\n` + b.md;
+}
+
+function extractAll() {
+  document.getElementById('pdfOut').textContent =
+    `$ uv run python3 scripts/extract_pdf_annotations.py --pdf MET-49156.pdf --all\n` +
+    `✓ Extracted 3 bounding-box crops to my-work/sources/processed/crops/\n` +
+    `✓ Exported annotation table to my-work/sources/processed/pdf-annotations.csv\n\n` +
+    BOXES.map(b => b.md).join('\n\n');
+}
+
+function showM5(which, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('m5-pdf').style.display = which === 'pdf' ? 'grid' : 'none';
+  document.getElementById('m5-git').style.display = which === 'git' ? 'block' : 'none';
+}
+
+extractBox(0);
+</script>
+</body>
+</html>

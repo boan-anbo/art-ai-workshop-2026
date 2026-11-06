@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>M4 · Painting Colophon Crop, Binarization Trap & 3-Column OCR (Demo 03)</title>
+  <style>
+    :root {
+      --bg: #ffffff; --ink: #111111; --body: #222220; --muted: #6b6b66;
+      --red: #e31f27; --rule: #dededc; --frame: #1a1a18; --soft: #f7f7f5;
+      --sans: 'DM Sans', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      --serif: 'Newsreader', 'Songti TC', 'Noto Serif TC', serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 14px 18px; font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; border-bottom: 1.5px solid var(--frame); padding-bottom: 10px; flex-wrap: wrap; }
+    .char-btns { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .c-btn { font: 600 14px/1 var(--serif); padding: 8px 13px; border: 1.5px solid var(--frame); background: #fff; cursor: pointer; }
+    .c-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 16px; margin-bottom: 14px; }
+    .box { position: relative; border: 1.5px solid var(--frame); padding: 20px 14px 12px; background: #fff; }
+    .box.hot { border-color: var(--red); border-width: 2px; }
+    .box > .lbl {
+      position: absolute; top: 0; left: 12px; transform: translateY(-50%);
+      background: #fff; padding: 0 7px; font: 700 11px/1 var(--mono); letter-spacing: .11em; text-transform: uppercase; color: var(--red);
+    }
+    .svg-stage { display: flex; justify-content: center; align-items: center; background: var(--soft); border: 1px solid var(--rule); padding: 8px; height: 220px; }
+    .cap { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { text-align: left; font: 700 11.5px/1.2 var(--mono); text-transform: uppercase; color: var(--muted); padding: 7px 8px; border-bottom: 1.5px solid var(--frame); }
+    td { padding: 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    tr.active-row { background: #fff3f3; }
+    .unc { color: var(--red); font-weight: 700; font-family: var(--mono); }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="char-btns">
+      <span style="font:700 12px var(--mono);text-transform:uppercase;color:var(--muted);">Inspect Character Crop:</span>
+      <button class="c-btn active" onclick="pickChar(0, this)">Col 1 ·「寫」(□ 存疑牽絲)</button>
+      <button class="c-btn" onclick="pickChar(1, this)">Col 1 ·「鄭燮」(名款對照)</button>
+      <button class="c-btn" onclick="pickChar(2, this)">Col 2 ·「攢」(異體字形)</button>
+      <button class="c-btn" onclick="pickChar(3, this)">Col 3 ·「印：鄭燮之印」</button>
+    </div>
+    <span style="font:700 12px var(--mono);color:var(--red);">RULE: NEVER REPLACE RAW INK WITH BINARIZED IMAGE</span>
+  </div>
+
+  <div class="grid3">
+    <div class="box">
+      <span class="lbl">1 · UNTOUCHED RAW INK (sources/raw/)</span>
+      <div class="svg-stage" id="rawSvg"></div>
+      <div class="cap" id="rawCap"></div>
+    </div>
+    <div class="box">
+      <span class="lbl">2 · OVER-BINARIZED TRAP (BROKEN LIGATURES)</span>
+      <div class="svg-stage" id="binSvg"></div>
+      <div class="cap" id="binCap"></div>
+    </div>
+    <div class="box hot">
+      <span class="lbl">3 · CONNOISSEURSHIP SHAPE RULE &amp; VISION PROMPT</span>
+      <div id="shapeRule" style="font-size:14.5px;line-height:1.55;"></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <span class="lbl">THREE-COLUMN TRANSCRIPTION TABLE · my-work/sources/processed/colophon-transcription.csv</span>
+    <table>
+      <thead>
+        <tr>
+          <th>Col / Char</th>
+          <th>① 原字 (Diplomatic · Keep Variants &amp; □)</th>
+          <th>② 規範字 (Normalized)</th>
+          <th>③ 釋讀與存疑候選 (Notes, Candidates &amp; Shape Check)</th>
+        </tr>
+      </thead>
+      <tbody id="transBody"></tbody>
+    </table>
+  </div>
+
+<script>
+const ITEMS = [
+  {
+    loc: "Col 1 · Char 14",
+    glyph: "寫",
+    rawCol: "乾隆丙子秋九月，板橋道人鄭燮<span class='unc'>□ [候選：寫 / 畫]</span>竹並題",
+    normCol: "乾隆丙子（1756）秋九月，板橋道人鄭燮寫竹並題",
+    noteCol: "Lower four-dot fire radical turns into a continuous cursive loop (牽絲). Binarization erases the connecting hairline.",
+    rawCap: "Original silk/paper tone preserves the delicate dry-brush hairline (牽絲) linking the roof radical to the lower loop.",
+    binCap: "Hard black/white thresholding snaps the thin hairline (red dashed circle), making the character look like a broken『畫』.",
+    rule: `<strong>How to Turn Eye Connoisseurship into an Agent Shape Rule:</strong><br><br>
+1. Do NOT ask the model vaguely: <em>"Is this authentic Zheng Xie calligraphy?"</em><br>
+2. Instead, crop the character and describe the <strong>explicit geometric strokes</strong>:<br>
+<code>"Observe the upper宝蓋頭 width ratio vs the single continuous S-curve replacing the 4 bottom dots (灬). Compare side-by-side against 1756 dated reference album leaves."</code>`
+  },
+  {
+    loc: "Col 1 · Chars 12–13",
+    glyph: "鄭燮",
+    rawCol: "板橋道人<strong>鄭燮</strong>",
+    normCol: "板橋道人鄭燮（1693–1765）",
+    noteCol: "Signature matches 'Liufenban書 (六分半書)' clerical-cursive hybrid; check right-falling戈-hook angle.",
+    rawCap: "Natural ink pooling shows where the brush paused and re-pressed on the right radical (阝) of 鄭.",
+    binCap: "Thresholding merges the dense inner strokes of 燮 into a solid black blob, hiding brush sequence.",
+    rule: `<strong>Signature Comparison Workflow:</strong><br><br>
+Ask OpenCode to crop all occurrences of <code>鄭</code> and <code>燮</code> across your 15 paintings into a single HTML contact sheet so your own eye compares stroke entry/exit angles directly.`
+  },
+  {
+    loc: "Col 2 · Char 8",
+    glyph: "攢",
+    rawCol: "一節復一節，千枝<strong>𢫬（異體）</strong>萬葉",
+    normCol: "一節復一節，千枝攢萬葉",
+    noteCol: "Variant hand-radical form preserved in Column 1; normalized to 攢 in Column 2 for full-text search.",
+    rawCap: "Variant component on right side is clearly legible in grayscale tonal hierarchy.",
+    binCap: "Paper fiber noise in binarized mode creates false stray dots around the hand radical (扌).",
+    rule: `<strong>Why Three Columns Matter (02.2):</strong><br><br>
+Never let an LLM silently replace variant characters (異體字) or guess blurred graphs! Keep <strong>Column 1 (原字)</strong> strictly faithful to the ink surface and put standard searchable characters in <strong>Column 2 (規範字)</strong>.`
+  },
+  {
+    loc: "Col 3 · Seal 01",
+    glyph: "鄭燮之印",
+    rawCol: "［白文方印：<strong>鄭燮之印</strong>］",
+    normCol: "［印記：鄭燮之印（白文）］",
+    noteCol: "Cinnabar paste (印泥) overlaps final stroke of 蝶; compare carving nicks against SEAL-CAT-03.",
+    rawCap: "Color channel separation (Red vs Black ink) reveals whether seal paste sits on top of or underneath ink strokes.",
+    binCap: "Grayscale binarization turns red cinnabar seal into washed-out gray noise, losing border nicks.",
+    rule: `<strong>Seal &amp; Side-Inscription Check (03.1):</strong><br><br>
+For seal impressions (印譜), keep color/grayscale raw crops and record exact dimensions (mm) and corner wear rather than relying on generic OCR.`
+  }
+];
+
+function pickChar(idx, btn) {
+  if (btn) {
+    document.querySelectorAll('.c-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const it = ITEMS[idx];
+  document.getElementById('rawSvg').innerHTML = `
+    <svg viewBox="0 0 240 190" width="220" height="185">
+      <rect width="240" height="190" fill="#efe4c8" stroke="#8c7a5b"/>
+      <text x="120" y="125" text-anchor="middle" font-family="Songti TC, Noto Serif TC, serif" font-size="96" fill="#231f1a">${it.glyph}</text>
+      <path d="M72,132 C105,148 142,122 168,138" stroke="#3a332a" stroke-width="2.2" fill="none"/>
+      <circle cx="122" cy="135" r="24" fill="none" stroke="#1b6e32" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="12" y="22" font-family="JetBrains Mono, monospace" font-size="11" fill="#1b6e32">RAW INK · Hairline Intact</text>
+    </svg>`;
+  document.getElementById('binSvg').innerHTML = `
+    <svg viewBox="0 0 240 190" width="220" height="185">
+      <rect width="240" height="190" fill="#ffffff" stroke="#111111"/>
+      <text x="120" y="125" text-anchor="middle" font-family="Songti TC, Noto Serif TC, serif" font-size="96" fill="#000000">${it.glyph}</text>
+      <rect x="92" y="122" width="58" height="22" fill="#ffffff"/>
+      <circle cx="122" cy="135" r="24" fill="none" stroke="#e31f27" stroke-width="2.5" stroke-dasharray="4,3"/>
+      <text x="12" y="22" font-family="JetBrains Mono, monospace" font-size="11" fill="#e31f27">BINARIZED · Ligature Lost!</text>
+    </svg>`;
+  document.getElementById('rawCap').textContent = it.rawCap;
+  document.getElementById('binCap').textContent = it.binCap;
+  document.getElementById('shapeRule').innerHTML = it.rule;
+
+  document.getElementById('transBody').innerHTML = ITEMS.map((row, i) => `
+    <tr class="${i === idx ? 'active-row' : ''}" onclick="pickChar(${i}, document.querySelectorAll('.c-btn')[${i}])" style="cursor:pointer;">
+      <td><code>${row.loc}</code></td>
+      <td>${row.rawCol}</td>
+      <td>${row.normCol}</td>
+      <td>${row.noteCol}</td>
+    </tr>
+  `).join('');
+}
+
+pickChar(0);
+</script>
+</body>
+</html>

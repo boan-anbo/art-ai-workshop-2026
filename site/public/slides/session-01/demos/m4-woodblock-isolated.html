@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>M4 · Multimodal Image Description & Isolated API Calls (Demo 04)</title>
+  <style>
+    :root {
+      --bg: #ffffff; --ink: #111111; --body: #222220; --muted: #6b6b66;
+      --red: #e31f27; --rule: #dededc; --frame: #1a1a18; --soft: #f7f7f5;
+      --sans: 'DM Sans', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      --serif: 'Newsreader', 'Songti TC', 'Noto Serif TC', serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 14px 18px; font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; border-bottom: 1.5px solid var(--frame); padding-bottom: 10px; flex-wrap: wrap; }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { font: 700 12px/1 var(--mono); padding: 8px 12px; border: 1.5px solid var(--frame); background: #fff; cursor: pointer; }
+    .pill.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .box { position: relative; border: 1.5px solid var(--frame); padding: 20px 16px 14px; background: #fff; }
+    .box.hot { border-color: var(--red); border-width: 2px; }
+    .box > .lbl {
+      position: absolute; top: 0; left: 12px; transform: translateY(-50%);
+      background: #fff; padding: 0 8px; font: 700 11px/1 var(--mono); letter-spacing: .11em; text-transform: uppercase; color: var(--red);
+    }
+    h4 { font: 600 17px/1.3 var(--serif); margin: 0 0 8px; }
+    .step-row { font-size: 13.5px; line-height: 1.5; padding: 7px 10px; background: var(--soft); border-left: 3px solid var(--frame); margin-bottom: 7px; }
+    .step-row.judge { border-left-color: var(--red); background: #fff4f4; }
+    .badge { font: 700 11px/1 var(--mono); padding: 3px 7px; border: 1px solid currentColor; display: inline-block; margin-bottom: 6px; }
+    .ok { color: #1b6e32; } .warn { color: var(--red); }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="pills">
+      <button class="pill active" onclick="filterCards('all', this)">All 4 Woodblock Pages (Isolated Calls)</button>
+      <button class="pill" onclick="filterCards('dog', this)">✓ Confirmed Dogs (2 Unique · 1 Reprint Excluded)</button>
+      <button class="pill" onclick="filterCards('reject', this)">✗ False Positive &amp; Missed Crop Fixed by Judge (2)</button>
+    </div>
+    <span style="font:700 12px var(--mono);color:var(--muted);">1 PAGE = 1 ISOLATED API CALL (STEP 1 DESCRIBE → STEP 2 JUDGE)</span>
+  </div>
+
+  <div class="cards" id="cardGrid"></div>
+
+<script>
+const PAGES = [
+  {
+    id: "MING-1598-V1-P014",
+    title: "琵琶記 · 卷上 p.14 · 庭院迎客 (Courtyard Reception)",
+    cat: "dog",
+    status: "✓ CONFIRMED DOG · INCLUDED IN STATISTICAL BASELINE",
+    statusClass: "ok",
+    step1: "<strong>Step 1 (Objective Scene Description first):</strong> Courtyard interior with 3 figures, 1 table, screen wall, and 1 small curly-tailed dog standing beside the servant at lower-left (`bbox: 0.14,0.68,0.19,0.21`).",
+    step2: "<strong>Step 2 (Gemini Pro Judge + Human Check):</strong> Confirmed domestic dog (`伴隨僕人／迎客`). Posture: standing, looking up (`仰視`), alert (`警覺`)."
+  },
+  {
+    id: "MING-1612-V1-P108",
+    title: "西廂記 · 卷下 p.108 · 後花園太湖石 (Garden Rockery)",
+    cat: "reject",
+    status: "✗ FALSE POSITIVE REJECTED BY JUDGE (ROCK SHADOW ≠ DOG)",
+    statusClass: "warn",
+    step1: "<strong>Step 1 (Objective Scene Description):</strong> Garden corner at night; 2 figures beside perforated Taihu rockery (`太湖石`) and banana leaves; dark cross-hatched shadow at base of rock (`bbox: 0.72,0.74,0.16,0.18`).",
+    step2: "<strong>Step 2 (Why Isolated Call + Judge Caught It):</strong> Fast model guessed 'crouching black dog' because of prompt bias. Judge model inspected crop: woodblock cross-hatching (`皴法陰影`) with zero head/limbs/ears → Rejected!"
+  },
+  {
+    id: "QING-1685-V1-P055",
+    title: "傳奇雅集 · 卷中 p.55 · 市井酒肆門口 (Tavern Street)",
+    cat: "reject",
+    status: "✓ MISSED TINY DOG RECOVERED VIA QUADRANT CROP",
+    statusClass: "warn",
+    step1: "<strong>Step 1 (Full-Page Pass vs 4-Quadrant Crop Pass):</strong> Full-page pass missed the lower-left corner (`漏檢`); Quadrant Crop #3 (`bbox: 0.08,0.81,0.12,0.14`) revealed a sleeping dog under the tavern bench.",
+    step2: "<strong>Step 2 (Judge Verification):</strong> Confirmed sleeping street dog (`蜷臥門檻旁`) — proves why hierarchical cropping (`局部裁切`) beats asking vaguely about a crowded full page."
+  },
+  {
+    id: "MING-1628-REPRINT-P014",
+    title: "琵琶記（崇禎翻刻本）p.14 · 同版翻刻去重",
+    cat: "dog",
+    status: "⚠ DUPLICATE REPRINT · EXCLUDED FROM STATISTICAL COUNT",
+    statusClass: "warn",
+    step1: "<strong>Step 1 (Objective Scene Description):</strong> Identical courtyard composition and dog position (`bbox: 0.14,0.68,0.19,0.21`) recut from the 1598 Wanli block (`MING-1598-V1-P014`).",
+    step2: "<strong>Step 2 (Corpus Deduplication Rule 05.3):</strong> Recorded in provenance table for edition comparison, but set `include_in_stat = false` so reprints never inflate motif counts!"
+  }
+];
+
+function filterCards(mode, btn) {
+  if (btn) {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const list = mode === 'all' ? PAGES : PAGES.filter(p => p.cat === mode);
+  document.getElementById('cardGrid').innerHTML = list.map(p => `
+    <div class="box ${p.statusClass === 'warn' ? 'hot' : ''}">
+      <span class="lbl">${p.id}</span>
+      <span class="badge ${p.statusClass}">${p.status}</span>
+      <h4>${p.title}</h4>
+      <div class="step-row">${p.step1}</div>
+      <div class="step-row judge">${p.step2}</div>
+    </div>
+  `).join('');
+}
+
+filterCards('all');
+</script>
+</body>
+</html>
