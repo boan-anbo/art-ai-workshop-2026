@@ -19,6 +19,8 @@ jobs:
   build:
     if: github.repository == 'boan-anbo/art-ai-workshop-2026'
     runs-on: ubuntu-latest
+    env:
+      WORKSHOP_PASSWORD: ${{ secrets.WORKSHOP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - name: Check Astro content and types

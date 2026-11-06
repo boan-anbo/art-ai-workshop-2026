@@ -78,7 +78,7 @@ my-work/
 
 ## Updating the Website (Maintainers Only)
 
-Public Q&A is written once, one question per file in `site/src/content/qa/`, alongside `site/src/content/preparation.md` and `site/src/content/workshops.md`. For website maintainers: use Node 22 (deployment uses 22.14.0), then inside `site/`:
+Public Q&A is written once, one question per file in `site/src/content/qa/`, alongside `site/src/content/preparation.md` and `site/src/content/workshops.md`. For website maintainers: use Node 22 (deployment uses 22.14.0). The Q&A password is a repository secret, `WORKSHOP_PASSWORD`; to build locally, set it in your shell first (`export WORKSHOP_PASSWORD=…`). Then inside `site/`:
 
 ```sh
 npm ci
