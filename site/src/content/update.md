@@ -1,5 +1,7 @@
 <p class="update-date"><strong>2026 年 11 月 6 日，第一場之後。</strong>今天上課用到的所有內容，都已放進 DH 工作區。下面三件事：工作區在哪裡、一步一步裝好 OpenCode 並開始使用、隱私設定。</p>
 
+<p class="update-slides"><strong>第一場投影片：</strong><a href="https://anbo.me/slides/2026/cuhkarthistory/">anbo.me/slides/2026/cuhkarthistory</a>（帳號與密碼見課堂通知）。</p>
+
 ### 1　DH 工作區在哪裡
 
 工作區就是這個 GitHub 倉庫：**[github.com/boan-anbo/art-ai-workshop-2026](https://github.com/boan-anbo/art-ai-workshop-2026)**。
