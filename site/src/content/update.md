@@ -2,6 +2,8 @@
 
 <p class="update-slides"><strong>第一場投影片：</strong>完整版（含講稿與所有圖片）在 <a href="https://anbo.me/slides/2026/cuhkarthistory/">anbo.me/slides/2026/cuhkarthistory</a>（帳號與密碼見課堂通知）。另有一份可以自己保留的公開版（不含講稿，部分只限課堂使用的圖片已移除）：<a href="/art-ai-workshop-2026/slides/session-01/">投影片</a> · <a href="/art-ai-workshop-2026/slides/session-01/read/">閱讀版（單頁，方便交給 agent）</a>。這份公開版也在工作區裡：<code>site/public/slides/session-01/</code>，下載工作區就一起保留下來。</p>
 
+<p class="update-slides"><strong>給 agent 的版本：</strong>完整投影片（含講稿）的純 Markdown，每張圖一個連結：<a href="https://anbo.me/slides/2026/cuhkarthistory/agent/slides.md">slides.md</a>，或整包下載 <a href="https://anbo.me/slides/2026/cuhkarthistory/agent/session-01-agent.zip">session-01-agent.zip</a>（同樣用課堂的帳號密碼）。最簡單的用法：下載 zip，解壓到 <code>my-work/sources/raw/</code>，然後對 agent 說「read @my-work/sources/raw/agent/slides.md」。也可以把網址和帳號密碼交給 agent，請它用 <code>curl -u 帳號:密碼 網址</code> 下載。</p>
+
 ### 1　DH 工作區在哪裡
 
 工作區就是這個 GitHub 倉庫：**[github.com/boan-anbo/art-ai-workshop-2026](https://github.com/boan-anbo/art-ai-workshop-2026)**。
