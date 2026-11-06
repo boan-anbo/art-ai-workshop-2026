@@ -1,54 +1,56 @@
 以下為兩場工作坊所包含的工作坊模組（第一場 M1–M6，第二場 M7–M12）；各模組完全按照大家提出的研究需要與研究場景設計，並增加了對內工作台核查與對外成果呈現等環節。關於課前需要準備的工作，請看下方[課前準備](#preparation)。
 
-### 第一場 · 11 月 6 日（週五）14:30–16:30 · M1–M6
+### 第一場 · 11 月 6 日（週五）14:30–16:30 · 六個模組（已完成）
 
-<h4 id="module-m1">M1　基礎環境 Setup、下載工作區與 Coding Agent 入門</h4>
+第一場實際講授的六個模組，是一條研究的循環；所有示範的材料、skill 與結果都在 [DH 工作區](https://github.com/boan-anbo/art-ai-workshop-2026)裡（見上方[課後更新](#update)）。
 
-<strong>14:30–14:45 · 約 15 分鐘</strong>
+<h4 id="module-m1">M1　模型與 harness</h4>
 
-先註冊 GitHub 並把工作坊倉庫下載（clone）到本地，配置好 OpenCode（推薦在 OpenCode Plan 中選用熱門的 <strong>DeepSeek V4.1 Flash（High／Maximum）</strong> 或 <strong>GLM-5.3／GLM-5.3 Flash</strong>）與 OpenRouter 基礎環境；重點帶大家跑通 Coding Agent 的基本工作方式，並簡介什麼是 Skill。
+<strong>約 35 分鐘</strong>
 
-工具：[GitHub](https://github.com) · [OpenCode](https://opencode.ai) · [OpenRouter](https://openrouter.ai) · [VS Code](https://code.visualstudio.com)｜指南：[入門](https://www.dhguide.org/start) · [模型](https://www.dhguide.org/models) · [與 agent 協作](https://www.dhguide.org/working-with-agents)
+怎樣讀模型排行榜與模型卡（價格、token、context）；從聊天到 agent：什麼是 harness、工具調用如何運作；模型是智力，不是知識庫，要配上材料與核查；工作區、OpenCode 與 OpenCode Go 的設定；訓練資料從哪裡來，以及隱私：資料去了哪裡、怎樣降低風險。
 
-<h4 id="module-m2">M2　研究構思、Markdown 筆記（Design Doc & Log）與 Agent Skill</h4>
+工具：[OpenCode](https://opencode.ai) · [OpenCode Go](https://opencode.ai/go) · [Artificial Analysis](https://artificialanalysis.ai)｜指南：[模型](https://www.dhguide.org/models) · [與 agent 協作](https://www.dhguide.org/working-with-agents)
 
-<strong>14:45–15:05 · 約 20 分鐘</strong>
+<h4 id="module-m2">M2　筆記</h4>
 
-講如何用 [Markdown](https://www.markdownguide.org/cheat-sheet/) 寫想法筆記並與 Agent 配合（如口述想法讓 Agent 整理紀錄，或對已有筆記做索引），區分<strong>整理好的思路文檔（Design Doc）</strong>與<strong>過程紀錄（Log）</strong>，並講解如何把反覆使用的規範與流程寫成自然語言 <strong>Agent Skill</strong>。
+<strong>約 10 分鐘</strong>
 
-工具：[Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/) · [OpenCode](https://opencode.ai) · Agent Skills｜指南：[Agent Skills](https://www.dhguide.org/agent-skills) · [研究](https://www.dhguide.org/research)
+兩種文件：整理好的思路（Design Doc）與過程紀錄（Log）；Markdown 的七種記號；純文字為什麼經得起時間；用一個真實的問題（嶺南從哪裡開始？）讓 agent 記下發現與下一步。
 
-<h4 id="module-m3">M3　使用瀏覽器收集材料與批量下載整理</h4>
+工具：[Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/) · [VS Code](https://code.visualstudio.com)
 
-<strong>15:05–15:20 · 約 15 分鐘</strong>
+<h4 id="module-m3">M3　找材料</h4>
 
-展示如何讓 Agent 接入日常 [Chrome 瀏覽器](https://www.google.com/chrome/)，在資料庫與館藏網站搜尋線索、協助<strong>批量下載（Batch Download）</strong>材料並自動整理歸檔到工作區目錄。
+<strong>約 15 分鐘</strong>
 
-工具：[Google Chrome](https://www.google.com/chrome/) · [Met API](https://metmuseum.github.io/) · [AIC API](https://api.artic.edu/docs/)｜指南：[工具](https://www.dhguide.org/tools)
+按材料選搜索方式：內建網頁搜索、API（OpenAlex、大都會博物館）、Google Scholar（自己搜，或用第三方 API）、只為人設計的網站則用瀏覽器（Chrome MCP 或 agent-browser，注意權限與隱私）；下載、整理、記錄搜過哪裡。
 
-<h4 id="module-m4">M4　數位化：圖像處理（含 IIIF）、OCR（報紙與手稿）與圖像描述</h4>
+工具：[OpenAlex](https://openalex.org) · [Met API](https://metmuseum.github.io/)｜指南：[工具](https://www.dhguide.org/tools)
 
-<strong>15:20–15:50 · 約 30 分鐘</strong>
+<h4 id="module-m4">M4　Skill</h4>
 
-分三步講授材料數位化與初步處理：（1）<strong>圖像處理與 [IIIF](https://en.wikipedia.org/wiki/International_Image_Interoperability_Framework)</strong>；（2）<strong>OCR</strong>（以歷史報紙與手稿為例）；（3）<strong>圖像描述（Image Description）</strong>，用多模態模型為視覺材料生成可檢索的文字描述。
+<strong>約 10 分鐘</strong>
 
-工具：[Python](https://www.python.org) · [IIIF（Wikipedia 簡介）](https://en.wikipedia.org/wiki/International_Image_Interoperability_Framework) · [OpenRouter Vision](https://openrouter.ai/docs/guides/overview/multimodal/image-understanding) · [PaddleOCR](https://www.paddleocr.ai)｜指南：[數位化](https://www.dhguide.org/digitization) · [視覺](https://www.dhguide.org/vision)
+把方法寫成 skill：與 prompt 的區別；什麼時候該寫；短、用平常話、可以組合（例如 format-paper → chicago-style）；讓 agent 替你寫，再像老師一樣測試與修改；使用與分享別人的 skill。
 
-<h4 id="module-m5">M5　原位標註（文本與視覺轉 PDF）、機械提取與 Git 版本歸屬追蹤</h4>
+指南：[Agent Skills](https://www.dhguide.org/agent-skills)
 
-<strong>15:50–16:15 · 約 25 分鐘</strong>
+<h4 id="module-m5">M5　在材料裡搜</h4>
 
-（1）<strong>原位標註與機械提取</strong>：文本與轉為 PDF 的視覺材料都可在任意位置高亮或框選批註，再用腳本將批註與局部一併提取出來，與 Markdown 筆記打通；（2）<strong>討論與歸屬追蹤（Git Setup）</strong>：與 AI 討論時要求生成內容寫入獨立紀錄、不混入原稿，並透過 Git／GitHub 追蹤每次改動歸屬。
+<strong>約 25 分鐘</strong>
 
-工具：[Adobe Acrobat Reader（PDF 閱讀器）](https://get.adobe.com/reader/) · [Python](https://www.python.org) · [Git](https://git-scm.com)／[GitHub](https://github.com)｜指南：[標註](https://www.dhguide.org/annotation) · [與 agent 協作](https://www.dhguide.org/working-with-agents)
+直接請 agent 擴展關鍵詞搜索；搜不到的材料：OCR 與視覺大模型轉寫（兩者錯法不同：OCR 的錯看得見，模型會編）；把圖片變成文字描述再搜；關鍵詞與語義檢索（embedding）的區別；抽象主題的提要；用 review sheet 壓縮命中結果，再決定精讀哪裡。
 
-<h4 id="module-m6">M6　視覺構思與圖像生成：HTML、SVG 與 OpenRouter 生圖 API</h4>
+工具：[PaddleOCR](https://aistudio.baidu.com/paddleocr) · [OpenRouter](https://openrouter.ai)｜指南：[數位化](https://www.dhguide.org/digitization) · [視覺](https://www.dhguide.org/vision)
 
-<strong>16:15–16:30 · 約 15 分鐘</strong>
+<h4 id="module-m6">M6　精讀與綜合</h4>
 
-在構思與探索階段，區分什麼時候用 <strong>[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)</strong>、什麼時候用 <strong>[SVG（向量結構圖）](https://developer.mozilla.org/en-US/docs/Web/SVG)</strong>、什麼時候用 <strong>AI 生圖（Image Generation）</strong>，並演示透過 OpenRouter API 調用生圖模型輔助構思。
+<strong>約 18 分鐘</strong>
 
-工具：[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) · [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) · [OpenRouter 圖像生成 API](https://openrouter.ai/docs/guides/overview/multimodal/image-generation)｜指南：[視覺](https://www.dhguide.org/vision)
+在 PDF 上精讀與批註（頁碼、不被鎖死、時間戳）；用 skill 提取批註，整理成標明出處、作者與時間的筆記；分清原文、你、學者與 AI 的聲音；加上自己的判斷，寫出綜合表；留給下週的挑戰：你怎樣核實自己的結論？
+
+工具：[Adobe Acrobat Reader](https://get.adobe.com/reader/) · [Git](https://git-scm.com)｜指南：[標註](https://www.dhguide.org/annotation)
 
 ### 第二場 · 11 月 13 日（週五）14:30–16:30 · M7–M12
 

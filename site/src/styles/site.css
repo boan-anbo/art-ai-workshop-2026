@@ -242,3 +242,11 @@ dd { margin: 0; font-size: .92rem; }
 .prep-item > .prep-check { margin: .75rem .5rem 1.25rem; font-size: .95rem; color: var(--muted); }
 .prep-item > .prep-check strong { color: var(--accent); font-weight: 500; }
 .prep-item[open] { padding-bottom: .75rem; }
+
+/* After-session update */
+.update-prose img { display: block; max-width: 100%; height: auto; margin: 1rem 0; border: 1px solid var(--line); }
+.update-prose .update-steps { padding-left: 1.4rem; }
+.update-prose .update-steps > li { margin-bottom: 1.5rem; }
+.update-prose .update-date { border-left: 3px solid var(--accent); padding-left: 1rem; }
+.update-prose pre { max-width: 100%; overflow-x: auto; }
+.update-prose li { min-width: 0; }
