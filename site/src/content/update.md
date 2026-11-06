@@ -2,7 +2,11 @@
 
 <p class="update-slides"><strong>第一場投影片：</strong>完整版（含講稿與所有圖片）在 <a href="https://anbo.me/slides/2026/cuhkarthistory/">anbo.me/slides/2026/cuhkarthistory</a>（帳號與密碼見課堂通知）。另有一份可以自己保留的公開版（不含講稿，部分只限課堂使用的圖片已移除）：<a href="/art-ai-workshop-2026/slides/session-01/">投影片</a> · <a href="/art-ai-workshop-2026/slides/session-01/read/">閱讀版（單頁，方便交給 agent）</a>。這份公開版也在工作區裡：<code>site/public/slides/session-01/</code>，下載工作區就一起保留下來。</p>
 
-<p class="update-slides"><strong>給 agent 的版本：</strong>完整投影片（含講稿）的純 Markdown，每張圖一個連結：<a href="https://anbo.me/slides/2026/cuhkarthistory/agent/slides.md">slides.md</a>，或整包下載 <a href="https://anbo.me/slides/2026/cuhkarthistory/agent/session-01-agent.zip">session-01-agent.zip</a>（同樣用課堂的帳號密碼）。最簡單的用法：下載 zip，解壓到 <code>my-work/sources/raw/</code>，然後對 agent 說「read @my-work/sources/raw/agent/slides.md」。也可以把網址和帳號密碼交給 agent，請它用 <code>curl -u 帳號:密碼 網址</code> 下載。</p>
+<p class="update-slides"><strong>給 agent 的版本：</strong>投影片的純 Markdown（每張投影片的標題、內容與英文閱讀說明，圖片用連結），已放在工作區的 <code>session-01/slides/slides.md</code>。三種用法，選一種：</p>
+
+- **已下載工作區**：在 OpenCode 裡輸入 `read @session-01/slides/slides.md, then explain module 3 to me step by step`。（之前下載的同學，先重新下載或按 Sync fork。）
+- **在網上看**：[GitHub 上的 slides.md](https://github.com/boan-anbo/art-ai-workshop-2026/blob/main/session-01/slides/slides.md)，圖片會一起顯示。
+- **交給任何 agent**：把這個純文字網址給它 `https://raw.githubusercontent.com/boan-anbo/art-ai-workshop-2026/main/session-01/slides/slides.md`。
 
 ### 1　DH 工作區在哪裡
 
