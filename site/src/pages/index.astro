@@ -1,4 +1,5 @@
 ---
+import Update from '../content/update.md';
 import Workshops from '../content/workshops.md';
 import Preparation from '../content/preparation.md';
 import PreparationExercises from '../components/PreparationExercises.astro';
@@ -9,6 +10,7 @@ import { encryptQa } from '../lib/encrypt-qa';
 import '../styles/site.css';
 
 const sections = [
+  { id: 'update', number: '00', label: '課後更新' },
   { id: 'workshops', number: '01', label: '工作坊模組' },
   { id: 'preparation', number: '02', label: '課前準備' },
   { id: 'questions', number: '03', label: '對同學課前問題的回覆' },
@@ -64,7 +66,8 @@ const encryptedQa = await encryptQa(await container.renderToString(QuestionAnswe
               <p class="eyebrow" lang="en">CUHK · ART RESEARCH · NOVEMBER 2026</p>
               <h1 id="page-title">AI 與藝術史工作坊</h1>
               <div class="intro-links">
-                <a class="text-link" href="#workshops">工作坊模組 <span aria-hidden="true">↓</span></a>
+                <a class="text-link" href="#update">課後更新：工作區與 OpenCode 設定 <span aria-hidden="true">↓</span></a>
+                <a href="#workshops">工作坊模組 <span aria-hidden="true">↓</span></a>
                 <a href="#preparation">課前準備 <span aria-hidden="true">↓</span></a>
                 <a href="#questions">對同學課前問題的回覆 <span aria-hidden="true">↓</span></a>
               </div>
@@ -81,6 +84,13 @@ const encryptedQa = await encryptQa(await container.renderToString(QuestionAnswe
               </dl>
               <p class="session-footnote"><a href="#workshops">看兩場安排 ↓</a></p>
             </aside>
+          </section>
+          <section class="book-section update-section" data-book-section="課後更新" id="update" aria-labelledby="update-title">
+            <div class="section-heading">
+              <p class="eyebrow">00 / AFTER SESSION 1 · 6 NOV</p>
+              <h2 id="update-title">課後更新：DH 工作區與 OpenCode 設定</h2>
+            </div>
+            <div class="prose update-prose reading-column"><Update /></div>
           </section>
           <section class="book-section" data-book-section="工作坊模組" id="workshops" aria-labelledby="workshops-title">
             <div class="section-heading">
