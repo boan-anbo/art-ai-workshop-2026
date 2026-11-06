@@ -798,20 +798,7 @@ changed.
 
 ---
 
-## 35 · Your questions, Module 1: Models and harness.
-
-<!-- slide id: qa-1 -->
-
-| | Your question | Short answer |
-|---|---|---|
-| 05.2 | 如何為圖像研究選擇模型？ | Start from a ranking, the price and the context window; then test on ten of your own images. Module 5 compares OCR and vision models on one line. |
-| — | 我的材料會不會外洩？ | No route can guarantee it. Only a local model keeps it on your computer; official APIs and routers may read and train on it; resellers leak it. Use the checklist. |
-
-**Read-along:** The participants' questions for Module 1, each with a short answer drawn from the slides before.
-
----
-
-## 36 · Any questions?
+## 35 · Any questions?
 
 <!-- slide id: q-1 -->
 
@@ -821,7 +808,7 @@ changed.
 
 ---
 
-## 37 · Module 2: Notes.
+## 36 · Module 2: Notes.
 
 <!-- slide id: m2-01 -->
 
@@ -831,7 +818,7 @@ changed.
 
 ---
 
-## 38 · Keep two kinds of document: a design doc and a log.
+## 37 · Keep two kinds of document: a design doc and a log.
 
 <!-- slide id: m2-02 -->
 
@@ -849,7 +836,7 @@ changed.
 
 ---
 
-## 39 · Ask OpenCode to create the design doc.
+## 38 · Ask OpenCode to create the design doc.
 
 <!-- slide id: m2-03 -->
 
@@ -871,7 +858,7 @@ I deliberately did not add historical facts beyond your note.
 
 ---
 
-## 40 · Markdown is plain text with a few marks.
+## 39 · Markdown is plain text with a few marks.
 
 <!-- slide id: m2-04 -->
 
@@ -896,7 +883,7 @@ where did it begin, and what did it teach?
 
 ---
 
-## 41 · Seven marks cover almost everything.
+## 40 · Seven marks cover almost everything.
 
 <!-- slide id: m2-05 -->
 
@@ -947,7 +934,7 @@ open `log.md`
 
 ---
 
-## 42 · Plain text is future-proof.
+## 41 · Plain text is future-proof.
 
 <!-- slide id: m2-06 -->
 
@@ -987,7 +974,7 @@ notion.so
 
 ---
 
-## 43 · "Where did Lingnan begin?" Two answers disagree.
+## 42 · "Where did Lingnan begin?" Two answers disagree.
 
 <!-- slide id: m2-08 -->
 
@@ -1005,7 +992,7 @@ notion.so
 
 ---
 
-## 44 · Write it down: tell OpenCode what you found and what comes next.
+## 43 · Write it down: tell OpenCode what you found and what comes next.
 
 <!-- slide id: m2-10 -->
 
@@ -1038,20 +1025,7 @@ Next: more sources, starting with the
 
 ---
 
-## 45 · Your questions, Module 2: Notes.
-
-<!-- slide id: qa-2 -->
-
-| | Your question | Short answer |
-|---|---|---|
-| 01.3 | 如何組織筆記與反思性寫作？ | Keep notes in plain text: quick to search, always saved, never locked in, no version trouble. A design doc you rewrite, a log you add to. Edit them in VS Code or Obsidian. |
-| 11.1 | 如何用 AI 協助構思與檢驗新想法？ | Talk with it and let it write your notes. More in later modules. |
-
-**Read-along:** The participants' questions for Module 2, each with a short answer drawn from the slides before.
-
----
-
-## 46 · Any questions?
+## 44 · Any questions?
 
 <!-- slide id: q-2 -->
 
@@ -1061,7 +1035,7 @@ Next: more sources, starting with the
 
 ---
 
-## 47 · Break: five minutes.
+## 45 · Break: five minutes.
 
 <!-- slide id: break -->
 
@@ -1069,7 +1043,7 @@ Next: more sources, starting with the
 
 ---
 
-## 48 · Module 3: Search for sources.
+## 46 · Module 3: Search for sources.
 
 <!-- slide id: m3-01 -->
 
@@ -1079,7 +1053,7 @@ Next: more sources, starting with the
 
 ---
 
-## 49 · Match the search to the source.
+## 47 · Match the search to the source.
 
 <!-- slide id: m3-01b -->
 
@@ -1093,7 +1067,7 @@ Next: more sources, starting with the
 
 ---
 
-## 50 · Built-in web search: fine for a quick question, not for research.
+## 48 · Built-in web search: fine for a quick question, not for research.
 
 <!-- slide id: m3-02 -->
 
@@ -1122,7 +1096,7 @@ Allow OpenCode to search the web for up-to-date information?
 
 ---
 
-## 51 · An API: the same OpenAlex search, for people and for programs.
+## 49 · An API: the same OpenAlex search, for people and for programs.
 
 <!-- slide id: m3-04 -->
 
@@ -1140,7 +1114,7 @@ Allow OpenCode to search the web for up-to-date information?
 
 ---
 
-## 52 · Let the agent use the API, with your own free key.
+## 50 · Let the agent use the API, with your own free key.
 
 <!-- slide id: m3-05b -->
 
@@ -1166,7 +1140,7 @@ Allow OpenCode to search the web for up-to-date information?
 
 ---
 
-## 53 · Agents are fluent with APIs: if a source has one, tell the agent to use it.
+## 51 · Agents are fluent with APIs: if a source has one, tell the agent to use it.
 
 <!-- slide id: m3-05c -->
 
@@ -1188,7 +1162,7 @@ Allow OpenCode to search the web for up-to-date information?
 
 ---
 
-## 54 · Ask OpenCode to query OpenAlex for you.
+## 52 · Ask OpenCode to query OpenAlex for you.
 
 <!-- slide id: m3-06 -->
 
@@ -1210,7 +1184,7 @@ Matches: 2,071
 
 ---
 
-## 55 · What comes back is data, and the first hit can be irrelevant.
+## 53 · What comes back is data, and the first hit can be irrelevant.
 
 <!-- slide id: m3-07 -->
 
@@ -1233,7 +1207,7 @@ Matches: 2,071
 
 ---
 
-## 56 · The same works for museums: the Met's API, searched for "Canton".
+## 54 · The same works for museums: the Met's API, searched for "Canton".
 
 <!-- slide id: m3-05d -->
 
@@ -1265,7 +1239,7 @@ Matches: 2,071
 
 ---
 
-## 57 · On top of an API, the agent can build you a small search engine.
+## 55 · On top of an API, the agent can build you a small search engine.
 
 <!-- slide id: m3-05e -->
 
@@ -1290,7 +1264,7 @@ Open it in your browser and type a search.
 
 ---
 
-## 58 · Google Scholar has no API: you search, or use a third-party one.
+## 56 · Google Scholar has no API: you search, or use a third-party one.
 
 <!-- slide id: m3-09 -->
 
@@ -1316,7 +1290,7 @@ Baidu (Chinese)
 
 ---
 
-## 59 · Give the agent a browser: a Chrome MCP, or agent-browser.
+## 57 · Give the agent a browser: a Chrome MCP, or agent-browser.
 
 <!-- slide id: m3-10 -->
 
@@ -1344,7 +1318,7 @@ Baidu (Chinese)
 
 ---
 
-## 60 · The agent turns the data into a reading list you can check.
+## 58 · The agent turns the data into a reading list you can check.
 
 <!-- slide id: m3-08 -->
 
@@ -1362,7 +1336,7 @@ Baidu (Chinese)
 
 ---
 
-## 61 · Found it; now the agent can help you download it.
+## 59 · Found it; now the agent can help you download it.
 
 <!-- slide id: m3-08b -->
 
@@ -1388,7 +1362,7 @@ Baidu (Chinese)
 
 ---
 
-## 62 · Then let the agent tidy up: which folder, which names.
+## 60 · Then let the agent tidy up: which folder, which names.
 
 <!-- slide id: m3-10c -->
 
@@ -1412,7 +1386,7 @@ Renamed 3 files:
 
 ---
 
-## 63 · Record where you searched, under which names, and what you found.
+## 61 · Record where you searched, under which names, and what you found.
 
 <!-- slide id: m3-11 -->
 
@@ -1435,7 +1409,7 @@ Not yet: newspaper databases, Yale Divinity Library
 
 ---
 
-## 64 · Stock-take: what we have now.
+## 62 · Stock-take: what we have now.
 
 <!-- slide id: m3-11b -->
 
@@ -1448,21 +1422,7 @@ Not yet: newspaper databases, Yale Divinity Library
 
 ---
 
-## 65 · Your questions, Module 3: Search for sources.
-
-<!-- slide id: qa-3 -->
-
-| | Your question | Short answer |
-|---|---|---|
-| 07.2 | 具體指令能找到所有相關材料嗎？ | Partly. AI combines and speeds up existing resources and methods; it does not make missing material appear, and no "one-stop" academic AI exists. Combine the three ways, search every name, log the gaps. |
-| 02.3 | 如何協助取得與整理資料庫材料？ | An API where there is one (with a free key), your logged-in browser where not; download through your library's access, keep to each database's terms, name every file by its source. |
-| 10.2 | 如何系統整理一個機構的線上資源？ | Step by step: its API where it has one (as with the Met), the agent's browser where not; keep raw files, log every search, write the method as a skill. |
-
-**Read-along:** The participants' questions for Module 3, each with a short answer drawn from the slides before.
-
----
-
-## 66 · Any questions?
+## 63 · Any questions?
 
 <!-- slide id: q-3 -->
 
@@ -1472,7 +1432,7 @@ Not yet: newspaper databases, Yale Divinity Library
 
 ---
 
-## 67 · Module 4: Skills.
+## 64 · Module 4: Skills.
 
 <!-- slide id: sk-01 -->
 
@@ -1482,7 +1442,7 @@ Not yet: newspaper databases, Yale Divinity Library
 
 ---
 
-## 68 · Remember the search? With a skill, one sentence does it all.
+## 65 · Remember the search? With a skill, one sentence does it all.
 
 <!-- slide id: m3-13b -->
 
@@ -1515,7 +1475,7 @@ openalex-10-christian-higher-education-china.json
 
 ---
 
-## 69 · The skill behind it: a plain-text file, in plain language.
+## 66 · The skill behind it: a plain-text file, in plain language.
 
 <!-- slide id: m3-13 -->
 
@@ -1545,7 +1505,7 @@ Search for scholarship on the question I give you.
 
 ---
 
-## 70 · A prompt is said once; a skill is saved and used again.
+## 67 · A prompt is said once; a skill is saved and used again.
 
 <!-- slide id: m3-12a -->
 
@@ -1584,7 +1544,7 @@ notes and bibliography:
 
 ---
 
-## 71 · When to write a skill: when you keep telling it the same thing.
+## 68 · When to write a skill: when you keep telling it the same thing.
 
 <!-- slide id: m3-14a -->
 
@@ -1610,7 +1570,7 @@ If you find yourself explaining the same thing again, it is probably a skill.
 
 ---
 
-## 72 · Keep skills short, plain, and combinable.
+## 69 · Keep skills short, plain, and combinable.
 
 <!-- slide id: m3-14b -->
 
@@ -1663,7 +1623,7 @@ In short:
 
 ---
 
-## 73 · You need not write a skill yourself: the agent writes it, you test it.
+## 70 · You need not write a skill yourself: the agent writes it, you test it.
 
 <!-- slide id: sk-write -->
 
@@ -1691,7 +1651,7 @@ Saved. Next time say "use scholarly-search".
 
 ---
 
-## 74 · Use other people's skills; write and share your own.
+## 71 · Use other people's skills; write and share your own.
 
 <!-- slide id: sk-share -->
 
@@ -1711,20 +1671,7 @@ Saved. Next time say "use scholarly-search".
 
 ---
 
-## 75 · Your questions, Module 4: Skills.
-
-<!-- slide id: qa-sk -->
-
-| | Your question | Short answer |
-|---|---|---|
-| 11.2 | 怎樣提問，才能得到可檢查的幫助？ | State five things: purpose, material, action, output, and how it will be checked. When a request works, save it as a skill. |
-| 07.1 | 如何把視覺觀察寫成可檢查的方法？ | Give explicit observation rules with an example, as a skill: describe what is visible and where before interpreting; ask neutrally. No training needed. |
-
-**Read-along:** The participants' questions for Module 4: how to ask so the help can be checked, and how to turn a visual method into rules an agent can follow.
-
----
-
-## 76 · Any questions?
+## 72 · Any questions?
 
 <!-- slide id: q-sk -->
 
@@ -1734,7 +1681,7 @@ Saved. Next time say "use scholarly-search".
 
 ---
 
-## 77 · Module 5: Search within sources.
+## 73 · Module 5: Search within sources.
 
 <!-- slide id: m4-01 -->
 
@@ -1744,7 +1691,7 @@ Saved. Next time say "use scholarly-search".
 
 ---
 
-## 78 · One question, and what we now hold.
+## 74 · One question, and what we now hold.
 
 <!-- slide id: m4-02 -->
 
@@ -1758,7 +1705,7 @@ Saved. Next time say "use scholarly-search".
 
 ---
 
-## 79 · Just ask: the agent searches your files, expanding the words.
+## 75 · Just ask: the agent searches your files, expanding the words.
 
 <!-- slide id: m4-04 -->
 
@@ -1790,7 +1737,7 @@ The memoir is images only: not searched.
 
 ---
 
-## 80 · It shows you where: each hit with its source, page and snippet.
+## 76 · It shows you where: each hit with its source, page and snippet.
 
 <!-- slide id: m4-05 -->
 
@@ -1808,7 +1755,7 @@ memoir (1954)   manuscript images: not searchable yet
 
 ---
 
-## 81 · Two problems follow.
+## 77 · Two problems follow.
 
 <!-- slide id: m4-05s -->
 
@@ -1819,7 +1766,7 @@ memoir (1954)   manuscript images: not searchable yet
 
 ---
 
-## 82 · A scan is only a picture; OCR turns it into text.
+## 78 · A scan is only a picture; OCR turns it into text.
 
 <!-- slide id: m4-09 -->
 
@@ -1849,7 +1796,7 @@ memoir (1954)   manuscript images: not searchable yet
 
 ---
 
-## 83 · For ordinary OCR, the agent writes the calls and runs the batch.
+## 79 · For ordinary OCR, the agent writes the calls and runs the batch.
 
 <!-- slide id: m4-ocrbatch -->
 
@@ -1873,7 +1820,7 @@ Done. Check memoir p. 2 first: most low-confidence lines.
 
 ---
 
-## 84 · A vision model can transcribe too: OpenCode writes the request.
+## 80 · A vision model can transcribe too: OpenCode writes the request.
 
 <!-- slide id: m4-12 -->
 
@@ -1910,7 +1857,7 @@ Saved sources/processed/shangbao-1923-c05.txt
 
 ---
 
-## 85 · A vision model reads even a poor scan: all five characters right.
+## 81 · A vision model reads even a poor scan: all five characters right.
 
 <!-- slide id: m4-13b -->
 
@@ -1936,7 +1883,7 @@ character you cannot read.
 
 ---
 
-## 86 · OCR errors hide words: five in a single line.
+## 82 · OCR errors hide words: five in a single line.
 
 <!-- slide id: m4-11 -->
 
@@ -1951,7 +1898,7 @@ character you cannot read.
 
 ---
 
-## 87 · Both err: OCR drops a character; the model rewrites a name.
+## 83 · Both err: OCR drops a character; the model rewrites a name.
 
 <!-- slide id: m4-13 -->
 
@@ -1971,7 +1918,7 @@ fluent, and a different firm
 
 ---
 
-## 88 · Now the memoir joins the search.
+## 84 · Now the memoir joins the search.
 
 <!-- slide id: m4-19b -->
 
@@ -1991,7 +1938,7 @@ fluent, and a different firm
 
 ---
 
-## 89 · A crowded newspaper page is cut into blocks first.
+## 85 · A crowded newspaper page is cut into blocks first.
 
 <!-- slide id: m4-15 -->
 
@@ -2007,7 +1954,7 @@ fluent, and a different firm
 
 ---
 
-## 90 · To search a picture, turn it into words: its subject, and its style.
+## 86 · To search a picture, turn it into words: its subject, and its style.
 
 <!-- slide id: v-1 -->
 
@@ -2039,7 +1986,7 @@ Watercolour with opaque body colour (gouache) on paper.
 
 ---
 
-## 91 · Then search the words: by keyword, or by meaning.
+## 87 · Then search the words: by keyword, or by meaning.
 
 <!-- slide id: v-2 -->
 
@@ -2063,7 +2010,7 @@ $ search by meaning: "a scholar reading in his study"
 
 ---
 
-## 92 · A page with pictures and text: transcribe and describe in one pass.
+## 88 · A page with pictures and text: transcribe and describe in one pass.
 
 <!-- slide id: m4-18 -->
 
@@ -2093,7 +2040,7 @@ Guesses (marked)
 
 ---
 
-## 93 · Keyword search matches words; semantic search matches meaning.
+## 89 · Keyword search matches words; semantic search matches meaning.
 
 <!-- slide id: m4-07 -->
 
@@ -2111,7 +2058,7 @@ Guesses (marked)
 
 ---
 
-## 94 · An embedding turns a text into numbers; close meanings sit close.
+## 90 · An embedding turns a text into numbers; close meanings sit close.
 
 <!-- slide id: m4-emb -->
 
@@ -2134,7 +2081,7 @@ Guesses (marked)
 
 ---
 
-## 95 · Abstract themes are harder to search: 'the passing of time'.
+## 91 · Abstract themes are harder to search: 'the passing of time'.
 
 <!-- slide id: m5-10 -->
 
@@ -2152,7 +2099,7 @@ Guesses (marked)
 
 ---
 
-## 96 · Ask for a one-line note on every passage, in one language.
+## 92 · Ask for a one-line note on every passage, in one language.
 
 <!-- slide id: m5-13 -->
 
@@ -2185,7 +2132,7 @@ P6  敖士洲 memoir p. 3  星期日下午，教师……到公园、海滨或�
 
 ---
 
-## 97 · One search finds four, and the model flags where they differ.
+## 93 · One search finds four, and the model flags where they differ.
 
 <!-- slide id: m5-14 -->
 
@@ -2207,7 +2154,7 @@ Search 时间流逝 (synopses only) → P1, P2, P4, P5
 
 ---
 
-## 98 · 107 pages: the agent lowers the density; you decide where to read.
+## 94 · 107 pages: the agent lowers the density; you decide where to read.
 
 <!-- slide id: m5-02 -->
 
@@ -2223,7 +2170,7 @@ Your timeclose reading and checking, where it matters
 
 ---
 
-## 99 · The agent drafts a review sheet; you decide where to start.
+## 95 · The agent drafts a review sheet; you decide where to start.
 
 <!-- slide id: m5-03 -->
 
@@ -2257,24 +2204,7 @@ No page was opened: these are leads, not findings. · 59.8s
 
 ---
 
-## 100 · Your questions, Module 5: Search within sources.
-
-<!-- slide id: qa-4 -->
-
-| | Your question | Short answer |
-|---|---|---|
-| 03.1 | 材料數位化不足時可以怎樣研究？ | OCR, then a vision model with a faithful-transcription prompt; keep the page and the box, so every line can be checked. |
-| 06.2 | 如何支援多語檔案研究？ | The agent expands keywords across languages and scripts; transcribe in the original script, never translate while transcribing. |
-| 02.2 | 比對題跋與手跡，AI 可以怎樣協助？ | Next week: using AI to build a small tool that crops and lines up characters for you to compare. |
-| 05.3 | 在多部插圖集中尋找特定母題 | One description per image, visible first and guesses marked; search the descriptions, then open the page. |
-| 12.1 | 如何尋找館藏中的特定圖像？ | Official catalogues first; then describe your own images and search the descriptions. |
-| 01.1 | 如何尋找並聯繫跨學科材料？ | Expand keywords, search by meaning, and have the model write a one-line synopsis of every passage in one language; then read the originals. |
-
-**Read-along:** The participants' questions for Module 5, each with a short answer drawn from the slides before.
-
----
-
-## 101 · Any questions?
+## 96 · Any questions?
 
 <!-- slide id: q-4 -->
 
@@ -2284,7 +2214,7 @@ No page was opened: these are leads, not findings. · 59.8s
 
 ---
 
-## 102 · Module 6: Read and synthesize.
+## 97 · Module 6: Read and synthesize.
 
 <!-- slide id: m5-01 -->
 
@@ -2294,7 +2224,7 @@ No page was opened: these are leads, not findings. · 59.8s
 
 ---
 
-## 103 · Read where your notes stay usable: often, that means a PDF.
+## 98 · Read where your notes stay usable: often, that means a PDF.
 
 <!-- slide id: m5-06 -->
 
@@ -2307,7 +2237,7 @@ No page was opened: these are leads, not findings. · 59.8s
 
 ---
 
-## 104 · Mark the passage, comment beside it; the agent extracts both.
+## 99 · Mark the passage, comment beside it; the agent extracts both.
 
 <!-- slide id: m5-07 -->
 
@@ -2340,7 +2270,7 @@ on @sources/raw/corbett-1963.pdf
 
 ---
 
-## 105 · Two sources on Macao, read and extracted together.
+## 100 · Two sources on Macao, read and extracted together.
 
 <!-- slide id: m5-08 -->
 
@@ -2376,7 +2306,7 @@ Extract my annotations again, from
 
 ---
 
-## 106 · The agent organises the notes; every line says where, whose and when.
+## 101 · The agent organises the notes; every line says where, whose and when.
 
 <!-- slide id: m5-09 -->
 
@@ -2403,7 +2333,7 @@ Extract my annotations again, from
 
 ---
 
-## 107 · After many rounds, the agent summarises and marks disagreements.
+## 102 · After many rounds, the agent summarises and marks disagreements.
 
 <!-- slide id: m6-02 -->
 
@@ -2425,7 +2355,7 @@ Disagree: 1888 vs 1899 · Canton vs Macao · June vs early July 1900
 
 ---
 
-## 108 · After reading, I add my judgement; the synthesis sheet states the fact.
+## 103 · After reading, I add my judgement; the synthesis sheet states the fact.
 
 <!-- slide id: m6-sheet -->
 
@@ -2451,7 +2381,7 @@ Fact: Lingnan began in Canton in 1888, and moved to Macao in 1900 for four years
 
 ---
 
-## 109 · By now each claim is several steps away from the page.
+## 104 · By now each claim is several steps away from the page.
 
 <!-- slide id: m6-03 -->
 
@@ -2471,20 +2401,7 @@ Summary · draft
 
 ---
 
-## 110 · Your questions, Module 6: Read and synthesize.
-
-<!-- slide id: qa-5 -->
-
-| | Your question | Short answer |
-|---|---|---|
-| 01.2 | 如何比較不同媒介的材料？ | Digitize each medium, but read them all as PDF: a painting prints to a high-resolution PDF, so you can mark it freely and the original is untouched. One format, kept for decades. |
-| 07.3 | 如何處理 AI 協作的原創性與責任？ | Mark who wrote every line: the source, you, other scholars, the AI. The AI can forget to mark its own words, so Git records who wrote what (next week). |
-
-**Read-along:** The participants' questions for Module 6, each with a short answer drawn from the slides before.
-
----
-
-## 111 · Your challenge for next week: how do you know your conclusion is true?
+## 105 · Your challenge for next week: how do you know your conclusion is true?
 
 <!-- slide id: m6-ch -->
 
@@ -2498,7 +2415,7 @@ Summary · draft
 
 ---
 
-## 112 · Pointers for your method: questions, not answers.
+## 106 · Pointers for your method: questions, not answers.
 
 <!-- slide id: m6-ch2 -->
 
@@ -2521,7 +2438,7 @@ Summary · draft
 
 ---
 
-## 113 · Any questions?
+## 107 · Any questions?
 
 <!-- slide id: q-6 -->
 
@@ -2531,7 +2448,7 @@ Summary · draft
 
 ---
 
-## 114 · Next week: advanced workflows. Verifying, data, maps and publication.
+## 108 · Next week: advanced workflows. Verifying, data, maps and publication.
 
 <!-- slide id: m6-16 -->
 
@@ -2541,7 +2458,7 @@ Summary · draft
 
 ---
 
-## 115 · Appendix: if there is time.
+## 109 · Appendix: if there is time.
 
 <!-- slide id: appx-00 -->
 
@@ -2551,7 +2468,7 @@ Summary · draft
 
 ---
 
-## 116 · When it misses your meaning, ask for options and choose.
+## 110 · When it misses your meaning, ask for options and choose.
 
 <!-- slide id: m2-10b -->
 
@@ -2583,7 +2500,7 @@ A. Draw it and add it to the design doc.
 
 ---
 
-## 117 · Another skill, agent-browser: it opens the page and saves the file.
+## 111 · Another skill, agent-browser: it opens the page and saves the file.
 
 <!-- slide id: m3-10b -->
 
@@ -2606,7 +2523,7 @@ Saved: ccc-1908.pdf, 1908, Canton Christian College Trustees.
 
 ---
 
-## 118 · Each block is read on its own, turned the right way, then put in order.
+## 112 · Each block is read on its own, turned the right way, then put in order.
 
 <!-- slide id: m4-16 -->
 
@@ -2625,7 +2542,7 @@ Saved: ccc-1908.pdf, 1908, Canton Christian College Trustees.
 
 ---
 
-## 119 · Whose idea is this? Keep four voices apart.
+## 113 · Whose idea is this? Keep four voices apart.
 
 <!-- slide id: m5-16 -->
 
