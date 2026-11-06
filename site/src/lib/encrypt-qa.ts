@@ -13,7 +13,10 @@ export async function encryptQa(html: string): Promise<QaPayload> {
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const iterations = 600_000;
-  const password = import.meta.env.WORKSHOP_PASSWORD || 'cuhk2026';
+  // The password comes only from the environment (a GitHub Actions secret when deployed;
+  // set WORKSHOP_PASSWORD in your shell to build locally). Never write it in this file.
+  const password = import.meta.env.WORKSHOP_PASSWORD;
+  if (!password) throw new Error('WORKSHOP_PASSWORD is not set: the Q&A cannot be encrypted.');
   const baseKey = await crypto.subtle.importKey('raw', encoder.encode(password), 'PBKDF2', false, ['deriveKey']);
   const aesKey = await crypto.subtle.deriveKey(
     { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },

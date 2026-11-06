@@ -38,11 +38,13 @@
 
   ![opencode.ai 首頁右上角的 Console 連結](/art-ai-workshop-2026/assets/update/step1-console.png)
   ![OpenCode Console 登入頁](/art-ai-workshop-2026/assets/update/step2-signin.png)
+  <p class="img-credit">截圖：opencode.ai，2026 年 11 月 6 日。</p>
 
 - 在 Console 的 **Go** 頁面訂閱 OpenCode Go（US$10／月，可隨時取消）。
 - 點右上角的頭像進入個人帳戶（Account），往下拉到 **Personal API keys**，按 **Add API key**，取個名字，然後複製以 `oc_sk_` 開頭的那一串。
 
   ![Personal API keys 下方的 Add API key 按鈕](/art-ai-workshop-2026/assets/update/step3-addkey.png)
+  <p class="img-credit">截圖：opencode.ai，2026 年 11 月 6 日。</p>
 
 - key 只貼進 OpenCode。不要放進聊天、截圖、筆記或 Git。
 
@@ -84,6 +86,7 @@
 在 OpenCode Console 打開 **Settings → Privacy**：
 
 ![OpenCode Console 的 Privacy 設定頁：Training 兩個開關都關閉；Regions 可選 Global 或 Europe & United States](/art-ai-workshop-2026/assets/update/opencode-privacy.png)
+<p class="img-credit">截圖：opencode.ai，2026 年 11 月 6 日。</p>
 
 - **Allow paid endpoints that train on request data**：關閉，不讓付費模型拿你的請求來訓練。
 - **Allow free endpoints that train on request data**：關閉。免費模型可能會拿你的請求訓練；關閉後，所有免費模型都會停用。

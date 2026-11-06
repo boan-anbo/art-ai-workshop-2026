@@ -250,3 +250,4 @@ dd { margin: 0; font-size: .92rem; }
 .update-prose .update-date { border-left: 3px solid var(--accent); padding-left: 1rem; }
 .update-prose pre { max-width: 100%; overflow-x: auto; }
 .update-prose li { min-width: 0; }
+.update-prose .img-credit { margin-top: -.5rem; font-size: .8rem; color: var(--muted, #6b7280); }
