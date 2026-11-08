@@ -1,0 +1,7 @@
+import{ac as i,j as e}from"./index-Cyf7OyVt.js";import{D as n}from"./default-BCiSP4ZL.js";import{e as o,f as l,S as d}from"./layoutHelper-DjM2ocXH.js";import"./modules/file-saver-C5aOAFwN.js";/* empty css                      */import"./slidev/academic-react-C6rKkPeO.js";function x({children:t}){const{$frontmatter:a}=i(),r=e.jsxs(e.Fragment,{children:[e.jsx("h1",{"data-v-slidev-84":"",children:"Now the memoir joins the search."}),e.jsx("p",{"data-v-slidev-84":"",className:"sub",children:"Still check the page: on memoir p. 2 the OCR read 國文 as 图文."}),e.jsxs("div",{"data-v-slidev-84":"",className:"file",children:[e.jsx("div",{"data-v-slidev-84":"",className:"file-bar",children:"my-work/research/notes/hits.md"}),e.jsxs("pre",{"data-v-slidev-84":"",children:[`
+#  Source          Place   Terms  Text around the first match
+1  `,e.jsx("span",{"data-v-slidev-84":"",className:"hl",children:"memoir (OCR)    p. 2    9      为广学班四年畢业…全程课目有聖经英…"}),`
+2  Corbett 1963    p. 31   6      the Chinese classics… a Sunday Bible Class
+3  thesis (2018)   PDF 61  6      literature of China. Translation from English…
+…  107 pages
+`]})]}),e.jsx(d,{name:"read",children:e.jsx("p",{"data-v-slidev-84":"",children:"After digitization the memoir joins the search: page 2 now tops the list with nine terms, out of 107 pages in all. The OCR still hid one word, 國文, read as 图文."})})]}),s=o(r.props.children);return e.jsx(n,{...l(a,83),slots:s,children:s.default||t})}export{x as default};

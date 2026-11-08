@@ -10,6 +10,8 @@ CUHK Fine Arts · Bo An · 6 November 2026. Agent-friendly copy of the deck: eve
 
 <!-- slide id: s01 -->
 
+*Bo An*
+
 **Read-along:** Session One walks through a research workflow with large language models, through a coding agent: tools and notes, finding sources, skills, searching within sources, reading and synthesis, using the early history of Lingnan.
 
 ---
